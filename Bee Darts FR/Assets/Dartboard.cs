@@ -16,6 +16,6 @@ public class Dartboard : MonoBehaviour
 
     public virtual void OnHit()
     {
-
+        Debug.Log(gameObject.name + " was Hit!");
     }
 }
