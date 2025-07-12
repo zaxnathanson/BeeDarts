@@ -26,6 +26,10 @@ public class HexRenderer : MonoBehaviour
     [Tooltip("The radius of each individual hexagon")]
     [SerializeField] private float hexRadius = 2;
 
+    // serialized just for debug prupose
+    [SerializeField] private int previousHexGridRadius;
+    [SerializeField] private float previousHexRadius;
+
     [Header("Lifting Settings")]
 
     [Tooltip("The animation time for raising the hexagons in seconds")]
@@ -43,29 +47,94 @@ public class HexRenderer : MonoBehaviour
 
     private List<GameObject> allHexagons = new List<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
+        previousHexGridRadius = hexGridRadius;
+        previousHexRadius = hexRadius;
+
+        // only generate if in editor and no children
+        if (!Application.isPlaying && transform.childCount == 0)
+        {
+            GenerateHexGrid(hexGridRadius);
+        }
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Hexagon"))
+        {
+            allHexagons.Add(obj);
+        }
+    }
+
+    //editor only onvalidate runs when an inspector value updates
+    private void OnValidate()
+    {
+        if (hexGridRadius != previousHexGridRadius || hexRadius != previousHexRadius)
+        {
+            SmartRegenerateGrid();
+
+            previousHexGridRadius = hexGridRadius;
+            previousHexRadius = hexRadius;
+        }
+    }
+
+    // regenerating only hexagons that do not have children attached to them
+    private void SmartRegenerateGrid()
+    {
+        List<GameObject> hexesWithChildren = new List<GameObject>();
+        List<Vector3> preservedPositions = new List<Vector3>();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject child = transform.GetChild(i).gameObject;
+
+            if (child.transform.childCount > 0)
+            {
+                hexesWithChildren.Add(child);
+                preservedPositions.Add(child.transform.position);
+            }
+        }
+
+        for (int i = transform.childCount - 1; i > 0; i--)
+        {
+            // bruh moment ahhhh destroy call
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(transform.GetChild(i).gameObject);
+            };
+        }
+
         GenerateHexGrid(hexGridRadius);
+
+        // removing new hexes that overlap stored ones
+        for (int i = 0; i < preservedPositions.Count; i++)
+        {
+            Vector3 preservedPos = preservedPositions[i];
+
+            for (int j = transform.childCount - 1; j >= 0; j--)
+            {
+                GameObject newHex = transform.GetChild(j).gameObject;
+
+                // if new hex is right around where stored hex is
+                if (Vector3.Distance(newHex.transform.position, preservedPos) < 0.1f)
+                {
+                    UnityEditor.EditorApplication.delayCall += () =>
+                    {
+                        DestroyImmediate(newHex);
+                    };
+                    break;
+                }
+            }
+
+            if (i < hexesWithChildren.Count && hexesWithChildren[i] != null)
+            {
+                GameObject restoredHex = Instantiate(hexesWithChildren[i], preservedPos, Quaternion.identity, transform);
+                restoredHex.name = hexesWithChildren[i].name;
+            }
+        }
     }
 
     // geenerating a hex grid radially from a center point. radius is how many rings outward
     private void GenerateHexGrid(float hexGridRadius)
     {
-        // ensuring editor hexagons are destroyed and there are no duplicates
-        foreach (Transform child in transform)
-        {
-            if (Application.isPlaying)
-            {
-                Destroy(child.gameObject);
-            }
-            else
-            {
-                DestroyImmediate(child.gameObject);
-            }
-        }
-
-        allHexagons.Clear();
-
         // generating new hexes
         for (int q = -(int)(hexGridRadius); q <= hexGridRadius; q++)
         {
@@ -76,7 +145,7 @@ public class HexRenderer : MonoBehaviour
             {
                 Vector3 pos = HexToWorld(q, r, hexRadius);
                 GameObject hex = Instantiate(hexPrefab, pos, Quaternion.identity, transform);
-                allHexagons.Add(hex);
+                //allHexagons.Add(hex);
             }
         }
     }

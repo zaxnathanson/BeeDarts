@@ -126,7 +126,7 @@ MonoBehaviour:
   grabLength: 5
   layermask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 1
   dartThrowingRef: {fileID: 6790868459603346315}
 --- !u!54 &2661191289868725535
 Rigidbody:
