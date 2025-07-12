@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Dart : MonoBehaviour
 {
@@ -70,7 +71,7 @@ public class Dart : MonoBehaviour
     {
         force = power;
         body.isKinematic = false;
-        body.AddForce(player.transform.forward * power, ForceMode.Impulse);
+        body.AddForce(Camera.main.transform.forward * power, ForceMode.Impulse);
     }
 
     IEnumerator AnimateCurrentExpression()
@@ -159,9 +160,10 @@ public class Dart : MonoBehaviour
             return;
         }
 
-        if (collision.transform.gameObject.layer == dartableLayers)
+        if (dartableLayers == (dartableLayers | (1 << collision.gameObject.layer)))
         {
             ChangeDartState(DartStates.HIT);
+
             collision.transform.TryGetComponent(out Dartboard dartboardScript);
             if (dartboardScript != null)
             {

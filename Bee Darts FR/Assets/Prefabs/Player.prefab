@@ -66,7 +66,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2512280929791603793}
-  - {fileID: 4645508733990044510}
   - {fileID: 5364692569003785351}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -82,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84f4032c76243442b7067304e2fb54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxChargeTime: 1.4
+  maxChargeTime: 1.43
   maxChargeForce: 30
   minChargeForce: 1
   minChargeShake: 0.0015
@@ -126,7 +125,7 @@ MonoBehaviour:
   grabLength: 5
   layermask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 129
   dartThrowingRef: {fileID: 6790868459603346315}
 --- !u!54 &2661191289868725535
 Rigidbody:
@@ -168,7 +167,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -210,7 +209,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4645508733990044510}
   m_Father: {fileID: 5627614058534846731}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &6838150584359752543
@@ -354,10 +354,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8664619104264693984}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.113296166, y: 0.0056949006, z: -0.013779141, w: 0.9934494}
-  m_LocalPosition: {x: 0.407, y: -0.147, z: 0.71}
+  m_LocalRotation: {x: -0.072205685, y: 0.0063278615, z: -0.014139861, w: 0.99726945}
+  m_LocalPosition: {x: 0, y: -0.20000005, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5627614058534846731}
-  m_LocalEulerAnglesHint: {x: -13, y: 0.848999, z: -1.6860046}
+  m_Father: {fileID: 2512280929791603793}
+  m_LocalEulerAnglesHint: {x: -8.27, y: 0.848999, z: -1.6860046}

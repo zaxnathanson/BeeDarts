@@ -16,7 +16,7 @@ public class Grab : MonoBehaviour
         if (dartThrowingRef.currentDart == null)
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, grabLength, layermask))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grabLength, layermask))
             {
                 hit.transform.TryGetComponent(out Dart dart);
                 if (dart != null)
