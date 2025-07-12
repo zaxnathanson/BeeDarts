@@ -2,34 +2,39 @@ using UnityEngine;
 
 public class FirstPersonCameraRotation : MonoBehaviour
 {
+    [Header("Mouse Settings")]
 
-    public float Sensitivity
+    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private float yClampingValue = 90f;
+
+    private Transform playerBody;
+
+    private float xRotation = 0f;
+
+    private void Awake()
     {
-        get { return sensitivity; }
-        set { sensitivity = value; }
-    }
-    [Range(0.1f, 9f)][SerializeField] float sensitivity = 2f;
-    [Tooltip("Limits vertical camera rotation. Prevents the flipping that happens when rotation goes above 90.")]
-    [Range(0f, 90f)][SerializeField] float yRotationLimit = 88f;
+        playerBody = transform.parent;
 
-    Vector2 rotation = Vector2.zero;
-    const string xAxis = "Mouse X"; //Strings in direct code generate garbage, storing and re-using them creates no garbage
-    const string yAxis = "Mouse Y";
-
-    private void Start()
-    {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        rotation.x += Input.GetAxis(xAxis) * sensitivity;
-        rotation.y += Input.GetAxis(yAxis) * sensitivity;
-        rotation.y = Mathf.Clamp(rotation.y, -yRotationLimit, yRotationLimit);
-        var xQuat = Quaternion.AngleAxis(rotation.x, Vector3.up);
-        var yQuat = Quaternion.AngleAxis(rotation.y, Vector3.left);
+        // manual deadzoning as well as cancelling out tiny rotations
+        if (playerBody == null) return;
 
-        transform.localRotation = xQuat * yQuat; //Quaternions seem to rotate more consistently than EulerAngles. Sensitivity seemed to change slightly at certain degrees using Euler. transform.localEulerAngles = new Vector3(-rotation.y, rotation.x, 0);
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        if (Mathf.Abs(mouseX) < 0.01f && Mathf.Abs(mouseY) < 0.01f) return;
+
+        mouseX *= mouseSensitivity * Time.deltaTime;
+        mouseY *= mouseSensitivity * Time.deltaTime;
+
+        xRotation -= mouseY;
+        xRotation = Mathf.Clamp(xRotation, -yClampingValue, yClampingValue);
+
+        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
     }
 }

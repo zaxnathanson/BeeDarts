@@ -12,6 +12,7 @@ public struct Hex
     }
 }
 
+[ExecuteInEditMode]
 public class HexRenderer : MonoBehaviour
 {
     [SerializeField] private GameObject hexPrefab;
@@ -48,7 +49,7 @@ public class HexRenderer : MonoBehaviour
     private Vector3 HexToWorld(int q, int r, float hexRadius)
     {
         float x = hexRadius * 3f / 2f * q;
-        float y = Random.Range(-random, random); //randomness y value here -------------------------------------------
+        float y = 0;
         float z = hexRadius * Mathf.Sqrt(3f) * (r + q / 2f);
         return new Vector3(x, y, z);
     }

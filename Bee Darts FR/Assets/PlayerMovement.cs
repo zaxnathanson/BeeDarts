@@ -1,90 +1,80 @@
 using UnityEngine;
 
-public class CharacterControllerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("Player Settings")]
+    [Header("Movement Settings")]
 
-    [SerializeField] private float speed = 5.0f;
-    [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float jumpHeight = 2f;
+    [SerializeField] private float moveSpeed = 6f;
+    [SerializeField] private float jumpForce = 8f;
 
     [Header("Ground Check Settings")]
 
-    [SerializeField] private LayerMask ground;
     [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundCheckRadius;
-    private bool isGrounded = false;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private LayerMask groundMask;
 
-    private CharacterController controller;
-    private Vector3 velocity;
+    private Rigidbody rb;
+    private Vector3 input;
+    private bool isGrounded;
+    private bool jumpQueued = false;
 
-    private void Start()
+    private float horizontal;
+    private float vertical;
+
+    private void Awake()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        // handling inputs only in update
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpQueued = true;
+        }
     }
 
     private void FixedUpdate()
     {
         GroundCheck();
-        MovementControls();
+        Movement();
+        Jump();
+
+        Debug.Log("isGrounded: {" + isGrounded + "}");
     }
 
-    private void MovementControls()
+    private void Movement()
     {
-        // responsible for holding the player down while going down slopes
-        if (isGrounded)
-        {
-            velocity.y = -1f;
-        }
-        // manually calculating gravity to character controller
-        else
-        {
-            velocity.y += gravity * Time.deltaTime;
-        }
+        input = transform.right * horizontal + transform.forward * vertical;
 
-        // mopvement
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = (transform.right * x) + (transform.forward * z);
-
-        // horizontal movement application
-        controller.Move(move * speed * Time.deltaTime);
-
-        // jump
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
-
-        // gravity application
-        controller.Move(velocity * Time.deltaTime);
+        Vector3 move = input.normalized * moveSpeed;
+        Vector3 velocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
+        rb.linearVelocity = velocity;
     }
 
     private void Jump()
     {
-        if (isGrounded)
+        if (jumpQueued && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * 2 * -gravity);
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
+            jumpQueued = false;
         }
     }
 
     private void GroundCheck()
     {
-        if (Physics.CheckSphere(groundCheck.position, groundCheckRadius, ground))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
     }
 
+
+    // draw gizmo for ground check in editor
     private void OnDrawGizmos()
     {
-        //drawing ground check sphere for debug
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawSphere(groundCheck.position, groundDistance);
     }
 }
