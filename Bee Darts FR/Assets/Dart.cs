@@ -21,6 +21,8 @@ public class Dart : MonoBehaviour
     public ExpressionAnimation[] PullExpressions;
     public ExpressionAnimation[] ThrownExpressions;
 
+    [SerializeField] Animator animator;
+
     ExpressionAnimation currentExpression;
 
     [SerializeField] float expressionFps;
@@ -110,15 +112,22 @@ public class Dart : MonoBehaviour
                 StartCoroutine(Pickup());
                 break;
             case DartStates.CHARGING:
+                animator.SetBool("IsCharging", true);
+
                 newExpressionIndex = Random.Range(0, PullExpressions.Length);
                 currentExpression = PullExpressions[newExpressionIndex];
                 break;
             case DartStates.THROWN:
-                
+                animator.SetBool("IsCharging", false);
+                animator.SetBool("IsFlying", true);
+
                 newExpressionIndex = Random.Range(0, ThrownExpressions.Length);
                 currentExpression = ThrownExpressions[newExpressionIndex];
                 break;
             case DartStates.HIT:
+                animator.SetBool("IsFlying", false);
+                animator.SetTrigger("Hit");
+
                 body.isKinematic = true;
                 newExpressionIndex = Random.Range(0, IdleExpression.Length);
                 currentExpression = IdleExpression[newExpressionIndex];
@@ -130,10 +139,16 @@ public class Dart : MonoBehaviour
     IEnumerator Pickup()
     {
         
-        transform.localPosition -= new Vector3(0, -0.3f, 0);
-        yield return null;
-        transform.DOLocalMove(Vector3.zero, 0.25f);
-        yield return new WaitForSeconds(0.25f);
+        transform.localPosition = new Vector3(0, -0.5f, 0);
+        Vector3 startPos = transform.localPosition;
+        float elapsed = 0;
+        while (elapsed < 0.2f)
+        {
+            transform.localPosition = Vector3.Lerp(startPos, Vector3.zero, elapsed / 0.2f);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        transform.localPosition = Vector3.zero;
         canBeThrown = true;
     }
 

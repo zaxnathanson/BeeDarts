@@ -33,35 +33,31 @@ public class DartThrowing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Charge();
-        DartJuice();
+        if (currentDart != null)
+        {
+            if (currentDart.canBeThrown)
+            {
+                Charge();
+                DartJuice();
+            }
+        }
     }
 
     void Charge()
     {
-        if (currentDart != null)
+        if (Input.GetMouseButtonDown(0))
         {
-            if (!currentDart.canBeThrown)
-            {
-                return;
-            }
-
-            if (Input.GetMouseButtonDown(0))
-            {
-
-                currentDart.ChangeDartState(Dart.DartStates.CHARGING);
-            }
-
-            if (Input.GetMouseButton(0))
-            {
-                currentChargeTime += Time.deltaTime;
-                currentChargeForce = Mathf.Lerp(minChargeForce, maxChargeForce, currentChargeTime / maxChargeTime);
-            }
-            if (Input.GetMouseButtonUp(0))
-            {
-                LaunchDart();
-                currentChargeTime = 0;
-            }
+            currentDart.ChangeDartState(Dart.DartStates.CHARGING);
+        }
+        if (Input.GetMouseButton(0))
+        {
+            currentChargeTime += Time.deltaTime;
+            currentChargeForce = Mathf.Lerp(minChargeForce, maxChargeForce, currentChargeTime / maxChargeTime);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            LaunchDart();
+            currentChargeTime = 0;
         }
     }
 

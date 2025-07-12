@@ -21,7 +21,6 @@ public class Grab : MonoBehaviour
                 hit.transform.TryGetComponent(out Dart dart);
                 if (dart != null)
                 {
-                    Debug.Log(dart.ToString());
                     if (Input.GetMouseButtonDown(0))
                     {
                         dartThrowingRef.Pickup(dart);

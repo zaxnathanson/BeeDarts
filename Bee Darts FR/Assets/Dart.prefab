@@ -26,17 +26,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819834742520379613}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.15623999}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
+  m_LocalRotation: {x: -0.13108778, y: 0.6948496, z: 0.6948496, w: 0.13108778}
+  m_LocalPosition: {x: 0, y: 0, z: -0.3543691}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3335616296627010718}
-  m_Father: {fileID: 2047379107416062213}
+  m_Father: {fileID: 3452683284126006629}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.13864242, y: -0.86800015}
   m_SizeDelta: {x: 1.1, y: 1.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5565199978741080847
@@ -208,7 +208,7 @@ Transform:
   m_Children:
   - {fileID: 4188659818487502234}
   m_Father: {fileID: 3452683284126006629}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.246952e-15, y: -141.8969, z: 180}
 --- !u!1 &2790148362063871347
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +362,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1750584931031944869}
   - {fileID: 5614224705570218836}
   m_Father: {fileID: 6497903944671826386}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -463,7 +462,7 @@ Transform:
   m_Children:
   - {fileID: 6699962444743537843}
   m_Father: {fileID: 3452683284126006629}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.3680126e-14, y: -80.866714, z: 9.464573e-16}
 --- !u!1 &5135063335342825572
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +772,7 @@ MonoBehaviour:
   - sprites:
     - {fileID: 802454709, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: -279363726, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  animator: {fileID: 1432823472997666759}
   expressionFps: 12
   faceImage: {fileID: 4657202746980905407}
   body: {fileID: 3602324037672425932}
@@ -1046,6 +1046,7 @@ Transform:
   m_Children:
   - {fileID: 6546722962404300466}
   - {fileID: 8609936523869065494}
+  - {fileID: 1750584931031944869}
   m_Father: {fileID: 4923645707735384789}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8460987857328950490
@@ -1080,4 +1081,4 @@ Transform:
   - {fileID: 3452683284126006629}
   - {fileID: 2772727753422110435}
   m_Father: {fileID: 5614224705570218836}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
