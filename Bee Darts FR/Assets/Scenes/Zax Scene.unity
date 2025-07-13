@@ -6674,7 +6674,7 @@ GameObject:
   - component: {fileID: 115298704}
   - component: {fileID: 115298709}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Space Ship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
