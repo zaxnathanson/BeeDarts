@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeeFaces_0
+      name: BeeHappy0
       rect:
         serializedVersion: 2
         x: 0
@@ -132,7 +132,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_1
+      name: BeeScared0
       rect:
         serializedVersion: 2
         x: 32
@@ -154,7 +154,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_2
+      name: BeeAngry0
       rect:
         serializedVersion: 2
         x: 64
@@ -176,7 +176,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_3
+      name: BeeCheeky0
       rect:
         serializedVersion: 2
         x: 96
@@ -198,7 +198,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_4
+      name: BeeHappy1
       rect:
         serializedVersion: 2
         x: 0
@@ -220,7 +220,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_5
+      name: BeeScared1
       rect:
         serializedVersion: 2
         x: 32
@@ -242,7 +242,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_6
+      name: BeeAngry1
       rect:
         serializedVersion: 2
         x: 64
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeeFaces_7
+      name: BeeCheeky1
       rect:
         serializedVersion: 2
         x: 96
@@ -285,6 +285,182 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BeeExcited0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cb455e9e3ff9214fb54afee6afffb5d
+      internalID: -520260908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeExcited1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac55e4061bde3f045ad0e4da0776e4ab
+      internalID: 486158778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeScowl0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9248e7a7497a8a54294fdaa1fe260ded
+      internalID: -1310208004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeBored0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e224918f133641043aadc834ca27e9cf
+      internalID: -1159291244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeSad0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bf6dab61cea0a34cbd3023f1bb646e7
+      internalID: 1089648633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeScowl1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b56d7079c4e38547a8b2e0e796357fb
+      internalID: -646430899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeBored1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71635053e1a98524fb72340c817410d4
+      internalID: 208470702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BeeSad1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cf2e34c5ce087343a142547838d03c7
+      internalID: -1068800444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -299,14 +475,22 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BeeFaces_0: -1089096718
-      BeeFaces_1: 802454709
-      BeeFaces_2: 566944382
-      BeeFaces_3: -2082289859
-      BeeFaces_4: -615405509
-      BeeFaces_5: -279363726
-      BeeFaces_6: 263358104
-      BeeFaces_7: -1152584433
+      BeeAngry0: 566944382
+      BeeAngry1: 263358104
+      BeeBored0: -1159291244
+      BeeBored1: 208470702
+      BeeCheeky0: -2082289859
+      BeeCheeky1: -1152584433
+      BeeExcited0: -520260908
+      BeeExcited1: 486158778
+      BeeHappy0: -1089096718
+      BeeHappy1: -615405509
+      BeeSad0: 1089648633
+      BeeSad1: -1068800444
+      BeeScared0: 802454709
+      BeeScared1: -279363726
+      BeeScowl0: -1310208004
+      BeeScowl1: -646430899
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

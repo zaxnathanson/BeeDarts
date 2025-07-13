@@ -1,8 +1,11 @@
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DartThrowing : MonoBehaviour
 {
+    public static DartThrowing instance;
+
 
     [Header("Charge")]
     [SerializeField] float maxChargeTime;
@@ -25,9 +28,17 @@ public class DartThrowing : MonoBehaviour
     [Header("Pickup")]
     [SerializeField] Transform dartHolderTransform;
 
-    void Start()
+
+    void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     // Update is called once per frame
@@ -66,6 +77,7 @@ public class DartThrowing : MonoBehaviour
         vibrationTween.Complete();
         vibrationTween = null;
 
+        currentDart.thrownStartPos = transform.position;
         currentDart.ChangeDartState(Dart.DartStates.THROWN);
         currentDart.Fire(currentChargeForce);
         currentDart.transform.parent = null;

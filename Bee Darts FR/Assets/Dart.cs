@@ -32,13 +32,13 @@ public class Dart : MonoBehaviour
     [SerializeField] float flightNoiseStrength;
     [SerializeField] float flightNoiseSpeed;
 
-    GameObject player;
     float force;
 
     int frameIndex;
 
     public bool canBeThrown;
 
+    public Vector3 thrownStartPos;
 
     [SerializeField] LayerMask dartableLayers;
 
@@ -48,9 +48,11 @@ public class Dart : MonoBehaviour
         public Sprite[] sprites;
     }
 
+    public delegate void PickedUpEvent(Dart thisDart);
+    public event PickedUpEvent OnPickedUp;
+
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
         canBeThrown = false;
     }
 
@@ -139,7 +141,7 @@ public class Dart : MonoBehaviour
 
     IEnumerator Pickup()
     {
-        
+        OnPickedUp?.Invoke(this);
         transform.localPosition = new Vector3(0, -0.5f, 0);
         Vector3 startPos = transform.localPosition;
         float elapsed = 0;
@@ -167,7 +169,7 @@ public class Dart : MonoBehaviour
             collision.transform.TryGetComponent(out Dartboard dartboardScript);
             if (dartboardScript != null)
             {
-                dartboardScript.OnHit();
+                dartboardScript.CheckHit(this);
             }
         }
     }

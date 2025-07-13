@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         Jump();
 
-        Debug.Log("isGrounded: {" + isGrounded + "}");
     }
 
     private void Movement()

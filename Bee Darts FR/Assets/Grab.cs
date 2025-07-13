@@ -5,6 +5,10 @@ public class Grab : MonoBehaviour
     [SerializeField] float grabLength;
     [SerializeField] LayerMask layermask;
     [SerializeField] DartThrowing dartThrowingRef;
+    [SerializeField] Color defaultReticleColor;
+    [SerializeField] Gradient hoverGradient;
+    float gradientTime;
+
     void Start()
     {
         
@@ -21,14 +25,32 @@ public class Grab : MonoBehaviour
                 hit.transform.TryGetComponent(out Dart dart);
                 if (dart != null)
                 {
+                    GameUIManager.instance.ChangeReticleColor(hoverGradient.Evaluate(gradientTime));
                     if (Input.GetMouseButtonDown(0))
                     {
                         dartThrowingRef.Pickup(dart);
                     }
                 }
-                
+                else
+                {
+                    GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
+                }
+
+            }
+            else
+            {
+                GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
             }
         }
+        else
+        {
+            GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
+        }
 
+        gradientTime += Time.deltaTime/2;
+        if (gradientTime > 1)
+        {
+            gradientTime -= 1;
+        }
     }
 }
