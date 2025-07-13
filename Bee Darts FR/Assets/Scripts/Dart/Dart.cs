@@ -15,7 +15,14 @@ public class Dart : MonoBehaviour
         HIT,
     }
 
+    [Header("Dart References")]
+
+    [SerializeField] Rigidbody body;
     public DartStates currentDartState;
+    public Vector3 lastVelocity;
+    
+
+    [Header("Expressions Settings")]
 
     public ExpressionAnimation[] IdleExpression;
     public ExpressionAnimation[] PullExpressions;
@@ -27,7 +34,9 @@ public class Dart : MonoBehaviour
 
     [SerializeField] float expressionFps;
     [SerializeField] Image faceImage;
-    [SerializeField] Rigidbody body;
+
+    [Header("Noise Settings (not used)")]
+
     [SerializeField] float flightNoiseStrength;
     [SerializeField] float flightNoiseSpeed;
 
@@ -67,6 +76,11 @@ public class Dart : MonoBehaviour
         if (currentDartState == DartStates.THROWN) { Fly(); };
     }
 
+    private void FixedUpdate()
+    {
+        lastVelocity = body.linearVelocity;
+    }
+
 
     public void Fire(float power)
     {
@@ -89,10 +103,6 @@ public class Dart : MonoBehaviour
 
     void Fly()
     {
-        float speedInput = flightNoiseSpeed * Time.time * force;
-        Vector3 randomForce = new Vector3(flightNoiseStrength * (Mathf.PerlinNoise(speedInput, speedInput) - 0.5f), 0, 0);
-        body.position += randomForce * Time.deltaTime * force;
-
         if (body.linearVelocity.normalized != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
@@ -163,6 +173,7 @@ public class Dart : MonoBehaviour
 
         if (dartableLayers == (dartableLayers | (1 << collision.gameObject.layer)))
         {
+            Debug.Log("Hit!!!!");
             ChangeDartState(DartStates.HIT);
 
             collision.transform.TryGetComponent(out Dartboard dartboardScript);

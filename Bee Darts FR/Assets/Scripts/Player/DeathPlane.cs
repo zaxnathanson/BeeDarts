@@ -26,5 +26,9 @@ public class DeathPlane : MonoBehaviour
 
             player.transform.position = playerRespawnPoint;
         }
+        else if (other.gameObject.CompareTag("Dart"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
