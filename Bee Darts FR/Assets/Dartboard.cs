@@ -3,25 +3,30 @@ using UnityEngine;
 
 public class Dartboard : MonoBehaviour
 {
+    [Header("Hex List")]
+
+    public List<GameObject> hexList = new List<GameObject>();
+
+    [Header("Visual Ref Settings")]
+
     [SerializeField] float distance;
     [SerializeField] SpriteRenderer tooCloseVisualRef;
+
     Transform player;
     List<Dart> attachedDarts = new List<Dart>();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         DetectRange();
         OnStay(attachedDarts.Count);
     }
 
-    void DetectRange()
+    private void DetectRange()
     {
         if (DartThrowing.instance.currentDart != null)
         {
@@ -32,7 +37,6 @@ public class Dartboard : MonoBehaviour
             tooCloseVisualRef.enabled = false;
         }
     }
-
 
     public void CheckHit(Dart theDart)
     {
@@ -54,7 +58,7 @@ public class Dartboard : MonoBehaviour
     {
     }
 
-    void RemoveDartFromAttachedList(Dart theDart)
+    private void RemoveDartFromAttachedList(Dart theDart)
     {
         attachedDarts.Remove(theDart);
         attachedDarts.TrimExcess();
@@ -64,5 +68,25 @@ public class Dartboard : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, distance);
+    }
+
+
+    // Context menu functions for testing
+    [ContextMenu("Clear List")]
+    public void ClearList()
+    {
+        hexList.Clear();
+    }
+
+    [ContextMenu("Lower Hexagons From List")]
+    public void LowerList()
+    {
+        HexManager.Instance.LowerHexagonsInList(hexList);
+    }
+
+    [ContextMenu("Raise Hexagons From List")]
+    public void RaiseList()
+    {
+        HexManager.Instance.LiftHexagonsInList(hexList);
     }
 }

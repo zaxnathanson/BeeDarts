@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class HexManager : MonoBehaviour
     [SerializeField] private float lowerAmount = 10f;
     [Tooltip("The strength of the DOTween animation")]
     [SerializeField] private float animStrength = 1.5f;
+    [Tooltip("Amount of time between raising each hexagon")]
+    [SerializeField] private float plunkTime = 0.05f;
 
     [Header("Debug Values")]
 
@@ -110,6 +113,11 @@ public class HexManager : MonoBehaviour
     // lift hexagons in list, plunk plunk plunk animation
     public void LiftHexagonsInList(List<GameObject> selectedHexes)
     {
+        StartCoroutine(PlunkDelay(selectedHexes));
+    }
+
+    public IEnumerator PlunkDelay(List<GameObject> selectedHexes)
+    {
         foreach (GameObject hex in selectedHexes)
         {
             Vector3 targetPos = hex.transform.position;
@@ -117,6 +125,7 @@ public class HexManager : MonoBehaviour
 
             // punchy, overshooting animation type for hexagons coming up
             hex.transform.DOMove(targetPos, animTime).SetEase(Ease.OutBack, animStrength);
+            yield return new WaitForSeconds(plunkTime);
         }
     }
 
