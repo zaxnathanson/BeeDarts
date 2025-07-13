@@ -5,7 +5,7 @@ public class ChildMaker : MonoBehaviour
     [SerializeField] private string targetTag = "Hexagon";
     [SerializeField] private float searchRadius = 10f;
 
-    private void Start()
+    private void Awake()
     {
         ParentToClosest();
     }

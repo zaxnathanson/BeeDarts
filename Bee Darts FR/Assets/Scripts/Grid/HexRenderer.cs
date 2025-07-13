@@ -13,7 +13,7 @@ public struct Hex
     }
 }
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode] ----------------------------------------------- CURRENTLY DISABLED ---------------------------------------------------------------
 public class HexRenderer : MonoBehaviour
 {
     [Header("Grid Settings")]
