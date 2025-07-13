@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class Dartboard : MonoBehaviour
 {
-    [Header("Hex List")]
+    [Header("Hex List Settings")]
 
     public List<GameObject> hexList = new List<GameObject>();
+    private float gizmoSize = 0.25f;
+    private Color gizmoColorUnselected = new Color(1, 1, 1, 0.01f);
+    private Color gizmoColorSelected = new Color(1, 0, 0, 1);
 
     [Header("Visual Ref Settings")]
 
@@ -64,13 +67,6 @@ public class Dartboard : MonoBehaviour
         attachedDarts.TrimExcess();
     }
 
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(transform.position, distance);
-    }
-
-
     // Context menu functions for testing
     [ContextMenu("Clear List")]
     public void ClearList()
@@ -88,5 +84,27 @@ public class Dartboard : MonoBehaviour
     public void RaiseList()
     {
         HexManager.Instance.LiftHexagonsInList(hexList);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = gizmoColorUnselected;
+        foreach (GameObject hex in hexList)
+        {
+            Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.0f, hex.transform.position.z), gizmoSize);
+        }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        //zax thing from higher up
+        Gizmos.DrawWireSphere(transform.position, distance);
+
+        //drawing highlighted as red
+        Gizmos.color = gizmoColorSelected;
+        foreach (GameObject hex in hexList)
+        {
+            Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.0f, hex.transform.position.z), gizmoSize);
+        }
     }
 }
