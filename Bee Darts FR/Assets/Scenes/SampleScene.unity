@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -633,7 +633,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
+  m_SizeDelta: {x: 32, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1604984737
 MonoBehaviour:
@@ -1686,7 +1686,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5.46
+      scalar: 0
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5587,11 +5587,15 @@ PrefabInstance:
     - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
       propertyPath: hitParticle
       value: 
-      objectReference: {fileID: 5965814080433416591, guid: 69b2e42efc8dacc4187a4f36a5f154aa, type: 3}
+      objectReference: {fileID: 7523253600593438404, guid: 0d089302e9f3cae44b0ae7658f29fb4c, type: 3}
     - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
       propertyPath: stayParticle
       value: 
       objectReference: {fileID: 1945581708}
+    - target: {fileID: 6801462681559515944, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: size
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6831482362081709177, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -6009,6 +6013,22 @@ PrefabInstance:
     - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838150584359752543, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838150584359752543, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.89433956
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838150584359752543, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.7315746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838150584359752543, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.4083588
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
