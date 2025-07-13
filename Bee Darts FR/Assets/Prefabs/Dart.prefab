@@ -305,14 +305,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3647037308725737491}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.072205685, y: 0.0063278615, z: -0.014139861, w: 0.99726945}
+  m_LocalRotation: {x: -0.07220568, y: 0.006327968, z: -0.014139664, w: 0.99726945}
   m_LocalPosition: {x: 0, y: 0.3, z: 0.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6240616562462885720}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -8.27, y: 0.849, z: -1.686}
 --- !u!114 &1068637854628659358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,6 +333,9 @@ MonoBehaviour:
   - sprites:
     - {fileID: -1089096718, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: -615405509, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  - sprites:
+    - {fileID: -1159291244, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: 208470702, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   PullExpressions:
   - sprites:
     - {fileID: 802454709, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
@@ -340,10 +343,19 @@ MonoBehaviour:
   - sprites:
     - {fileID: 566944382, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: 263358104, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  - sprites:
+    - {fileID: -1310208004, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: -646430899, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   ThrownExpressions:
   - sprites:
     - {fileID: 802454709, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: -279363726, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  - sprites:
+    - {fileID: -520260908, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: 486158778, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  - sprites:
+    - {fileID: 263358104, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: 566944382, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   animator: {fileID: 3680027739168653158}
   expressionFps: 12
   faceImage: {fileID: 8386056552970794251}
@@ -351,6 +363,7 @@ MonoBehaviour:
   flightNoiseStrength: 0
   flightNoiseSpeed: 0
   canBeThrown: 0
+  thrownStartPos: {x: 0, y: 0, z: 0}
   dartableLayers:
     serializedVersion: 2
     m_Bits: 9

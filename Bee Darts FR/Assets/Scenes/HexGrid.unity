@@ -119,6 +119,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &4445043
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2405082414225804896, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 01042ea99199741458f116251226bd3b, type: 3}
 --- !u!1 &26570999
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +189,7 @@ GameObject:
   - component: {fileID: 26571003}
   - component: {fileID: 26571002}
   - component: {fileID: 26571001}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -255,7 +312,7 @@ GameObject:
   - component: {fileID: 31861020}
   - component: {fileID: 31861019}
   - component: {fileID: 31861018}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -378,7 +435,7 @@ GameObject:
   - component: {fileID: 42932147}
   - component: {fileID: 42932146}
   - component: {fileID: 42932145}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -501,7 +558,7 @@ GameObject:
   - component: {fileID: 54529379}
   - component: {fileID: 54529378}
   - component: {fileID: 54529377}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -777,7 +834,7 @@ GameObject:
   - component: {fileID: 64905045}
   - component: {fileID: 64905044}
   - component: {fileID: 64905043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -900,7 +957,7 @@ GameObject:
   - component: {fileID: 70251228}
   - component: {fileID: 70251227}
   - component: {fileID: 70251226}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1023,7 +1080,7 @@ GameObject:
   - component: {fileID: 77257159}
   - component: {fileID: 77257158}
   - component: {fileID: 77257157}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1146,7 +1203,7 @@ GameObject:
   - component: {fileID: 90086757}
   - component: {fileID: 90086756}
   - component: {fileID: 90086755}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1269,7 +1326,7 @@ GameObject:
   - component: {fileID: 110438776}
   - component: {fileID: 110438775}
   - component: {fileID: 110438774}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1552,7 +1609,7 @@ GameObject:
   - component: {fileID: 125074460}
   - component: {fileID: 125074459}
   - component: {fileID: 125074458}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1675,7 +1732,7 @@ GameObject:
   - component: {fileID: 131558722}
   - component: {fileID: 131558721}
   - component: {fileID: 131558720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1798,7 +1855,7 @@ GameObject:
   - component: {fileID: 154892069}
   - component: {fileID: 154892068}
   - component: {fileID: 154892067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -1921,7 +1978,7 @@ GameObject:
   - component: {fileID: 161790746}
   - component: {fileID: 161790745}
   - component: {fileID: 161790744}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2044,7 +2101,7 @@ GameObject:
   - component: {fileID: 164585646}
   - component: {fileID: 164585645}
   - component: {fileID: 164585644}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2167,7 +2224,7 @@ GameObject:
   - component: {fileID: 165950503}
   - component: {fileID: 165950502}
   - component: {fileID: 165950501}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2290,7 +2347,7 @@ GameObject:
   - component: {fileID: 183225715}
   - component: {fileID: 183225714}
   - component: {fileID: 183225713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2413,7 +2470,7 @@ GameObject:
   - component: {fileID: 188371807}
   - component: {fileID: 188371806}
   - component: {fileID: 188371805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2536,7 +2593,7 @@ GameObject:
   - component: {fileID: 201239861}
   - component: {fileID: 201239860}
   - component: {fileID: 201239859}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2659,7 +2716,7 @@ GameObject:
   - component: {fileID: 203590384}
   - component: {fileID: 203590383}
   - component: {fileID: 203590382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2782,7 +2839,7 @@ GameObject:
   - component: {fileID: 207570293}
   - component: {fileID: 207570292}
   - component: {fileID: 207570291}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -2905,7 +2962,7 @@ GameObject:
   - component: {fileID: 208278104}
   - component: {fileID: 208278103}
   - component: {fileID: 208278102}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3028,7 +3085,7 @@ GameObject:
   - component: {fileID: 208453378}
   - component: {fileID: 208453377}
   - component: {fileID: 208453376}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3151,7 +3208,7 @@ GameObject:
   - component: {fileID: 219749271}
   - component: {fileID: 219749270}
   - component: {fileID: 219749269}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3274,7 +3331,7 @@ GameObject:
   - component: {fileID: 226590590}
   - component: {fileID: 226590589}
   - component: {fileID: 226590588}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3397,7 +3454,7 @@ GameObject:
   - component: {fileID: 243952137}
   - component: {fileID: 243952136}
   - component: {fileID: 243952135}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3520,7 +3577,7 @@ GameObject:
   - component: {fileID: 280288125}
   - component: {fileID: 280288124}
   - component: {fileID: 280288123}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3643,7 +3700,7 @@ GameObject:
   - component: {fileID: 283994720}
   - component: {fileID: 283994719}
   - component: {fileID: 283994718}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3766,7 +3823,7 @@ GameObject:
   - component: {fileID: 284876083}
   - component: {fileID: 284876082}
   - component: {fileID: 284876081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -3889,7 +3946,7 @@ GameObject:
   - component: {fileID: 289301049}
   - component: {fileID: 289301048}
   - component: {fileID: 289301047}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4012,7 +4069,7 @@ GameObject:
   - component: {fileID: 298399016}
   - component: {fileID: 298399015}
   - component: {fileID: 298399014}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4135,7 +4192,7 @@ GameObject:
   - component: {fileID: 304562176}
   - component: {fileID: 304562175}
   - component: {fileID: 304562174}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4258,7 +4315,7 @@ GameObject:
   - component: {fileID: 362614456}
   - component: {fileID: 362614455}
   - component: {fileID: 362614454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4381,7 +4438,7 @@ GameObject:
   - component: {fileID: 365248300}
   - component: {fileID: 365248299}
   - component: {fileID: 365248298}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4504,7 +4561,7 @@ GameObject:
   - component: {fileID: 368306827}
   - component: {fileID: 368306826}
   - component: {fileID: 368306825}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4627,7 +4684,7 @@ GameObject:
   - component: {fileID: 371057756}
   - component: {fileID: 371057755}
   - component: {fileID: 371057754}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4750,7 +4807,7 @@ GameObject:
   - component: {fileID: 372882996}
   - component: {fileID: 372882995}
   - component: {fileID: 372882994}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4873,7 +4930,7 @@ GameObject:
   - component: {fileID: 396845946}
   - component: {fileID: 396845945}
   - component: {fileID: 396845944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -4996,7 +5053,7 @@ GameObject:
   - component: {fileID: 413055622}
   - component: {fileID: 413055621}
   - component: {fileID: 413055620}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -5209,7 +5266,7 @@ GameObject:
   - component: {fileID: 418941478}
   - component: {fileID: 418941477}
   - component: {fileID: 418941476}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -5660,7 +5717,7 @@ GameObject:
   - component: {fileID: 489801090}
   - component: {fileID: 489801089}
   - component: {fileID: 489801088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -5783,7 +5840,7 @@ GameObject:
   - component: {fileID: 522589839}
   - component: {fileID: 522589838}
   - component: {fileID: 522589837}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -5906,7 +5963,7 @@ GameObject:
   - component: {fileID: 524821745}
   - component: {fileID: 524821744}
   - component: {fileID: 524821743}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6029,7 +6086,7 @@ GameObject:
   - component: {fileID: 538536468}
   - component: {fileID: 538536467}
   - component: {fileID: 538536466}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6152,7 +6209,7 @@ GameObject:
   - component: {fileID: 544462487}
   - component: {fileID: 544462486}
   - component: {fileID: 544462485}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6275,7 +6332,7 @@ GameObject:
   - component: {fileID: 545163093}
   - component: {fileID: 545163092}
   - component: {fileID: 545163091}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6398,7 +6455,7 @@ GameObject:
   - component: {fileID: 583645567}
   - component: {fileID: 583645566}
   - component: {fileID: 583645565}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6521,7 +6578,7 @@ GameObject:
   - component: {fileID: 592442667}
   - component: {fileID: 592442666}
   - component: {fileID: 592442665}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6644,7 +6701,7 @@ GameObject:
   - component: {fileID: 598304820}
   - component: {fileID: 598304819}
   - component: {fileID: 598304818}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6767,7 +6824,7 @@ GameObject:
   - component: {fileID: 601036054}
   - component: {fileID: 601036053}
   - component: {fileID: 601036052}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -6890,7 +6947,7 @@ GameObject:
   - component: {fileID: 608001329}
   - component: {fileID: 608001328}
   - component: {fileID: 608001327}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7013,7 +7070,7 @@ GameObject:
   - component: {fileID: 616788111}
   - component: {fileID: 616788110}
   - component: {fileID: 616788109}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7136,7 +7193,7 @@ GameObject:
   - component: {fileID: 641422579}
   - component: {fileID: 641422578}
   - component: {fileID: 641422577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7259,7 +7316,7 @@ GameObject:
   - component: {fileID: 650301695}
   - component: {fileID: 650301694}
   - component: {fileID: 650301693}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7382,7 +7439,7 @@ GameObject:
   - component: {fileID: 651308380}
   - component: {fileID: 651308379}
   - component: {fileID: 651308378}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7505,7 +7562,7 @@ GameObject:
   - component: {fileID: 651457872}
   - component: {fileID: 651457871}
   - component: {fileID: 651457870}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7628,7 +7685,7 @@ GameObject:
   - component: {fileID: 654966251}
   - component: {fileID: 654966250}
   - component: {fileID: 654966249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7751,7 +7808,7 @@ GameObject:
   - component: {fileID: 659526819}
   - component: {fileID: 659526818}
   - component: {fileID: 659526817}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7874,7 +7931,7 @@ GameObject:
   - component: {fileID: 662657150}
   - component: {fileID: 662657149}
   - component: {fileID: 662657148}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -7997,7 +8054,7 @@ GameObject:
   - component: {fileID: 664390963}
   - component: {fileID: 664390962}
   - component: {fileID: 664390961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8120,7 +8177,7 @@ GameObject:
   - component: {fileID: 679782235}
   - component: {fileID: 679782234}
   - component: {fileID: 679782233}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8230,6 +8287,122 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679782231}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
+--- !u!1 &693708862
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 693708867}
+  - component: {fileID: 693708866}
+  - component: {fileID: 693708865}
+  - component: {fileID: 693708864}
+  - component: {fileID: 693708863}
+  m_Layer: 5
+  m_Name: UI Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &693708863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693708862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e4108e5b77f4d458a6e2e8a8858ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reticleImage: {fileID: 1537237357}
+--- !u!114 &693708864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693708862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &693708865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693708862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &693708866
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693708862}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &693708867
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693708862}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1537237360}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &694096624
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,7 +8416,7 @@ GameObject:
   - component: {fileID: 694096628}
   - component: {fileID: 694096627}
   - component: {fileID: 694096626}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8366,7 +8539,7 @@ GameObject:
   - component: {fileID: 713486196}
   - component: {fileID: 713486195}
   - component: {fileID: 713486194}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8489,7 +8662,7 @@ GameObject:
   - component: {fileID: 720256122}
   - component: {fileID: 720256121}
   - component: {fileID: 720256120}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8612,7 +8785,7 @@ GameObject:
   - component: {fileID: 726900951}
   - component: {fileID: 726900950}
   - component: {fileID: 726900949}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8766,7 +8939,7 @@ GameObject:
   - component: {fileID: 737956529}
   - component: {fileID: 737956528}
   - component: {fileID: 737956527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -8889,7 +9062,7 @@ GameObject:
   - component: {fileID: 739441701}
   - component: {fileID: 739441700}
   - component: {fileID: 739441699}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9012,7 +9185,7 @@ GameObject:
   - component: {fileID: 747003174}
   - component: {fileID: 747003173}
   - component: {fileID: 747003172}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9135,7 +9308,7 @@ GameObject:
   - component: {fileID: 763693798}
   - component: {fileID: 763693797}
   - component: {fileID: 763693796}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9258,7 +9431,7 @@ GameObject:
   - component: {fileID: 764104377}
   - component: {fileID: 764104376}
   - component: {fileID: 764104375}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9381,7 +9554,7 @@ GameObject:
   - component: {fileID: 786706917}
   - component: {fileID: 786706916}
   - component: {fileID: 786706915}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9599,7 +9772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doChangeSize: 1
-  size: 0.08
+  size: 0.1
 --- !u!1 &819608642
 GameObject:
   m_ObjectHideFlags: 0
@@ -9613,7 +9786,7 @@ GameObject:
   - component: {fileID: 819608646}
   - component: {fileID: 819608645}
   - component: {fileID: 819608644}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -9736,7 +9909,7 @@ GameObject:
   - component: {fileID: 820159414}
   - component: {fileID: 820159413}
   - component: {fileID: 820159412}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10028,7 +10201,7 @@ GameObject:
   - component: {fileID: 873540543}
   - component: {fileID: 873540542}
   - component: {fileID: 873540541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10151,7 +10324,7 @@ GameObject:
   - component: {fileID: 877583130}
   - component: {fileID: 877583129}
   - component: {fileID: 877583128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10274,7 +10447,7 @@ GameObject:
   - component: {fileID: 879888196}
   - component: {fileID: 879888195}
   - component: {fileID: 879888194}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10458,7 +10631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doChangeSize: 1
-  size: 0.08
+  size: 0.1
 --- !u!1 &913670184
 GameObject:
   m_ObjectHideFlags: 0
@@ -10472,7 +10645,7 @@ GameObject:
   - component: {fileID: 913670188}
   - component: {fileID: 913670187}
   - component: {fileID: 913670186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10595,7 +10768,7 @@ GameObject:
   - component: {fileID: 919670249}
   - component: {fileID: 919670248}
   - component: {fileID: 919670247}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10718,7 +10891,7 @@ GameObject:
   - component: {fileID: 954411849}
   - component: {fileID: 954411848}
   - component: {fileID: 954411847}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10841,7 +11014,7 @@ GameObject:
   - component: {fileID: 956910130}
   - component: {fileID: 956910129}
   - component: {fileID: 956910128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -10964,7 +11137,7 @@ GameObject:
   - component: {fileID: 984575569}
   - component: {fileID: 984575568}
   - component: {fileID: 984575567}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11087,7 +11260,7 @@ GameObject:
   - component: {fileID: 987205222}
   - component: {fileID: 987205221}
   - component: {fileID: 987205220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11210,7 +11383,7 @@ GameObject:
   - component: {fileID: 997697103}
   - component: {fileID: 997697102}
   - component: {fileID: 997697101}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11333,7 +11506,7 @@ GameObject:
   - component: {fileID: 1001707033}
   - component: {fileID: 1001707032}
   - component: {fileID: 1001707031}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11456,7 +11629,7 @@ GameObject:
   - component: {fileID: 1012289216}
   - component: {fileID: 1012289215}
   - component: {fileID: 1012289214}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11579,7 +11752,7 @@ GameObject:
   - component: {fileID: 1015791587}
   - component: {fileID: 1015791586}
   - component: {fileID: 1015791585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11702,7 +11875,7 @@ GameObject:
   - component: {fileID: 1019108580}
   - component: {fileID: 1019108579}
   - component: {fileID: 1019108578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11825,7 +11998,7 @@ GameObject:
   - component: {fileID: 1021628305}
   - component: {fileID: 1021628304}
   - component: {fileID: 1021628303}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -11948,7 +12121,7 @@ GameObject:
   - component: {fileID: 1026049187}
   - component: {fileID: 1026049186}
   - component: {fileID: 1026049185}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12071,7 +12244,7 @@ GameObject:
   - component: {fileID: 1040285033}
   - component: {fileID: 1040285032}
   - component: {fileID: 1040285031}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12194,7 +12367,7 @@ GameObject:
   - component: {fileID: 1043954626}
   - component: {fileID: 1043954625}
   - component: {fileID: 1043954624}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12317,7 +12490,7 @@ GameObject:
   - component: {fileID: 1057380333}
   - component: {fileID: 1057380332}
   - component: {fileID: 1057380331}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12440,7 +12613,7 @@ GameObject:
   - component: {fileID: 1076284580}
   - component: {fileID: 1076284579}
   - component: {fileID: 1076284578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12563,7 +12736,7 @@ GameObject:
   - component: {fileID: 1079009913}
   - component: {fileID: 1079009912}
   - component: {fileID: 1079009911}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12686,7 +12859,7 @@ GameObject:
   - component: {fileID: 1085532607}
   - component: {fileID: 1085532606}
   - component: {fileID: 1085532605}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12809,7 +12982,7 @@ GameObject:
   - component: {fileID: 1086988233}
   - component: {fileID: 1086988232}
   - component: {fileID: 1086988231}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -12932,7 +13105,7 @@ GameObject:
   - component: {fileID: 1102534662}
   - component: {fileID: 1102534661}
   - component: {fileID: 1102534660}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13042,67 +13215,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102534658}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
---- !u!1001 &1115034146
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2405082414225804896, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5627614058534846731, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8033203290089505193, guid: 01042ea99199741458f116251226bd3b, type: 3}
-      propertyPath: groundMask.m_Bits
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 01042ea99199741458f116251226bd3b, type: 3}
 --- !u!1 &1119706845
 GameObject:
   m_ObjectHideFlags: 0
@@ -13116,7 +13228,7 @@ GameObject:
   - component: {fileID: 1119706849}
   - component: {fileID: 1119706848}
   - component: {fileID: 1119706847}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13226,6 +13338,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1119706845}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
+--- !u!1001 &1141329365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4582959034189121946, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_Name
+      value: Flower Dartboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.783125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.0520751
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3421249
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.29223424
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.95634675
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -146.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680959653179650587, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
 --- !u!1 &1148115973
 GameObject:
   m_ObjectHideFlags: 0
@@ -13239,7 +13408,7 @@ GameObject:
   - component: {fileID: 1148115977}
   - component: {fileID: 1148115976}
   - component: {fileID: 1148115975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13362,7 +13531,7 @@ GameObject:
   - component: {fileID: 1178142987}
   - component: {fileID: 1178142986}
   - component: {fileID: 1178142985}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13485,7 +13654,7 @@ GameObject:
   - component: {fileID: 1183744496}
   - component: {fileID: 1183744495}
   - component: {fileID: 1183744494}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13608,7 +13777,7 @@ GameObject:
   - component: {fileID: 1211066298}
   - component: {fileID: 1211066297}
   - component: {fileID: 1211066296}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13731,7 +13900,7 @@ GameObject:
   - component: {fileID: 1216895763}
   - component: {fileID: 1216895762}
   - component: {fileID: 1216895761}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13854,7 +14023,7 @@ GameObject:
   - component: {fileID: 1260933808}
   - component: {fileID: 1260933807}
   - component: {fileID: 1260933806}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -13977,7 +14146,7 @@ GameObject:
   - component: {fileID: 1286829981}
   - component: {fileID: 1286829980}
   - component: {fileID: 1286829979}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14100,7 +14269,7 @@ GameObject:
   - component: {fileID: 1287549558}
   - component: {fileID: 1287549557}
   - component: {fileID: 1287549556}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14223,7 +14392,7 @@ GameObject:
   - component: {fileID: 1342129049}
   - component: {fileID: 1342129048}
   - component: {fileID: 1342129047}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14346,7 +14515,7 @@ GameObject:
   - component: {fileID: 1358052273}
   - component: {fileID: 1358052272}
   - component: {fileID: 1358052271}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14469,7 +14638,7 @@ GameObject:
   - component: {fileID: 1361860714}
   - component: {fileID: 1361860713}
   - component: {fileID: 1361860712}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14592,7 +14761,7 @@ GameObject:
   - component: {fileID: 1383516034}
   - component: {fileID: 1383516033}
   - component: {fileID: 1383516032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14715,7 +14884,7 @@ GameObject:
   - component: {fileID: 1388247473}
   - component: {fileID: 1388247472}
   - component: {fileID: 1388247471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14838,7 +15007,7 @@ GameObject:
   - component: {fileID: 1395139163}
   - component: {fileID: 1395139162}
   - component: {fileID: 1395139161}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -14961,7 +15130,7 @@ GameObject:
   - component: {fileID: 1404829380}
   - component: {fileID: 1404829379}
   - component: {fileID: 1404829378}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15084,7 +15253,7 @@ GameObject:
   - component: {fileID: 1421178505}
   - component: {fileID: 1421178504}
   - component: {fileID: 1421178503}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15207,7 +15376,7 @@ GameObject:
   - component: {fileID: 1434980248}
   - component: {fileID: 1434980247}
   - component: {fileID: 1434980246}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15317,104 +15486,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434980244}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
---- !u!1 &1435370231
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1435370235}
-  - component: {fileID: 1435370234}
-  - component: {fileID: 1435370232}
-  - component: {fileID: 1435370233}
-  m_Layer: 5
-  m_Name: Reticle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1435370232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435370231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1470923182, guid: 8f43dba84bb1cdd40aa54a6f7674effb, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!95 &1435370233
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435370231}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: cb248977e0c224940ae7171b01224768, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!222 &1435370234
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435370231}
-  m_CullTransparentMesh: 1
---- !u!224 &1435370235
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435370231}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1878916981}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 160}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1437536554
 GameObject:
   m_ObjectHideFlags: 0
@@ -15428,7 +15499,7 @@ GameObject:
   - component: {fileID: 1437536558}
   - component: {fileID: 1437536557}
   - component: {fileID: 1437536556}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15551,7 +15622,7 @@ GameObject:
   - component: {fileID: 1461512337}
   - component: {fileID: 1461512336}
   - component: {fileID: 1461512335}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15674,7 +15745,7 @@ GameObject:
   - component: {fileID: 1465703160}
   - component: {fileID: 1465703159}
   - component: {fileID: 1465703158}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15797,7 +15868,7 @@ GameObject:
   - component: {fileID: 1470881516}
   - component: {fileID: 1470881515}
   - component: {fileID: 1470881514}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -15920,7 +15991,7 @@ GameObject:
   - component: {fileID: 1486584453}
   - component: {fileID: 1486584452}
   - component: {fileID: 1486584451}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16075,7 +16146,7 @@ GameObject:
   - component: {fileID: 1501678313}
   - component: {fileID: 1501678312}
   - component: {fileID: 1501678311}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16198,7 +16269,7 @@ GameObject:
   - component: {fileID: 1535632608}
   - component: {fileID: 1535632607}
   - component: {fileID: 1535632606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16308,6 +16379,104 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1535632604}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
+--- !u!1 &1537237356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537237360}
+  - component: {fileID: 1537237359}
+  - component: {fileID: 1537237357}
+  - component: {fileID: 1537237358}
+  m_Layer: 5
+  m_Name: Reticle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1537237357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537237356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 1470923182, guid: 8f43dba84bb1cdd40aa54a6f7674effb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!95 &1537237358
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537237356}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb248977e0c224940ae7171b01224768, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!222 &1537237359
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537237356}
+  m_CullTransparentMesh: 1
+--- !u!224 &1537237360
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537237356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 693708867}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 32, y: 32}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1551862612
 GameObject:
   m_ObjectHideFlags: 0
@@ -16321,7 +16490,7 @@ GameObject:
   - component: {fileID: 1551862616}
   - component: {fileID: 1551862615}
   - component: {fileID: 1551862614}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16444,7 +16613,7 @@ GameObject:
   - component: {fileID: 1555789375}
   - component: {fileID: 1555789374}
   - component: {fileID: 1555789373}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16567,7 +16736,7 @@ GameObject:
   - component: {fileID: 1559725550}
   - component: {fileID: 1559725549}
   - component: {fileID: 1559725548}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16690,7 +16859,7 @@ GameObject:
   - component: {fileID: 1569738249}
   - component: {fileID: 1569738248}
   - component: {fileID: 1569738247}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16813,7 +16982,7 @@ GameObject:
   - component: {fileID: 1596685267}
   - component: {fileID: 1596685266}
   - component: {fileID: 1596685265}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -16936,7 +17105,7 @@ GameObject:
   - component: {fileID: 1613653796}
   - component: {fileID: 1613653795}
   - component: {fileID: 1613653794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17059,7 +17228,7 @@ GameObject:
   - component: {fileID: 1620644977}
   - component: {fileID: 1620644976}
   - component: {fileID: 1620644975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17182,7 +17351,7 @@ GameObject:
   - component: {fileID: 1622111523}
   - component: {fileID: 1622111522}
   - component: {fileID: 1622111521}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17305,7 +17474,7 @@ GameObject:
   - component: {fileID: 1639078479}
   - component: {fileID: 1639078478}
   - component: {fileID: 1639078477}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17428,7 +17597,7 @@ GameObject:
   - component: {fileID: 1654360502}
   - component: {fileID: 1654360501}
   - component: {fileID: 1654360500}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17551,7 +17720,7 @@ GameObject:
   - component: {fileID: 1664287881}
   - component: {fileID: 1664287880}
   - component: {fileID: 1664287879}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17674,7 +17843,7 @@ GameObject:
   - component: {fileID: 1666743045}
   - component: {fileID: 1666743044}
   - component: {fileID: 1666743043}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17797,7 +17966,7 @@ GameObject:
   - component: {fileID: 1667000724}
   - component: {fileID: 1667000723}
   - component: {fileID: 1667000722}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -17920,7 +18089,7 @@ GameObject:
   - component: {fileID: 1687533067}
   - component: {fileID: 1687533066}
   - component: {fileID: 1687533065}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18043,7 +18212,7 @@ GameObject:
   - component: {fileID: 1691950136}
   - component: {fileID: 1691950135}
   - component: {fileID: 1691950134}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18171,7 +18340,7 @@ GameObject:
   - component: {fileID: 1723235863}
   - component: {fileID: 1723235862}
   - component: {fileID: 1723235861}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18415,7 +18584,7 @@ GameObject:
   - component: {fileID: 1776658006}
   - component: {fileID: 1776658005}
   - component: {fileID: 1776658004}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18538,7 +18707,7 @@ GameObject:
   - component: {fileID: 1789846050}
   - component: {fileID: 1789846049}
   - component: {fileID: 1789846048}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18661,7 +18830,7 @@ GameObject:
   - component: {fileID: 1798494304}
   - component: {fileID: 1798494303}
   - component: {fileID: 1798494302}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18784,7 +18953,7 @@ GameObject:
   - component: {fileID: 1837603529}
   - component: {fileID: 1837603528}
   - component: {fileID: 1837603527}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -18907,7 +19076,7 @@ GameObject:
   - component: {fileID: 1845933164}
   - component: {fileID: 1845933163}
   - component: {fileID: 1845933162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19030,7 +19199,7 @@ GameObject:
   - component: {fileID: 1868627495}
   - component: {fileID: 1868627494}
   - component: {fileID: 1868627493}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19153,7 +19322,7 @@ GameObject:
   - component: {fileID: 1873680901}
   - component: {fileID: 1873680900}
   - component: {fileID: 1873680899}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19263,122 +19432,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873680897}
   m_Mesh: {fileID: 4632596647708219413, guid: cf2a9a40563c0a746954081fdff8c71f, type: 3}
---- !u!1 &1878916976
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1878916981}
-  - component: {fileID: 1878916980}
-  - component: {fileID: 1878916979}
-  - component: {fileID: 1878916978}
-  - component: {fileID: 1878916977}
-  m_Layer: 5
-  m_Name: UI Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1878916977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878916976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98e4108e5b77f4d458a6e2e8a8858ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  reticleImage: {fileID: 1435370232}
---- !u!114 &1878916978
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878916976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &1878916979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878916976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
---- !u!223 &1878916980
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878916976}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &1878916981
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878916976}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1435370235}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1881483148
 GameObject:
   m_ObjectHideFlags: 0
@@ -19392,7 +19445,7 @@ GameObject:
   - component: {fileID: 1881483152}
   - component: {fileID: 1881483151}
   - component: {fileID: 1881483150}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19515,7 +19568,7 @@ GameObject:
   - component: {fileID: 1886027770}
   - component: {fileID: 1886027769}
   - component: {fileID: 1886027768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19638,7 +19691,7 @@ GameObject:
   - component: {fileID: 1886947817}
   - component: {fileID: 1886947816}
   - component: {fileID: 1886947815}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19761,7 +19814,7 @@ GameObject:
   - component: {fileID: 1889671636}
   - component: {fileID: 1889671635}
   - component: {fileID: 1889671634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -19884,7 +19937,7 @@ GameObject:
   - component: {fileID: 1910624648}
   - component: {fileID: 1910624647}
   - component: {fileID: 1910624646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20007,7 +20060,7 @@ GameObject:
   - component: {fileID: 1924627875}
   - component: {fileID: 1924627874}
   - component: {fileID: 1924627873}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20130,7 +20183,7 @@ GameObject:
   - component: {fileID: 1936517311}
   - component: {fileID: 1936517310}
   - component: {fileID: 1936517309}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20253,7 +20306,7 @@ GameObject:
   - component: {fileID: 1937754835}
   - component: {fileID: 1937754834}
   - component: {fileID: 1937754833}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20376,7 +20429,7 @@ GameObject:
   - component: {fileID: 1950618124}
   - component: {fileID: 1950618123}
   - component: {fileID: 1950618122}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20499,7 +20552,7 @@ GameObject:
   - component: {fileID: 1953590459}
   - component: {fileID: 1953590458}
   - component: {fileID: 1953590457}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20622,7 +20675,7 @@ GameObject:
   - component: {fileID: 1961758871}
   - component: {fileID: 1961758870}
   - component: {fileID: 1961758869}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20745,7 +20798,7 @@ GameObject:
   - component: {fileID: 2002725167}
   - component: {fileID: 2002725166}
   - component: {fileID: 2002725165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20868,7 +20921,7 @@ GameObject:
   - component: {fileID: 2023097328}
   - component: {fileID: 2023097327}
   - component: {fileID: 2023097326}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -20991,7 +21044,7 @@ GameObject:
   - component: {fileID: 2036182858}
   - component: {fileID: 2036182857}
   - component: {fileID: 2036182856}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21114,7 +21167,7 @@ GameObject:
   - component: {fileID: 2053442996}
   - component: {fileID: 2053442995}
   - component: {fileID: 2053442994}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21237,7 +21290,7 @@ GameObject:
   - component: {fileID: 2071775938}
   - component: {fileID: 2071775937}
   - component: {fileID: 2071775936}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21360,7 +21413,7 @@ GameObject:
   - component: {fileID: 2083762942}
   - component: {fileID: 2083762941}
   - component: {fileID: 2083762940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21483,7 +21536,7 @@ GameObject:
   - component: {fileID: 2093491203}
   - component: {fileID: 2093491202}
   - component: {fileID: 2093491201}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21606,7 +21659,7 @@ GameObject:
   - component: {fileID: 2098796961}
   - component: {fileID: 2098796960}
   - component: {fileID: 2098796959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21729,7 +21782,7 @@ GameObject:
   - component: {fileID: 2104644564}
   - component: {fileID: 2104644563}
   - component: {fileID: 2104644562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21852,7 +21905,7 @@ GameObject:
   - component: {fileID: 2110712458}
   - component: {fileID: 2110712457}
   - component: {fileID: 2110712456}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -21975,7 +22028,7 @@ GameObject:
   - component: {fileID: 2118678797}
   - component: {fileID: 2118678796}
   - component: {fileID: 2118678795}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -22098,7 +22151,7 @@ GameObject:
   - component: {fileID: 2125757549}
   - component: {fileID: 2125757548}
   - component: {fileID: 2125757547}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -22221,7 +22274,7 @@ GameObject:
   - component: {fileID: 2128567677}
   - component: {fileID: 2128567676}
   - component: {fileID: 2128567675}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -22344,7 +22397,7 @@ GameObject:
   - component: {fileID: 2133796796}
   - component: {fileID: 2133796795}
   - component: {fileID: 2133796794}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -22617,7 +22670,7 @@ GameObject:
   - component: {fileID: 2142865947}
   - component: {fileID: 2142865946}
   - component: {fileID: 2142865945}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BrodysHexagon(Clone)
   m_TagString: Hexagon
   m_Icon: {fileID: 0}
@@ -22732,12 +22785,13 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1763512937}
-  - {fileID: 1878916981}
   - {fileID: 882607549}
   - {fileID: 1491127097}
   - {fileID: 474921682}
-  - {fileID: 1115034146}
   - {fileID: 435423957}
   - {fileID: 115298708}
   - {fileID: 2138758206}
   - {fileID: 58974917}
+  - {fileID: 1141329365}
+  - {fileID: 693708867}
+  - {fileID: 4445043}
