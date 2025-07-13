@@ -42,7 +42,7 @@ public class HexRenderer : MonoBehaviour
     }
 
     //editor only onvalidate runs when an inspector value updates
-    private void OnValidate()
+/*    private void OnValidate()
     {
         if (hexGridRadius != previousHexGridRadius || hexRadius != previousHexRadius)
         {
@@ -51,9 +51,10 @@ public class HexRenderer : MonoBehaviour
             previousHexGridRadius = hexGridRadius;
             previousHexRadius = hexRadius;
         }
-    }
+    }*/
 
     // regenerating only hexagons that do not have children attached to them
+    [ContextMenu("GenerateHexagons")]
     private void SmartRegenerateGrid()
     {
         List<GameObject> hexesWithChildren = new List<GameObject>();
@@ -112,6 +113,7 @@ public class HexRenderer : MonoBehaviour
     // generating a hex grid radially from a center point. radius is how many rings outward
     private void GenerateHexGrid(float hexGridRadius)
     {
+        int num =0;
         // generating new hexes
         for (int q = -(int)(hexGridRadius); q <= hexGridRadius; q++)
         {
@@ -122,6 +124,8 @@ public class HexRenderer : MonoBehaviour
             {
                 Vector3 pos = HexToWorld(q, r, hexRadius);
                 GameObject hex = Instantiate(hexPrefab, pos, Quaternion.identity, transform);
+                hex.name = "Hexagon" + num;
+                num++;
             }
         }
     }
@@ -134,9 +138,10 @@ public class HexRenderer : MonoBehaviour
         return new Vector3(x, y, z);
     }
 
-    [ContextMenu("Generate Hex Grid")]
+/*    [ContextMenu("Generate Hex Grid")]
     public void GenerateGrid()
     {
         GenerateHexGrid(hexGridRadius);
     }
+*/
 }

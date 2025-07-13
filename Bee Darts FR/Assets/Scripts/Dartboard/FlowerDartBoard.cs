@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class FlowerDartBoard : Dartboard
 {
-    [SerializeField] ParticleSystem hitParticle;
     [SerializeField] ParticleSystem stayParticle;
 
     public override void OnHit(Dart theDart)
     {
         base.OnHit(theDart);
-        Instantiate(hitParticle, transform.position, Quaternion.identity);
     }
 
     public override void OnStay(int numDarts)

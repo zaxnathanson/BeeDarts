@@ -7,8 +7,8 @@ public class Dartboard : MonoBehaviour
 
     public List<GameObject> hexList = new List<GameObject>();
     private float gizmoSize = 0.25f;
-    private Color gizmoColorUnselected = new Color(1, 1, 1, 0.01f);
-    private Color gizmoColorSelected = new Color(1, 0, 0, 1);
+    public Color gizmoColorUnselected = new Color(1, 1, 1, 0.9f);
+    public Color gizmoColorSelected = new Color(1, 0, 0, 1);
 
     [Header("Visual Ref Settings")]
 
@@ -17,6 +17,7 @@ public class Dartboard : MonoBehaviour
 
     Transform player;
     List<Dart> attachedDarts = new List<Dart>();
+    [SerializeField] ParticleSystem hitParticle;
 
     private void Awake()
     {
@@ -51,8 +52,13 @@ public class Dartboard : MonoBehaviour
 
     public virtual void OnHit(Dart theDart)
     {
+        if (hitParticle != null)
+        {
+            Instantiate(hitParticle, transform.position, Quaternion.identity);
+        }
         theDart.OnPickedUp += RemoveDartFromAttachedList;
         attachedDarts.Add(theDart);
+        RaiseList();
         Debug.Log(gameObject.name + " was Hit!");
     }
 
@@ -91,7 +97,8 @@ public class Dartboard : MonoBehaviour
         Gizmos.color = gizmoColorUnselected;
         foreach (GameObject hex in hexList)
         {
-            Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.0f, hex.transform.position.z), gizmoSize);
+            if (hex != null)
+                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.5f, hex.transform.position.z), gizmoSize);
         }
     }
 
@@ -104,7 +111,8 @@ public class Dartboard : MonoBehaviour
         Gizmos.color = gizmoColorSelected;
         foreach (GameObject hex in hexList)
         {
-            Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.0f, hex.transform.position.z), gizmoSize);
+            if (hex != null)
+                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.5f, hex.transform.position.z), gizmoSize);
         }
     }
 }

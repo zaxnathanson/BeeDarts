@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class HexManager : MonoBehaviour
@@ -27,7 +28,7 @@ public class HexManager : MonoBehaviour
     [Tooltip("The radius horizontally that a specific transform will check for hexagons. Vertical height does not matter")]
     [SerializeField] private float debugRadius = 5f;
 
-    private List<GameObject> allHexagons = new List<GameObject>();
+    [SerializeField] private List<GameObject> hexagonsToLower = new();
 
     private void Awake()
     {
@@ -41,28 +42,16 @@ public class HexManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        LowerHexagonsAtStart();
     }
 
-    private void Start()
-    {
-        RefreshHexagonList();
-    }
-
-    // refersh list of hexagons
-    public void RefreshHexagonList()
-    {
-        allHexagons.Clear();
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Hexagon"))
-        {
-            allHexagons.Add(obj);
-        }
-    }
 
     // lowering hexagons in a sphere around a defined transform. no animation
 
-    public void LowerHexagonsInSphere(Transform center, float radius)
+/*    public void LowerHexagonsInSphere(Transform center, float radius)
     {
-        foreach (GameObject hex in allHexagons)
+        foreach (GameObject hex in hexagonsToLower)
         {
             // if distance to transform is within radius
             float distance = Vector3.Distance(hex.transform.position, center.position);
@@ -75,12 +64,12 @@ public class HexManager : MonoBehaviour
                 hex.transform.position = targetPos;
             }
         }
-    }
+    }*/
 
     //lifting hexagons in sphere around defined transform. animated
-    public void LiftHexagonsInSphere(Transform center, float radius)
+/*    public void LiftHexagonsInSphere(Transform center, float radius)
     {
-        foreach (GameObject hex in allHexagons)
+        foreach (GameObject hex in hexagonsToLower)
         {
             Vector3 hexPos = hex.transform.position;
             Vector3 centerPos = center.position;
@@ -97,12 +86,22 @@ public class HexManager : MonoBehaviour
                 hex.transform.DOMove(targetPos, animTime).SetEase(Ease.OutBack, animStrength);
             }
         }
-    }
+    }*/
 
     // lowering hexagons in list, no naimation
     public void LowerHexagonsInList(List<GameObject> selectedHexes)
     {
         foreach (GameObject hex in selectedHexes)
+        {
+            Vector3 targetPos = hex.transform.position;
+            targetPos.y = -lowerAmount;
+            hex.transform.position = targetPos;
+        }
+    }
+
+    void LowerHexagonsAtStart()
+    {
+        foreach (GameObject hex in hexagonsToLower)
         {
             Vector3 targetPos = hex.transform.position;
             targetPos.y = -lowerAmount;
@@ -139,7 +138,7 @@ public class HexManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Lower Hexagons in sphere")]
+/*    [ContextMenu("Lower Hexagons in sphere")]
     public void TestLowerWithSphere()
     {
         if (debugTransform != null)
@@ -150,9 +149,9 @@ public class HexManager : MonoBehaviour
         {
             Debug.LogWarning("Debug transform unassigned");
         }
-    }
+    }*/
 
-    [ContextMenu("Lift Hexagons in sphere")]
+/*    [ContextMenu("Lift Hexagons in sphere")]
     public void TestLiftWithSphere()
     {
         if (debugTransform != null)
@@ -163,7 +162,7 @@ public class HexManager : MonoBehaviour
         {
             Debug.LogWarning("Debug transform unassigned");
         }
-    }
+    }*/
 
     [ContextMenu("Lower Hexagons in list")]
     public void TestLowerInList()
@@ -189,5 +188,15 @@ public class HexManager : MonoBehaviour
         {
             Debug.LogWarning("Debug list is empty");
         }
+    }
+
+    [ContextMenu("Remove Selected Hexagons from Lowering List")]
+    public void RemoveSelectedHexagons()
+    {
+        foreach (GameObject hex in Selection.gameObjects)
+        {
+            hexagonsToLower.Remove(hex);
+        }
+        hexagonsToLower.TrimExcess();
     }
 }
