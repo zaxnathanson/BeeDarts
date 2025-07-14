@@ -1,20 +1,12 @@
 using UnityEngine;
 
-public class FlowerDartBoard : Dartboard
+public class HiveDartboard : Dartboard
 {
     [SerializeField] ParticleSystem stayParticle;
-
-    // IMPORTNAT- only make one flower have this and the fsjdfhnu have it be the firsr flower
-    [SerializeField] private bool isFirstFlower;
 
     public override void OnHit(Dart theDart)
     {
         base.OnHit(theDart);
-
-        if (isFirstFlower)
-        {
-            BeeManager.Instance.firstFlower = true;
-        }
     }
 
     public override void OnStay(int numDarts)
@@ -35,4 +27,6 @@ public class FlowerDartBoard : Dartboard
             }
         }
     }
+
+
 }

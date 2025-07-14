@@ -32,13 +32,20 @@ public class Dartboard : MonoBehaviour
 
     private void DetectRange()
     {
-        if (DartThrowing.instance.currentDart != null)
+        if (tooCloseVisualRef != null)
         {
-            tooCloseVisualRef.enabled = Vector3.Distance(player.position, transform.position) <= distance; ;
+            if (DartThrowing.instance.currentDart != null)
+            {
+                tooCloseVisualRef.enabled = Vector3.Distance(player.position, transform.position) <= distance; ;
+            }
+            else
+            {
+                tooCloseVisualRef.enabled = false;
+            }
         }
         else
         {
-            tooCloseVisualRef.enabled = false;
+            Debug.LogWarning($"{gameObject.name} does not have a too close visual ref assigned.");
         }
     }
 
@@ -56,7 +63,11 @@ public class Dartboard : MonoBehaviour
         {
             Instantiate(hitParticle, transform.position, Quaternion.identity);
         }
-        theDart.OnPickedUp += RemoveDartFromAttachedList;
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} does not have a hit particle assigned.");
+        }
+            theDart.OnPickedUp += RemoveDartFromAttachedList;
         attachedDarts.Add(theDart);
         RaiseList();
         Debug.Log(gameObject.name + " was Hit!");

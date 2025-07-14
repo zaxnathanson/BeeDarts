@@ -28,6 +28,8 @@ public class DeathPlane : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Dart"))
         {
+            BeeManager.Instance.RespawnBee();
+
             Destroy(other.gameObject);
         }
     }
