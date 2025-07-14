@@ -38,7 +38,10 @@ public class HexManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+    }
 
+    private void Start()
+    {
         LowerHexagonsAtStart();
     }
 
