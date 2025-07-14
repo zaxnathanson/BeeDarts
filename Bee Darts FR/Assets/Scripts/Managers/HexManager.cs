@@ -21,12 +21,8 @@ public class HexManager : MonoBehaviour
 
     [Header("Debug Values")]
 
-    [Tooltip("The list to be used for context menu debug functions")]
-    [SerializeField] private List<GameObject> debugSelectedHexes;
-    [Tooltip("The transform to be used for the context menu debug functions (for spheres)")]
-    [SerializeField] private Transform debugTransform;
-    [Tooltip("The radius horizontally that a specific transform will check for hexagons. Vertical height does not matter")]
-    [SerializeField] private float debugRadius = 5f;
+    [Tooltip("The hex length to be used for hex grid snapping. Will calculate radius for you.")]
+    [SerializeField] private float hexRadius;
 
     [SerializeField] private List<GameObject> hexagonsToLower = new();
 
@@ -45,48 +41,6 @@ public class HexManager : MonoBehaviour
 
         LowerHexagonsAtStart();
     }
-
-
-    // lowering hexagons in a sphere around a defined transform. no animation
-
-/*    public void LowerHexagonsInSphere(Transform center, float radius)
-    {
-        foreach (GameObject hex in hexagonsToLower)
-        {
-            // if distance to transform is within radius
-            float distance = Vector3.Distance(hex.transform.position, center.position);
-
-            // lower hex
-            if (distance <= radius)
-            {
-                Vector3 targetPos = hex.transform.position;
-                targetPos.y = -lowerAmount;
-                hex.transform.position = targetPos;
-            }
-        }
-    }*/
-
-    //lifting hexagons in sphere around defined transform. animated
-/*    public void LiftHexagonsInSphere(Transform center, float radius)
-    {
-        foreach (GameObject hex in hexagonsToLower)
-        {
-            Vector3 hexPos = hex.transform.position;
-            Vector3 centerPos = center.position;
-
-            // calculating only horizontal distance
-            float distance = Vector2.Distance(new Vector2(hexPos.x, hexPos.z), new Vector2(centerPos.x, centerPos.z));
-
-            if (distance <= radius)
-            {
-                Vector3 targetPos = hex.transform.position;
-                targetPos.y = 0;
-
-                // punchy, overshooting animation type for hexagons coming up
-                hex.transform.DOMove(targetPos, animTime).SetEase(Ease.OutBack, animStrength);
-            }
-        }
-    }*/
 
     // lowering hexagons in list, no naimation
     public void LowerHexagonsInList(List<GameObject> selectedHexes)
@@ -120,83 +74,23 @@ public class HexManager : MonoBehaviour
         foreach (GameObject hex in selectedHexes)
         {
             Vector3 targetPos = hex.transform.position;
-            targetPos.y = 0;
+
+            // making sure hexagon is on hexagon because of that chud ass error
+            if (hex.TryGetComponent<Hexagon>(out Hexagon hexComponent))
+            {
+                targetPos.y = hexComponent.startingY;
+
+                hex.transform.DOMove(targetPos, animTime).SetEase(Ease.OutBack, animStrength);
+                yield return new WaitForSeconds(plunkTime);
+            }
+            else
+            {
+                Debug.LogWarning($"{hex.name} does not have hexagon script");
+            }
 
             // punchy, overshooting animation type for hexagons coming up
             hex.transform.DOMove(targetPos, animTime).SetEase(Ease.OutBack, animStrength);
             yield return new WaitForSeconds(plunkTime);
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (debugTransform != null)
-        {
-            Gizmos.color = new Color(1, 0, 0, 0.2f);
-            Gizmos.DrawSphere(debugTransform.position, debugRadius);
-            Gizmos.DrawWireSphere(debugTransform.position, debugRadius);
-        }
-    }
-
-/*    [ContextMenu("Lower Hexagons in sphere")]
-    public void TestLowerWithSphere()
-    {
-        if (debugTransform != null)
-        {
-            LowerHexagonsInSphere(debugTransform, debugRadius);
-        }
-        else
-        {
-            Debug.LogWarning("Debug transform unassigned");
-        }
-    }*/
-
-/*    [ContextMenu("Lift Hexagons in sphere")]
-    public void TestLiftWithSphere()
-    {
-        if (debugTransform != null)
-        {
-            LiftHexagonsInSphere(debugTransform, debugRadius);
-        }
-        else
-        {
-            Debug.LogWarning("Debug transform unassigned");
-        }
-    }*/
-
-    [ContextMenu("Lower Hexagons in list")]
-    public void TestLowerInList()
-    {
-        if (debugSelectedHexes.Count > 0)
-        {
-            LowerHexagonsInList(debugSelectedHexes);
-        }
-        else
-        {
-            Debug.LogWarning("Debug list is empty");
-        }
-    }
-
-    [ContextMenu("Lift Hexagons in list")]
-    public void TestLiftInList()
-    {
-        if (debugSelectedHexes.Count > 0)
-        {
-            LiftHexagonsInList(debugSelectedHexes);
-        }
-        else
-        {
-            Debug.LogWarning("Debug list is empty");
-        }
-    }
-
-    [ContextMenu("Remove Selected Hexagons from Lowering List")]
-    public void RemoveSelectedHexagons()
-    {
-        foreach (GameObject hex in Selection.gameObjects)
-        {
-            hexagonsToLower.Remove(hex);
-        }
-        hexagonsToLower.TrimExcess();
     }
 }

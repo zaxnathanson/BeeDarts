@@ -41,18 +41,6 @@ public class HexRenderer : MonoBehaviour
         }
     }
 
-    //editor only onvalidate runs when an inspector value updates
-/*    private void OnValidate()
-    {
-        if (hexGridRadius != previousHexGridRadius || hexRadius != previousHexRadius)
-        {
-            SmartRegenerateGrid();
-
-            previousHexGridRadius = hexGridRadius;
-            previousHexRadius = hexRadius;
-        }
-    }*/
-
     // regenerating only hexagons that do not have children attached to them
     [ContextMenu("GenerateHexagons")]
     private void SmartRegenerateGrid()
@@ -74,10 +62,12 @@ public class HexRenderer : MonoBehaviour
         for (int i = transform.childCount - 1; i > 0; i--)
         {
             // bruh moment ahhhh destroy call
+#if UNITY_EDITOR
             UnityEditor.EditorApplication.delayCall += () =>
             {
                 DestroyImmediate(transform.GetChild(i).gameObject);
             };
+#endif
         }
 
         GenerateHexGrid(hexGridRadius);
@@ -94,10 +84,12 @@ public class HexRenderer : MonoBehaviour
                 // if new hex is right around where stored hex is
                 if (Vector3.Distance(newHex.transform.position, preservedPos) < 0.1f)
                 {
+#if UNITY_EDITOR
                     UnityEditor.EditorApplication.delayCall += () =>
                     {
                         DestroyImmediate(newHex);
                     };
+#endif
                     break;
                 }
             }
@@ -137,11 +129,4 @@ public class HexRenderer : MonoBehaviour
         float z = hexRadius * Mathf.Sqrt(3f) * (r + q / 2f);
         return new Vector3(x, y, z);
     }
-
-/*    [ContextMenu("Generate Hex Grid")]
-    public void GenerateGrid()
-    {
-        GenerateHexGrid(hexGridRadius);
-    }
-*/
 }
