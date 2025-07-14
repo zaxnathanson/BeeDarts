@@ -98,7 +98,7 @@ public class Dartboard : MonoBehaviour
         foreach (GameObject hex in hexList)
         {
             if (hex != null)
-                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.5f, hex.transform.position.z), gizmoSize);
+                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, (hex.transform.position.y + (2.5f * (hex.transform.localScale.y / 2))), hex.transform.position.z), gizmoSize);
         }
     }
 
@@ -112,7 +112,7 @@ public class Dartboard : MonoBehaviour
         foreach (GameObject hex in hexList)
         {
             if (hex != null)
-                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, hex.transform.position.y + 2.5f, hex.transform.position.z), gizmoSize);
+                Gizmos.DrawSphere(new Vector3(hex.transform.position.x, (hex.transform.position.y + (2.5f * (hex.transform.localScale.y / 2))), hex.transform.position.z), gizmoSize);
         }
     }
 }
