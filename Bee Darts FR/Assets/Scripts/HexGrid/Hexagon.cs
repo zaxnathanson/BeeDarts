@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+[ExecuteInEditMode]
 public class Hexagon : MonoBehaviour
 {
     [Header("Grid Settings")]
@@ -16,7 +17,6 @@ public class Hexagon : MonoBehaviour
 
     public float startingY = 0;
     private Vector3 lastPosition;
-
     private void Awake()
     {
         // for raising it back to
@@ -25,19 +25,15 @@ public class Hexagon : MonoBehaviour
         lastPosition = transform.position;
     }
 
+
 #if UNITY_EDITOR
-    private void OnValidate()
+    private void Update()
     {
         if (!Application.isPlaying && snapToGrid)
         {
-            // check if position has changed
-            if (Vector3.Distance(transform.position, lastPosition) > 0.01f)
-            {
-                SnapToGrid();
-                lastPosition = transform.position;
-                snapToGrid = false;
-            }
+            SnapToGrid();
         }
+
     }
 #endif
 

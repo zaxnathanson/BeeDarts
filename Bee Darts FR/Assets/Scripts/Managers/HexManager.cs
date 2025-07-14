@@ -24,7 +24,7 @@ public class HexManager : MonoBehaviour
     [Tooltip("The hex length to be used for hex grid snapping. Will calculate radius for you.")]
     [SerializeField] private float hexRadius;
 
-    [SerializeField] private List<GameObject> hexagonsToLower = new();
+    [SerializeField] private List<GameObject> hexagonsNotToLower = new();
 
     private void Awake()
     {
@@ -58,11 +58,16 @@ public class HexManager : MonoBehaviour
 
     void LowerHexagonsAtStart()
     {
-        foreach (GameObject hex in hexagonsToLower)
+        GameObject[] hexagons = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hex in hexagons)
         {
-            Vector3 targetPos = hex.transform.position;
-            targetPos.y = -lowerAmount;
-            hex.transform.position = targetPos;
+            if (!hexagonsNotToLower.Contains(hex))
+            {
+                Vector3 targetPos = hex.transform.position;
+                targetPos.y = -lowerAmount;
+                hex.transform.position = targetPos;
+            }
+            
         }
     }
 
