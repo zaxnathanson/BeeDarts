@@ -103,11 +103,18 @@ MonoBehaviour:
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
   distance: 2
   tooCloseVisualRef: {fileID: 2949855708526177371}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: cdc9bd2395c50b843a4c25cf02c15ed5, type: 3}
   hitSoundVolume: 1
   hitParticle: {fileID: 0}
   stayParticle: {fileID: 3355336965400505027}
-  songToPlay: {fileID: 8300000, guid: c64965cd76081184a936824c88ce5c3d, type: 3}
+  songsToPlay:
+  - {fileID: 8300000, guid: 864128d125cf511408134001537cad82, type: 3}
+  - {fileID: 8300000, guid: c64965cd76081184a936824c88ce5c3d, type: 3}
+  - {fileID: 8300000, guid: c737b34dfbe98d94b82453fb983faba7, type: 3}
+  bounceY: 0.3
+  bounceDuration: 0.5
+  scaleValue: 1.1
+  scaleDuration: 0.5
 --- !u!1 &7521085031052894626
 GameObject:
   m_ObjectHideFlags: 0

@@ -43,7 +43,6 @@ public class Dartboard : MonoBehaviour
     private void Update()
     {
         DetectRange();
-        Debug.Log(attachedDarts.Count);
         OnStay(attachedDarts.Count);
     }
 
@@ -86,7 +85,7 @@ public class Dartboard : MonoBehaviour
         }
 
         // playing a sound on hit only if a sound was attached
-        if (hitSound != null && audioSource != null && !(gameObject.CompareTag("Woodchipper")));
+        if (hitSound != null && audioSource != null && !(gameObject.CompareTag("Woodchipper")))
         {
             audioSource.PlayOneShot(hitSound, hitSoundVolume);
         }
@@ -106,6 +105,11 @@ public class Dartboard : MonoBehaviour
     public virtual void PlayAttachedSound()
     {
         audioSource.PlayOneShot(hitSound, hitSoundVolume);
+    }
+
+    public virtual void DebugTest()
+    {
+        Debug.Log(attachedDarts.Count);
     }
 
     private void RemoveDartFromAttachedList(Dart theDart)

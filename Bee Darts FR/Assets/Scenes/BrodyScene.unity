@@ -16111,26 +16111,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 884606153293681480, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
-      propertyPath: hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: cdc9bd2395c50b843a4c25cf02c15ed5, type: 3}
-    - target: {fileID: 884606153293681480, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
-      propertyPath: songsToPlay.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 884606153293681480, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
-      propertyPath: 'songsToPlay.Array.data[0]'
-      value: 
-      objectReference: {fileID: 8300000, guid: 864128d125cf511408134001537cad82, type: 3}
-    - target: {fileID: 884606153293681480, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
-      propertyPath: 'songsToPlay.Array.data[1]'
-      value: 
-      objectReference: {fileID: 8300000, guid: c64965cd76081184a936824c88ce5c3d, type: 3}
-    - target: {fileID: 884606153293681480, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
-      propertyPath: 'songsToPlay.Array.data[2]'
-      value: 
-      objectReference: {fileID: 8300000, guid: c737b34dfbe98d94b82453fb983faba7, type: 3}
     - target: {fileID: 5100467321634542615, guid: ac12891d48c3f4b4199d9520c8ed6dba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.87
@@ -16188,6 +16168,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 364806629617132879, guid: 153ea6b4bd577de4fb6e434f5fa8c033, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: ca7244c5610430342ab44ec2afb304a1, type: 2}
+    - target: {fileID: 364806629617132879, guid: 153ea6b4bd577de4fb6e434f5fa8c033, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -6513061878797223509, guid: ca7244c5610430342ab44ec2afb304a1, type: 2}
+    - target: {fileID: 364806629617132879, guid: 153ea6b4bd577de4fb6e434f5fa8c033, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6448054275294306756, guid: 153ea6b4bd577de4fb6e434f5fa8c033, type: 3}
       propertyPath: m_Name
       value: UI Canvas

@@ -17,10 +17,11 @@ public class BoomboxDartboard : Dartboard
     [SerializeField] private float scaleValue = 1.1f;
     [SerializeField] private float scaleDuration = 0.5f;
 
-
     private int currentSong = 0;
 
     private AudioSource boxAudioSource;
+
+    private bool isAnimating = false;
     private bool isPlaying = false;
 
     private void Start()
@@ -29,14 +30,24 @@ public class BoomboxDartboard : Dartboard
 
         boxAudioSource.playOnAwake = false;
         boxAudioSource.loop = true;
+
+        boxAudioSource.clip = songsToPlay[currentSong];
     }
 
     private void Update()
     {
-        if (isPlaying)
+        base.DebugTest();
+
+        if (boxAudioSource.isPlaying && !isAnimating)
         {
-            transform.DOMoveY(transform.position.y + bounceY, bounceDuration).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
-            transform.DOScale(scaleValue, scaleDuration).SetEase(Ease.InOutSine).SetLoops(2, LoopType.Yoyo);
+            isAnimating = true;
+            transform.parent.GetChild(0).DOMoveY(transform.position.y + bounceY, bounceDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+            transform.parent.GetChild(0).DOScale(scaleValue, scaleDuration).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+        }
+        else if (!boxAudioSource.isPlaying && isAnimating)
+        {
+            isAnimating = false;
+            transform.parent.GetChild(0).DOKill();
         }
     }
 
@@ -47,9 +58,9 @@ public class BoomboxDartboard : Dartboard
 
     public override void OnStay(int numDarts)
     {
-        Debug.Log("staying");
 
         base.OnStay(numDarts);
+        Debug.Log("staying");
 
         if (numDarts > 0)
         {
@@ -58,13 +69,14 @@ public class BoomboxDartboard : Dartboard
                 boxAudioSource.clip = songsToPlay[currentSong];
 
                 currentSong++;
+
+                isPlaying = true;
                 
                 if (currentSong > songsToPlay.Length - 1)
                 {
                     currentSong = 0;
                 }
 
-                isPlaying = true;
                 boxAudioSource.Play();
             }
 
@@ -73,9 +85,9 @@ public class BoomboxDartboard : Dartboard
                 stayParticle.Play();
             }
         }
-        else
+        else if (numDarts <= 0)
         {
-            if (boxAudioSource != null && boxAudioSource.clip != null)
+            if (boxAudioSource != null && boxAudioSource.clip != null && isPlaying)
             {
                 isPlaying = false;
                 boxAudioSource.Stop();
