@@ -35,7 +35,7 @@ public class WoodchipperDartboard : Dartboard
     {
         Vector3 explosionPosition = transform.position + explosionOffset;
 
-        // Create explosion after delay
+        // delayed call waits for comedic effect
         DOVirtual.DelayedCall(delayBeforeExplosion - shakeDuration, () =>
         {
             if (explosionParticle != null)
@@ -45,7 +45,7 @@ public class WoodchipperDartboard : Dartboard
                 GetComponent<BoxCollider>().enabled = false;
             }
 
-            // Respawn bee at explosion location
+            // bring back bee at explosion location
             DOVirtual.DelayedCall(0.2f, () =>
             {
                 theDart.transform.position = transform.position;
