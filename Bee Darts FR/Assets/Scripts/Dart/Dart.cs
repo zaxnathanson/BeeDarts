@@ -187,9 +187,6 @@ public class Dart : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-        Debug.Log(collision.contacts[0].thisCollider.gameObject.name);
-
         if (currentDartState != DartStates.THROWN)
         {
             return;

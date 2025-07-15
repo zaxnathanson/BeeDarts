@@ -18,7 +18,7 @@ public class Dartboard : MonoBehaviour
 
     [Header("Audio Settings")]
 
-    [SerializeField] AudioClip hitSound;
+    [SerializeField] public AudioClip hitSound;
     [SerializeField][Range(0f, 1f)] float hitSoundVolume = 1f;
     private AudioSource audioSource;
 
@@ -43,6 +43,7 @@ public class Dartboard : MonoBehaviour
     private void Update()
     {
         DetectRange();
+        Debug.Log(attachedDarts.Count);
         OnStay(attachedDarts.Count);
     }
 
@@ -99,6 +100,7 @@ public class Dartboard : MonoBehaviour
 
     public virtual void OnStay(int numDarts)
     {
+
     }
 
     private void RemoveDartFromAttachedList(Dart theDart)

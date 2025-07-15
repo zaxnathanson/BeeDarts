@@ -48,7 +48,7 @@ public class WoodchipperDartboard : Dartboard
             // bring back bee at explosion location
             DOVirtual.DelayedCall(0.2f, () =>
             {
-                theDart.transform.position = transform.position;
+                theDart.transform.position = new Vector3(transform.parent.position.x, transform.parent.position.y + 1f, transform.parent.position.z);
                 theDart.gameObject.SetActive(true);
 
                 theDart.GetComponent<Rigidbody>().isKinematic = false;
