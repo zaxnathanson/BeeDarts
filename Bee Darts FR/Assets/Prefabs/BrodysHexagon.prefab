@@ -124,4 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexRadius: 2.309
   snapToGrid: 1
+  bounceForce: 1
+  verticalThreshold: 0.1
   startingY: 0

@@ -48,7 +48,12 @@ public class Dart : MonoBehaviour
 
     public Vector3 thrownStartPos;
 
+    [Header("Layer References")]
+
     [SerializeField] LayerMask dartableLayers;
+    [SerializeField] LayerMask dartableLayersCopy;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask undartableLayer;
 
     [System.Serializable]
     public struct ExpressionAnimation
@@ -62,6 +67,7 @@ public class Dart : MonoBehaviour
     private void Awake()
     {
         canBeThrown = false;
+        dartableLayersCopy = dartableLayers;
     }
 
     void Start()
@@ -164,8 +170,26 @@ public class Dart : MonoBehaviour
         canBeThrown = true;
     }
 
+    public void HandleGroundSideCollision()
+    {
+        dartableLayers = undartableLayer;
+        animator.enabled = false;
+
+        Invoke("ResetDartable", 0.1f);
+    }
+
+    private void ResetDartable()
+    {
+        animator.enabled = true;
+
+        dartableLayers = dartableLayersCopy;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.gameObject.name);
+        Debug.Log(collision.contacts[0].thisCollider.gameObject.name);
+
         if (currentDartState != DartStates.THROWN)
         {
             return;
@@ -174,6 +198,7 @@ public class Dart : MonoBehaviour
         if (dartableLayers == (dartableLayers | (1 << collision.gameObject.layer)))
         {
             Debug.Log("Hit!!!!");
+
             ChangeDartState(DartStates.HIT);
 
             collision.transform.TryGetComponent(out Dartboard dartboardScript);
