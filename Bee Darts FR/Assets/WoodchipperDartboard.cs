@@ -41,6 +41,7 @@ public class WoodchipperDartboard : Dartboard
             if (explosionParticle != null)
             {
                 Instantiate(explosionParticle, explosionPosition, Quaternion.identity);
+                base.PlayAttachedSound();
                 Destroy(transform.GetChild(0).gameObject);
                 GetComponent<BoxCollider>().enabled = false;
             }

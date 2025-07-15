@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1304403141065971073}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0.9, z: 0.88}
+  m_LocalPosition: {x: 0.4, y: 0.9, z: 0.05}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -180,7 +180,7 @@ MonoBehaviour:
   hexList: []
   gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
-  distance: 0
+  distance: 4
   tooCloseVisualRef: {fileID: 2703575283537446473}
   hitSound: {fileID: 0}
   hitSoundVolume: 1
@@ -190,7 +190,7 @@ MonoBehaviour:
   explosionOffset: {x: 0, y: 0, z: 0}
   shakeIntensity: 0.35
   shakeDuration: 1.5
-  shakeVibrato: 40
+  shakeVibrato: 25
   shakeRandomness: 90
 --- !u!1 &4002004738026206151
 GameObject:

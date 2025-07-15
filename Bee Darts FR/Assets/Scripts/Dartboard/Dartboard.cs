@@ -86,7 +86,7 @@ public class Dartboard : MonoBehaviour
         }
 
         // playing a sound on hit only if a sound was attached
-        if (hitSound != null && audioSource != null)
+        if (hitSound != null && audioSource != null && !(gameObject.CompareTag("Woodchipper")));
         {
             audioSource.PlayOneShot(hitSound, hitSoundVolume);
         }
@@ -101,6 +101,11 @@ public class Dartboard : MonoBehaviour
     public virtual void OnStay(int numDarts)
     {
 
+    }
+
+    public virtual void PlayAttachedSound()
+    {
+        audioSource.PlayOneShot(hitSound, hitSoundVolume);
     }
 
     private void RemoveDartFromAttachedList(Dart theDart)
