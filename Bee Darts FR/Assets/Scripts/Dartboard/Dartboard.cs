@@ -26,9 +26,6 @@ public class Dartboard : MonoBehaviour
     List<Dart> attachedDarts = new List<Dart>();
     [SerializeField] ParticleSystem hitParticle;
 
-    // for deciding whether to redo certain actions or not
-    [SerializeField] public bool hasBeenHit = false;
-
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -97,8 +94,6 @@ public class Dartboard : MonoBehaviour
         attachedDarts.Add(theDart);
         RaiseList();
         Debug.Log(gameObject.name + " was Hit!");
-
-        hasBeenHit = true;
     }
 
 

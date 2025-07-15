@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class BeeManager : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class BeeManager : MonoBehaviour
     [Header("Player Points Settings")]
 
     public int playerPoints = 0;
-    public string pointsSuffix = " million points";
+    private int previousPlayerPoints = -1;
+    public string pointsSuffix = " MILLION POINTS";
+    private Color originalColor;
+    [SerializeField] private Color colorToPunch;
+    [SerializeField] private float punchPower;
+    [SerializeField] private float punchDuration;
+    [SerializeField] private int punchVibrato;
 
     [Header("Respawn Bee Variables")]
 
@@ -43,6 +50,7 @@ public class BeeManager : MonoBehaviour
         }
 
         pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>();
+        originalColor = pointsText.color;
     }
 
     private void Update()
@@ -58,11 +66,13 @@ public class BeeManager : MonoBehaviour
 
     public void IncrementPoints(int points)
     {
+        previousPlayerPoints = playerPoints;
         playerPoints += points;
     }
 
     public void DecrementPoints(int points)
     {
+        previousPlayerPoints = playerPoints;
         playerPoints -= points;
     }
 
@@ -87,13 +97,23 @@ public class BeeManager : MonoBehaviour
 
     private void UpdatePointsUI()
     {
-        if (playerPoints == 0)
+        if (playerPoints != previousPlayerPoints)
         {
-            pointsText.text = "";
-        }
-        else
-        {
-            pointsText.text = playerPoints.ToString() + pointsSuffix;
+            if (playerPoints == 0)
+            {
+                pointsText.text = "";
+            }
+            else
+            {
+                pointsText.text = playerPoints.ToString() + pointsSuffix;
+
+                // punch scale
+                pointsText.transform.DOPunchScale(Vector3.one * punchPower, punchDuration, punchVibrato, 1f);
+                // fade in color and fade out to original
+                pointsText.DOColor(colorToPunch, 0.15f).SetEase(Ease.OutQuad).OnComplete(() => {pointsText.DOColor(originalColor, 0.15f).SetEase(Ease.InQuad);});
+            }
+
+            previousPlayerPoints = playerPoints;
         }
     }
 }

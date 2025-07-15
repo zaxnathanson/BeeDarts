@@ -4,6 +4,9 @@ public class FlowerDartBoard : Dartboard
 {
     [SerializeField] ParticleSystem stayParticle;
 
+    // for deciding whether to redo certain actions or not
+    private bool hasBeenHit = false;
+
     // IMPORTNAT- only make one flower have this and the fsjdfhnu have it be the firsr flower
 
     [Header("Important Settings")]
@@ -20,7 +23,11 @@ public class FlowerDartBoard : Dartboard
             BeeManager.Instance.firstFlower = true;
         }
 
-        BeeManager.Instance.IncrementPoints(1);
+        if (!hasBeenHit)
+        {
+            BeeManager.Instance.IncrementPoints(1);
+            hasBeenHit = true;
+        }
     }
 
     public override void OnStay(int numDarts)
