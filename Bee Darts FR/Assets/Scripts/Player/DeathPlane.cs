@@ -30,7 +30,11 @@ public class DeathPlane : MonoBehaviour
         {
             BeeManager.Instance.RespawnBee();
 
-            Destroy(other.gameObject);
+            // ensures darts that will raise up will not be reset by water plane
+            if (other.transform.parent == null)
+            {
+                Destroy(other.gameObject);
+            }
         }
     }
 }
