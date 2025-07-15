@@ -19,6 +19,8 @@ public class FlowerDartBoard : Dartboard
         {
             BeeManager.Instance.firstFlower = true;
         }
+
+        BeeManager.Instance.IncrementPoints(1);
     }
 
     public override void OnStay(int numDarts)

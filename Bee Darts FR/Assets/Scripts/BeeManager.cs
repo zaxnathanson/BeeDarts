@@ -1,8 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class BeeManager : MonoBehaviour
 {
     public static BeeManager Instance { get; private set; }
+
+    [Header("Player Points Settings")]
+
+    public int playerPoints = 0;
+    public string pointsSuffix = " million points";
 
     [Header("Respawn Bee Variables")]
 
@@ -19,6 +25,10 @@ public class BeeManager : MonoBehaviour
 
     public bool firstFlower = false;
 
+    [Header("References")]
+
+    [SerializeField] private TextMeshProUGUI pointsText;
+
     private void Awake()
     {
         if (Instance == null)
@@ -31,6 +41,13 @@ public class BeeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void Update()
+    {
+        UpdatePointsUI();
     }
 
     private void Start()
@@ -39,24 +56,14 @@ public class BeeManager : MonoBehaviour
         beesOutOfHive = 0;
     }
 
-    public void IncrementTotalBees(int bees)
+    public void IncrementPoints(int points)
     {
-        totalBeesUnlocked += bees;
+        playerPoints += points;
     }
 
-    public void DecrementTotalBees(int bees)
+    public void DecrementPoints(int points)
     {
-        totalBeesUnlocked -= bees;
-    }
-
-    public void IncrementBeesOutOfHive(int bees)
-    {
-        beesOutOfHive += bees;
-    }
-
-    public void DecrementBeesOutOfHive(int bees)
-    {
-        beesOutOfHive -= bees;
+        playerPoints -= points;
     }
 
     public void RespawnBee()
@@ -75,6 +82,18 @@ public class BeeManager : MonoBehaviour
             GameObject bee = Instantiate(spawnedDart, secondBeeSpawn);
 
             bee.GetComponent<Rigidbody>().AddForce(randomDirection * forceMultiplier, ForceMode.Impulse);
+        }
+    }
+
+    private void UpdatePointsUI()
+    {
+        if (playerPoints == 0)
+        {
+            pointsText.text = "";
+        }
+        else
+        {
+            pointsText.text = playerPoints.ToString() + pointsSuffix;
         }
     }
 }
