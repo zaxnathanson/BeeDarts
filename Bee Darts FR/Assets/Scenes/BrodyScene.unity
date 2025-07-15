@@ -9752,6 +9752,8 @@ MonoBehaviour:
   gizmoColorSelected: {r: 1, g: 0.49914646, b: 0, a: 1}
   distance: 0
   tooCloseVisualRef: {fileID: 127472450}
+  hitSound: {fileID: 0}
+  hitSoundVolume: 1
   hitParticle: {fileID: 7523253600593438404, guid: 0d089302e9f3cae44b0ae7658f29fb4c, type: 3}
 --- !u!1001 &1079996085
 PrefabInstance:
@@ -10688,6 +10690,14 @@ PrefabInstance:
     - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
       propertyPath: distance
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 45bb8d3d57411d54bbc4b2c15b7e6c3a, type: 3}
+    - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
+      propertyPath: isFirstFlower
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5378602618672126916, guid: 9a610b726c9ccb94b8ff6786f4563cd1, type: 3}
       propertyPath: hexList.Array.size

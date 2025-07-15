@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Dartboard : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class Dartboard : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] SpriteRenderer tooCloseVisualRef;
 
+    [Header("Audio Settings")]
+
+    [SerializeField] AudioClip hitSound;
+    [SerializeField][Range(0f, 1f)] float hitSoundVolume = 1f;
+    private AudioSource audioSource;
+
     Transform player;
     List<Dart> attachedDarts = new List<Dart>();
     [SerializeField] ParticleSystem hitParticle;
@@ -22,6 +29,15 @@ public class Dartboard : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        // for one shots
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
     }
 
     private void Update()
@@ -36,7 +52,7 @@ public class Dartboard : MonoBehaviour
         {
             if (DartThrowing.instance.currentDart != null)
             {
-                tooCloseVisualRef.enabled = Vector3.Distance(player.position, transform.position) <= distance; ;
+                tooCloseVisualRef.enabled = Vector3.Distance(player.position, transform.position) <= distance;
             }
             else
             {
@@ -67,7 +83,14 @@ public class Dartboard : MonoBehaviour
         {
             Debug.LogWarning($"{gameObject.name} does not have a hit particle assigned.");
         }
-            theDart.OnPickedUp += RemoveDartFromAttachedList;
+
+        // playing a sound on hit only if a sound was attached
+        if (hitSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+        }
+
+        theDart.OnPickedUp += RemoveDartFromAttachedList;
         attachedDarts.Add(theDart);
         RaiseList();
         Debug.Log(gameObject.name + " was Hit!");

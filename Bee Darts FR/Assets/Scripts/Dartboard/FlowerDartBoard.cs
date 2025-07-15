@@ -5,6 +5,10 @@ public class FlowerDartBoard : Dartboard
     [SerializeField] ParticleSystem stayParticle;
 
     // IMPORTNAT- only make one flower have this and the fsjdfhnu have it be the firsr flower
+
+    [Header("Important Settings")]
+
+    [Tooltip("Determines whether to respawn bees at the first or second spawn points")]
     [SerializeField] private bool isFirstFlower;
 
     public override void OnHit(Dart theDart)
