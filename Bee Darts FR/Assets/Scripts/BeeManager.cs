@@ -17,6 +17,10 @@ public class BeeManager : MonoBehaviour
     [SerializeField] private float punchDuration;
     [SerializeField] private int punchVibrato;
 
+    [SerializeField] Gradient hoverGradient;
+    [SerializeField] private float gradientSpeed;
+    float gradientTime;
+
     [Header("Respawn Bee Variables")]
 
     [SerializeField] private Transform firstBeeSpawn;
@@ -55,6 +59,12 @@ public class BeeManager : MonoBehaviour
 
     private void Update()
     {
+        gradientTime += (Time.deltaTime / 2) * gradientSpeed;
+        if (gradientTime > 1)
+        {
+            gradientTime -= 1;
+        }
+
         UpdatePointsUI();
     }
 
@@ -97,6 +107,10 @@ public class BeeManager : MonoBehaviour
 
     private void UpdatePointsUI()
     {
+        Material mat = pointsText.fontSharedMaterial;
+
+        mat.SetColor(ShaderUtilities.ID_GlowColor, hoverGradient.Evaluate(gradientTime));
+
         if (playerPoints != previousPlayerPoints)
         {
             if (playerPoints == 0)
