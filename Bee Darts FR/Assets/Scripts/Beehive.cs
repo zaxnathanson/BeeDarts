@@ -14,23 +14,8 @@ public class Beehive : MonoBehaviour
         sphereColl = GetComponent<SphereCollider>();
         sphereColl.radius = interactionRadius;
     }
-    private void OnTriggerStay(Collider other)
-    {
-        Debug.Log(" in trgigger");
 
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("player in gtigier");
-
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("player presed e in trijger");
-
-                //SpawnBee(BeeManager.Instance.TryGrabBee());
-            }
-        }
-    }
-
+    /*
     private void SpawnBee(bool toBeeOrNotToBee)
     {
         if (toBeeOrNotToBee)
@@ -42,6 +27,7 @@ public class Beehive : MonoBehaviour
             Debug.Log("nah you cant do that ");
         }
     }
+    */
 
     private void OnDrawGizmosSelected()
     {

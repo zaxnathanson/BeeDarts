@@ -62,8 +62,7 @@ public class BeeManager : MonoBehaviour
     public void RespawnBee()
     {
         Vector3 randomDirection = Random.onUnitSphere;
-        //randomDirection.y = Random.Range(0.5f, 1f);
-        //randomDirection.Normalize();
+        randomDirection.Normalize();
 
         if (!firstFlower)
         {
