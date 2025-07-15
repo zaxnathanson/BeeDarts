@@ -4842,7 +4842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3877940365167378432}
-  - component: {fileID: 4055609494581283475}
+  - component: {fileID: 2772022102389794605}
   m_Layer: 3
   m_Name: BeeRocket
   m_TagString: Untagged
@@ -4869,27 +4869,20 @@ Transform:
   - {fileID: 5008382482526942725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &4055609494581283475
-SphereCollider:
+--- !u!114 &2772022102389794605
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 751807579041500901}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 12
-  m_Center: {x: 0, y: 3, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc900583e273af42b739eb149bd076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Hexagon
+  searchRadius: 10
 --- !u!1 &1162487746879885431
 GameObject:
   m_ObjectHideFlags: 0
@@ -4899,8 +4892,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5466204224293258501}
-  - component: {fileID: 9070521555541710383}
   - component: {fileID: 1731266517323700945}
+  - component: {fileID: 3222092785487217987}
   m_Layer: 3
   m_Name: Collider
   m_TagString: Untagged
@@ -4923,27 +4916,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3877940365167378432}
   m_LocalEulerAnglesHint: {x: 0, y: 60.521, z: 0}
---- !u!114 &9070521555541710383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1162487746879885431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad5562d6d362e8e4d876c80dde701961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hexList:
-  - {fileID: 0}
-  - {fileID: 0}
-  gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
-  gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
-  distance: 0
-  tooCloseVisualRef: {fileID: 4244906789229209403}
-  hitParticle: {fileID: 0}
-  stayParticle: {fileID: 8455486448562937227}
 --- !u!64 &1731266517323700945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -4966,6 +4938,53 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 6329158148709259305, guid: 7bb638063209fb3439c5a9efb1639aa0, type: 3}
+--- !u!114 &3222092785487217987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162487746879885431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b260115ae673042ba68880bec93dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hexList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gizmoColorUnselected: {r: 1, g: 0.5748664, b: 0, a: 0.6156863}
+  gizmoColorSelected: {r: 1, g: 0.49914646, b: 0, a: 1}
+  distance: 0
+  tooCloseVisualRef: {fileID: 4244906789229209403}
+  hitSound: {fileID: 0}
+  hitSoundVolume: 1
+  hitParticle: {fileID: 7523253600593438404, guid: 0d089302e9f3cae44b0ae7658f29fb4c, type: 3}
 --- !u!1001 &2111590309276394055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5136,7 +5155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6638658659539516491, guid: be0727e057aad3d4fa8a94ef7c93c66c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.7
+      value: 4.24
       objectReference: {fileID: 0}
     - target: {fileID: 6638658659539516491, guid: be0727e057aad3d4fa8a94ef7c93c66c, type: 3}
       propertyPath: m_LocalPosition.z
