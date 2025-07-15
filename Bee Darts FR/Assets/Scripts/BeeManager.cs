@@ -53,7 +53,7 @@ public class BeeManager : MonoBehaviour
             return;
         }
 
-        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>();
+        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>(); 
         originalColor = pointsText.color;
     }
 

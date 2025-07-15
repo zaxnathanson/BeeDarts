@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPoints: 0
-  pointsSuffix: ' million points'
+  pointsSuffix: ' MILLION POINTS'
   colorToPunch: {r: 1, g: 1, b: 1, a: 1}
   punchPower: 0.4
   punchDuration: 0.5

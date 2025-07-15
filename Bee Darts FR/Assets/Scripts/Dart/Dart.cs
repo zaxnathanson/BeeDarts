@@ -194,6 +194,7 @@ public class Dart : MonoBehaviour
 
         if (dartableLayers == (dartableLayers | (1 << collision.gameObject.layer)))
         {
+            transform.parent = collision.transform.root;
             Debug.Log("Hit!!!!");
 
             ChangeDartState(DartStates.HIT);
