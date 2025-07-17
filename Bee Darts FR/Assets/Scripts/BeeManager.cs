@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class BeeManager : MonoBehaviour
 {
@@ -12,33 +13,40 @@ public class BeeManager : MonoBehaviour
     private int previousPlayerPoints = -1;
     public string pointsSuffix = " MILLION POINTS";
     private Color originalColor;
+
     [SerializeField] private Color colorToPunch;
     [SerializeField] private float punchPower;
     [SerializeField] private float punchDuration;
     [SerializeField] private int punchVibrato;
 
+    [Header("Text Variables")]
+
     [SerializeField] Gradient hoverGradient;
     [SerializeField] private float gradientSpeed;
+
     float gradientTime;
 
     [Header("Respawn Bee Variables")]
 
     [SerializeField] private Transform firstBeeSpawn;
     [SerializeField] private Transform secondBeeSpawn;
-
     [SerializeField] private GameObject spawnedDart;
     [SerializeField] private float forceMultiplier;
 
-    [Header("Public Variables")]
+    [Header("Accessible Variables")]
 
+    public float waterLevel;
     public int totalBeesUnlocked = 1;
     public int beesOutOfHive = 0;
-
     public bool firstFlower = false;
+    
 
     [Header("References")]
 
     [SerializeField] private TextMeshProUGUI pointsText;
+
+    // storing all respawn pads in scene that are actively able to be spawned at
+    private List<RespawnPad> respawnPads = new List<RespawnPad>();
 
     private void Awake()
     {
@@ -52,9 +60,10 @@ public class BeeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
-        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>(); 
+        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>();
         originalColor = pointsText.color;
+
+        waterLevel = GameObject.Find("WaterPlane").transform.position.y;
     }
 
     private void Update()
@@ -64,7 +73,6 @@ public class BeeManager : MonoBehaviour
         {
             gradientTime -= 1;
         }
-
         UpdatePointsUI();
     }
 
@@ -86,21 +94,76 @@ public class BeeManager : MonoBehaviour
         playerPoints -= points;
     }
 
+    public void RegisterRespawnPad(RespawnPad pad)
+    {
+        if (!respawnPads.Contains(pad))
+        {
+            respawnPads.Add(pad);
+        }
+    }
+
+    public void UnregisterRespawnPad(RespawnPad pad)
+    {
+        respawnPads.Remove(pad);
+    }
+
     public void RespawnBee()
+    {
+        // find and spawn bee at nearest respawn
+        RespawnPad nearestPad = FindNearestRespawnPad();
+
+        if (nearestPad != null)
+        {
+            nearestPad.SpawnBee(spawnedDart);
+        }
+        else
+        {
+            // fallback to og
+            RespawnBeeOriginal();
+        }
+    }
+
+    private RespawnPad FindNearestRespawnPad()
+    {
+        GameObject player = GameObject.Find("Player");
+        if (player == null)
+        {
+            return null;
+        }
+
+        RespawnPad nearestPad = null;
+
+        float shortestDistance = 99999f;
+
+        foreach (RespawnPad pad in respawnPads)
+        {
+            if (pad != null)
+            {
+                float distance = Vector3.Distance(player.transform.position, pad.transform.position);
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    nearestPad = pad;
+                }
+            }
+        }
+
+        return nearestPad;
+    }
+
+    // og respawn method as fallback
+    private void RespawnBeeOriginal()
     {
         Vector3 randomDirection = Random.onUnitSphere;
         randomDirection.Normalize();
-
         if (!firstFlower)
         {
             GameObject bee = Instantiate(spawnedDart, firstBeeSpawn);
-
             bee.GetComponent<Rigidbody>().AddForce(randomDirection * forceMultiplier, ForceMode.Impulse);
         }
         else
         {
             GameObject bee = Instantiate(spawnedDart, secondBeeSpawn);
-
             bee.GetComponent<Rigidbody>().AddForce(randomDirection * forceMultiplier, ForceMode.Impulse);
         }
     }
@@ -108,9 +171,7 @@ public class BeeManager : MonoBehaviour
     private void UpdatePointsUI()
     {
         Material mat = pointsText.fontSharedMaterial;
-
         mat.SetColor(ShaderUtilities.ID_GlowColor, hoverGradient.Evaluate(gradientTime));
-
         if (playerPoints != previousPlayerPoints)
         {
             if (playerPoints == 0)
@@ -120,13 +181,11 @@ public class BeeManager : MonoBehaviour
             else
             {
                 pointsText.text = playerPoints.ToString() + pointsSuffix;
-
                 // punch scale
                 pointsText.transform.DOPunchScale(Vector3.one * punchPower, punchDuration, punchVibrato, 1f);
                 // fade in color and fade out to original
-                pointsText.DOColor(colorToPunch, 0.15f).SetEase(Ease.OutQuad).OnComplete(() => {pointsText.DOColor(originalColor, 0.15f).SetEase(Ease.InQuad);});
+                pointsText.DOColor(colorToPunch, 0.15f).SetEase(Ease.OutQuad).OnComplete(() => { pointsText.DOColor(originalColor, 0.15f).SetEase(Ease.InQuad); });
             }
-
             previousPlayerPoints = playerPoints;
         }
     }

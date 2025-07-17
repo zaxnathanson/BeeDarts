@@ -28,28 +28,19 @@ public class Dart : MonoBehaviour
     public ExpressionAnimation[] ThrownExpressions;
 
     [SerializeField] Animator animator;
-
     ExpressionAnimation currentExpression;
 
     [SerializeField] float expressionFps;
     [SerializeField] Image faceImage;
 
-    [Header("Noise Settings (not used)")]
-
-    [SerializeField] float flightNoiseStrength;
-    [SerializeField] float flightNoiseSpeed;
-
     int frameIndex;
-
     public bool canBeThrown;
-
     public Vector3 thrownStartPos;
 
     [Header("Layer References")]
 
     [SerializeField] LayerMask dartableLayers;
     [SerializeField] LayerMask dartableLayersCopy;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask undartableLayer;
 
     [System.Serializable]
@@ -72,19 +63,20 @@ public class Dart : MonoBehaviour
     {
         currentExpression = IdleExpression[0];
         StartCoroutine(AnimateCurrentExpression());
-
     }
 
     private void Update()
     {
-        if (currentDartState == DartStates.THROWN) { Fly(); };
+        if (currentDartState == DartStates.THROWN)
+        {
+            Fly();
+        }
     }
 
     private void FixedUpdate()
     {
         lastVelocity = body.linearVelocity;
     }
-
 
     public void Fire(float power)
     {
@@ -110,7 +102,6 @@ public class Dart : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
         }
-
     }
 
     public void ChangeDartState(DartStates newState)
@@ -128,21 +119,18 @@ public class Dart : MonoBehaviour
                 break;
             case DartStates.CHARGING:
                 animator.SetBool("IsCharging", true);
-
                 newExpressionIndex = Random.Range(0, PullExpressions.Length);
                 currentExpression = PullExpressions[newExpressionIndex];
                 break;
             case DartStates.THROWN:
                 animator.SetBool("IsCharging", false);
                 animator.SetBool("IsFlying", true);
-
                 newExpressionIndex = Random.Range(0, ThrownExpressions.Length);
                 currentExpression = ThrownExpressions[newExpressionIndex];
                 break;
             case DartStates.HIT:
                 animator.SetBool("IsFlying", false);
                 animator.SetTrigger("Hit");
-
                 body.isKinematic = true;
                 newExpressionIndex = Random.Range(0, IdleExpression.Length);
                 currentExpression = IdleExpression[newExpressionIndex];
@@ -168,7 +156,6 @@ public class Dart : MonoBehaviour
 
         transform.localPosition = Vector3.zero;
         canBeThrown = true;
-
         dartThrowingRef.isGrabbing = false;
     }
 
@@ -176,14 +163,12 @@ public class Dart : MonoBehaviour
     {
         dartableLayers = undartableLayer;
         animator.enabled = false;
-
         Invoke("ResetDartable", 0.1f);
     }
 
     private void ResetDartable()
     {
         animator.enabled = true;
-
         dartableLayers = dartableLayersCopy;
     }
 

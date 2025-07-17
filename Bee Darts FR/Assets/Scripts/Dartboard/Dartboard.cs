@@ -44,6 +44,7 @@ public class Dartboard : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(transform.parent.gameObject.name + ": " + attachedDarts.Count);
         DetectRange();
         OnStay(attachedDarts.Count);
     }

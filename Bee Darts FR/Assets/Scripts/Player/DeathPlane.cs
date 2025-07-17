@@ -3,7 +3,7 @@ using UnityEngine;
 public class DeathPlane : MonoBehaviour
 {
     [Header("Respawn Settings")]
-    
+
     private Vector3 playerRespawnPoint;
     private GameObject player;
     private GameObject deathBox;
@@ -12,7 +12,6 @@ public class DeathPlane : MonoBehaviour
     {
         player = GameObject.Find("Player");
         deathBox = GameObject.Find("PrisonParent");
-
         playerRespawnPoint = player.transform.position;
     }
 
@@ -21,9 +20,7 @@ public class DeathPlane : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             deathBox.transform.GetChild(0).gameObject.SetActive(true);
-
             deathBox.GetComponent<FadingPrison>().StartFadeOut();
-
             player.transform.position = playerRespawnPoint;
         }
         else if (other.gameObject.CompareTag("Dart"))
