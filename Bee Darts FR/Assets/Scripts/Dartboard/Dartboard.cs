@@ -4,6 +4,8 @@ using UnityEngine.Audio;
 
 public class Dartboard : MonoBehaviour
 {
+    [SerializeField] bool doDestroyOnHit;
+    [SerializeField] GameObject parent;
     [Header("Hex List Settings")]
 
     public List<GameObject> hexList = new List<GameObject>();
@@ -90,10 +92,18 @@ public class Dartboard : MonoBehaviour
             audioSource.PlayOneShot(hitSound, hitSoundVolume);
         }
 
-        theDart.OnPickedUp += RemoveDartFromAttachedList;
-        attachedDarts.Add(theDart);
-        RaiseList();
-        Debug.Log(gameObject.name + " was Hit!");
+        if (doDestroyOnHit)
+        {
+            Destroy(parent);
+        }
+        else
+        {
+            theDart.OnPickedUp += RemoveDartFromAttachedList;
+            attachedDarts.Add(theDart);
+            RaiseList();
+            Debug.Log(gameObject.name + " was Hit!");
+        }
+
     }
 
 
