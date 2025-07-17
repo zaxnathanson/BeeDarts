@@ -1,6 +1,5 @@
 using UnityEngine;
-using UnityEngine.Rendering;
-
+using System.Collections.Generic;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -24,6 +23,17 @@ public class Hexagon : MonoBehaviour
     [SerializeField] private float bounceForce;
     [SerializeField] private float verticalThreshold;
 
+    [Header("Decoration Settings")]
+    public Sprite[] grassSprites;
+    public Sprite[] flowerSprites;
+    public float minDistance = 0.3f;
+    public int maxAttempts = 30;
+    public float grassChance = 0.7f;
+    public float minScale = 0.8f;
+    public float maxScale = 1.2f;
+    public string sortingLayer = "Default";
+    public int sortingOrder = 1;
+
     public float startingY = 0;
 
     private void Awake()
@@ -32,7 +42,6 @@ public class Hexagon : MonoBehaviour
         startingY = transform.position.y;
     }
 
-
 #if UNITY_EDITOR
     private void Update()
     {
@@ -40,9 +49,65 @@ public class Hexagon : MonoBehaviour
         {
             SnapToGrid();
         }
-
     }
 #endif
+
+    private void Start()
+    {
+        if (Application.isPlaying)
+        {
+            // wait a frame to ensure hexagons are positioned first
+            StartCoroutine(DelayedGeneration());
+        }
+    }
+
+    System.Collections.IEnumerator DelayedGeneration()
+    {
+        yield return null; // wait one frame
+        GenerateDecorations();
+    }
+
+    [ContextMenu("Clear All Decorations")]
+    private void ClearDecorations()
+    {
+        for (int i = transform.childCount - 1; i >= 0; i--)
+        {
+            GameObject child = transform.GetChild(i).gameObject;
+            if (child.name.StartsWith("Decoration"))
+            {
+#if UNITY_EDITOR
+                DestroyImmediate(child);
+#else
+                Destroy(child);
+#endif
+            }
+        }
+    }
+
+    private void GenerateDecorations()
+    {
+        if (grassSprites.Length == 0 && flowerSprites.Length == 0) return;
+
+        List<Vector2> points = PoissonDiskSampling();
+
+        foreach (Vector2 point in points)
+        {
+            // raycast down to find surface height
+            Vector3 worldPoint = transform.TransformPoint(new Vector3(point.x, 10f, point.y));
+
+            // ignore water layer
+            int layerMask = ~LayerMask.GetMask("Water");
+
+            if (Physics.Raycast(worldPoint, Vector3.down, out RaycastHit hit, 100f, layerMask))
+            {
+                if (hit.collider.CompareTag("Hexagon"))
+                {
+                    Vector3 localPos = transform.InverseTransformPoint(hit.point);
+                    CreateDecoration(localPos);
+                }
+            }
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -77,6 +142,111 @@ public class Hexagon : MonoBehaviour
                 dartBody.linearVelocity = reflectedVel;
             }
         }
+    }
+
+    // aswesome poisson sampling method on the internet for better distribution patterns.
+    private List<Vector2> PoissonDiskSampling()
+    {
+        List<Vector2> points = new List<Vector2>();
+        List<Vector2> activeList = new List<Vector2>();
+
+        // start with random point in hex
+        Vector2 firstPoint = GetRandomPointInHex();
+        points.Add(firstPoint);
+        activeList.Add(firstPoint);
+
+        while (activeList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, activeList.Count);
+            Vector2 currentPoint = activeList[randomIndex];
+            bool found = false;
+
+            // try to find valid point around current point
+            for (int i = 0; i < maxAttempts; i++)
+            {
+                Vector2 newPoint = GetRandomPointAround(currentPoint);
+
+                if (IsValidPoint(newPoint, points))
+                {
+                    points.Add(newPoint);
+                    activeList.Add(newPoint);
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                activeList.RemoveAt(randomIndex);
+            }
+        }
+
+        return points;
+    }
+
+    private Vector2 GetRandomPointInHex()
+    {
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        float distance = Random.Range(0f, hexRadius * 0.8f);
+        return new Vector2(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
+    }
+
+    private Vector2 GetRandomPointAround(Vector2 center)
+    {
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        float distance = Random.Range(minDistance, minDistance * 2f);
+        return center + new Vector2(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
+    }
+
+    private bool IsValidPoint(Vector2 point, List<Vector2> existingPoints)
+    {
+        // check if point is inside hex bounds
+        if (Vector2.Distance(Vector2.zero, point) > hexRadius * 0.8f)
+            return false;
+
+        // check distance to existing points
+        foreach (Vector2 existingPoint in existingPoints)
+        {
+            if (Vector2.Distance(point, existingPoint) < minDistance)
+                return false;
+        }
+
+        return true;
+    }
+
+    private void CreateDecoration(Vector3 localPosition)
+    {
+        GameObject decoration = new GameObject("Decoration");
+        decoration.transform.SetParent(transform);
+        decoration.transform.localPosition = localPosition;
+
+        SpriteRenderer renderer = decoration.AddComponent<SpriteRenderer>();
+
+        // choose sprite type
+        if (Random.Range(0f, 1f) < grassChance && grassSprites.Length > 0)
+        {
+            renderer.sprite = grassSprites[Random.Range(0, grassSprites.Length)];
+        }
+        else if (flowerSprites.Length > 0)
+        {
+            renderer.sprite = flowerSprites[Random.Range(0, flowerSprites.Length)];
+        }
+
+        // offset sprite up by half its height
+        if (renderer.sprite != null)
+        {
+            float spriteHeight = renderer.sprite.bounds.size.y;
+            decoration.transform.localPosition += Vector3.up * (spriteHeight * 0.5f);
+        }
+
+        // random rotation and scale
+        decoration.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+        float scale = Random.Range(minScale, maxScale);
+        decoration.transform.localScale = new Vector3(scale, scale, scale);
+
+        // sorting layer settings
+        renderer.sortingLayerName = sortingLayer;
+        renderer.sortingOrder = sortingOrder;
     }
 
     // making sure contact point is the good one

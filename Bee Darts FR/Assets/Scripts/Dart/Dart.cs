@@ -16,10 +16,11 @@ public class Dart : MonoBehaviour
 
     [Header("Dart References")]
 
-    [SerializeField] Rigidbody body;
+    [SerializeField] private Rigidbody body;
     private DartThrowing dartThrowingRef;
     public DartStates currentDartState;
     public Vector3 lastVelocity;
+    public bool hasRisen = false;
 
     [Header("Expressions Settings")]
 
@@ -27,20 +28,20 @@ public class Dart : MonoBehaviour
     public ExpressionAnimation[] PullExpressions;
     public ExpressionAnimation[] ThrownExpressions;
 
-    [SerializeField] Animator animator;
-    ExpressionAnimation currentExpression;
+    [SerializeField] private Animator animator;
+    private ExpressionAnimation currentExpression;
 
-    [SerializeField] float expressionFps;
-    [SerializeField] Image faceImage;
+    [SerializeField] private float expressionFps;
+    [SerializeField] private Image faceImage;
 
-    int frameIndex;
+    private int frameIndex;
     public bool canBeThrown;
     public Vector3 thrownStartPos;
 
     [Header("Layer References")]
 
-    [SerializeField] LayerMask dartableLayers;
-    [SerializeField] LayerMask dartableLayersCopy;
+    [SerializeField] private LayerMask dartableLayers;
+    [SerializeField] private LayerMask dartableLayersCopy;
     [SerializeField] private LayerMask undartableLayer;
 
     [System.Serializable]
@@ -70,6 +71,12 @@ public class Dart : MonoBehaviour
         if (currentDartState == DartStates.THROWN)
         {
             Fly();
+        }
+
+        // public hasRisen is used in deathplane
+        if (BeeManager.Instance.waterLevel <= transform.position.y && !hasRisen)
+        {
+            hasRisen = true;
         }
     }
 

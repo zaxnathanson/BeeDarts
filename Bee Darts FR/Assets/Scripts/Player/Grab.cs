@@ -3,8 +3,7 @@ using UnityEngine;
 public class Grab : MonoBehaviour
 {
     [Header("Grab Settings")]
-    [SerializeField] private float grabRadius = 1f;
-    [SerializeField] float grabLength;
+    [SerializeField] private float grabLength;
 
     [Header("Others")]
     [SerializeField] private LayerMask dartableLayers;
