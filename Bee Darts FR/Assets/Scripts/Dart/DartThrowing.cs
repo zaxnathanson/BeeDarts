@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
 
 public class DartThrowing : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DartThrowing : MonoBehaviour
 
 
     [Header("Charge")]
+
     [SerializeField] float maxChargeTime;
     [SerializeField] float maxChargeForce;
     [SerializeField] float minChargeForce;
@@ -16,6 +18,7 @@ public class DartThrowing : MonoBehaviour
     float currentChargeForce;
 
     [Header("Charge Juice")]
+
     [SerializeField] float minChargeShake;
     [SerializeField] float maxChargeShake;
     [SerializeField] int minChargeVibrato;
@@ -26,7 +29,11 @@ public class DartThrowing : MonoBehaviour
     public Dart currentDart;
 
     [Header("Pickup")]
+
     [SerializeField] Transform dartHolderTransform;
+    [SerializeField] private float dartPickupSpeed = 3f;
+
+    public bool isGrabbing = false;
 
 
     void Awake()
@@ -101,15 +108,33 @@ public class DartThrowing : MonoBehaviour
     {
         float chargeShake = Mathf.Lerp(minChargeShake, maxChargeShake, currentChargeTime / maxChargeTime);
         int chargeVibration = (int)Mathf.Lerp(minChargeVibrato, maxChargeVibrato, currentChargeTime / maxChargeTime);
+
         return currentDart.transform.DOShakePosition(0.1f, chargeShake, chargeVibration, 90, false, false);
     }
 
-    public void Pickup(Dart dartPickup)
+    public IEnumerator Pickup(Dart dartPickup)
     {
+        Vector3 startPos = dartPickup.transform.position;
+        Vector3 endPos = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+        float elapsed = 0;
+
+        float distance = Vector3.Distance(startPos, endPos);
+
+        while (elapsed < (distance / dartPickupSpeed))
+        {
+            dartPickup.transform.position = Vector3.Lerp(startPos, endPos, elapsed / (distance / dartPickupSpeed));
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
         dartPickup.transform.parent = dartHolderTransform;
-        dartPickup.transform.localPosition = Vector3.zero;
+
         dartPickup.transform.localRotation = Quaternion.identity;
+
         currentDart = dartPickup;
+
         dartPickup.ChangeDartState(Dart.DartStates.HELD);
+
+        yield return null;
     }
 }

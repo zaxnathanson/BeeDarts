@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Dart : MonoBehaviour
 {
-
     public enum DartStates
     {
         PICKUP,
@@ -18,9 +17,9 @@ public class Dart : MonoBehaviour
     [Header("Dart References")]
 
     [SerializeField] Rigidbody body;
+    private DartThrowing dartThrowingRef;
     public DartStates currentDartState;
     public Vector3 lastVelocity;
-    
 
     [Header("Expressions Settings")]
 
@@ -39,8 +38,6 @@ public class Dart : MonoBehaviour
 
     [SerializeField] float flightNoiseStrength;
     [SerializeField] float flightNoiseSpeed;
-
-    float force;
 
     int frameIndex;
 
@@ -68,6 +65,7 @@ public class Dart : MonoBehaviour
     {
         canBeThrown = false;
         dartableLayersCopy = dartableLayers;
+        dartThrowingRef = GameObject.Find("Player").GetComponent<DartThrowing>();
     }
 
     void Start()
@@ -90,7 +88,6 @@ public class Dart : MonoBehaviour
 
     public void Fire(float power)
     {
-        force = power;
         body.isKinematic = false;
         body.AddForce(Camera.main.transform.forward * power, ForceMode.Impulse);
     }
@@ -157,17 +154,22 @@ public class Dart : MonoBehaviour
     IEnumerator Pickup()
     {
         OnPickedUp?.Invoke(this);
+
         transform.localPosition = new Vector3(0, -0.5f, 0);
         Vector3 startPos = transform.localPosition;
         float elapsed = 0;
+
         while (elapsed < 0.2f)
         {
             transform.localPosition = Vector3.Lerp(startPos, Vector3.zero, elapsed / 0.2f);
             elapsed += Time.deltaTime;
             yield return null;
         }
+
         transform.localPosition = Vector3.zero;
         canBeThrown = true;
+
+        dartThrowingRef.isGrabbing = false;
     }
 
     public void HandleGroundSideCollision()

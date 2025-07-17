@@ -2,12 +2,20 @@ using UnityEngine;
 
 public class Grab : MonoBehaviour
 {
+    [Header("Grab Settings")]
+
+    [SerializeField] private float grabRadius = 1f;
     [SerializeField] float grabLength;
+
+    [Header("Others")]
+
     [SerializeField] LayerMask layermask;
     [SerializeField] DartThrowing dartThrowingRef;
     [SerializeField] Color defaultReticleColor;
     [SerializeField] Gradient hoverGradient;
     float gradientTime;
+
+    [SerializeField] private LayerMask ignoreLayer;
 
     void Start()
     {
@@ -17,18 +25,23 @@ public class Grab : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dartThrowingRef.currentDart == null)
+        if (dartThrowingRef.currentDart == null && !dartThrowingRef.isGrabbing)
         {
             RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, grabLength, layermask))
+
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.TransformDirection(Vector3.forward), out hit, layermask))
             {
+                //Collider[] colls = Physics.OverlapSphere(hit.transform.position, ) grabbbbbbbbbbbbbbbbb
+
                 hit.transform.TryGetComponent(out Dart dart);
-                if (dart != null)
+
+                if (dart != null && dart.currentDartState != Dart.DartStates.THROWN)
                 {
                     GameUIManager.instance.ChangeReticleColor(hoverGradient.Evaluate(gradientTime));
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(1))
                     {
-                        dartThrowingRef.Pickup(dart);
+                        dartThrowingRef.isGrabbing = true;
+                        StartCoroutine(dartThrowingRef.Pickup(dart));
                     }
                 }
                 else

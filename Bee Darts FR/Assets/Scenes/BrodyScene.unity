@@ -1813,16 +1813,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4204773966636653793, guid: a7c307de2af8719449e36bb555db984a, type: 3}
-      propertyPath: hitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ee5e8dabdb6fb964cbf97ccb4bc5c994, type: 3}
     - target: {fileID: 4379571282063119127, guid: a7c307de2af8719449e36bb555db984a, type: 3}
       propertyPath: m_Name
-      value: Woodchipper
-      objectReference: {fileID: 0}
-    - target: {fileID: 4379571282063119127, guid: a7c307de2af8719449e36bb555db984a, type: 3}
-      propertyPath: m_TagString
       value: Woodchipper
       objectReference: {fileID: 0}
     m_RemovedComponents: []

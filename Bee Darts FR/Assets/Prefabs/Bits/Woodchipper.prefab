@@ -182,7 +182,7 @@ MonoBehaviour:
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
   distance: 4
   tooCloseVisualRef: {fileID: 2703575283537446473}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: ee5e8dabdb6fb964cbf97ccb4bc5c994, type: 3}
   hitSoundVolume: 1
   hitParticle: {fileID: 0}
   explosionParticle: {fileID: 1620371060522584735, guid: 8d1cbaa0a01d1e049baaa414bda2c656, type: 3}
@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 2250832903069779333}
   m_Layer: 0
   m_Name: Woodchipper
-  m_TagString: Untagged
+  m_TagString: Woodchipper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
