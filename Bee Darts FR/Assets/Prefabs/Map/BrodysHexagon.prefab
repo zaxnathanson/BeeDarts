@@ -126,6 +126,7 @@ MonoBehaviour:
   snapToGrid: 1
   bounceForce: 1
   verticalThreshold: 0.1
+  doGenerateDecorations: 0
   grassSprites:
   - {fileID: 1706459561, guid: c162a142869e67f4f9c50674045c47f3, type: 3}
   - {fileID: -1092257129, guid: c162a142869e67f4f9c50674045c47f3, type: 3}

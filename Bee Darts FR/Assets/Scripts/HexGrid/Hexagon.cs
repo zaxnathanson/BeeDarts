@@ -24,6 +24,8 @@ public class Hexagon : MonoBehaviour
     [SerializeField] private float verticalThreshold;
 
     [Header("Decoration Settings")]
+    [SerializeField] private bool doGenerateDecorations;
+
     public Sprite[] grassSprites;
     public Sprite[] flowerSprites;
     public float minDistance = 0.3f;
@@ -54,7 +56,7 @@ public class Hexagon : MonoBehaviour
 
     private void Start()
     {
-        if (Application.isPlaying)
+        if (Application.isPlaying && doGenerateDecorations)
         {
             // wait a frame to ensure hexagons are positioned first
             StartCoroutine(DelayedGeneration());
