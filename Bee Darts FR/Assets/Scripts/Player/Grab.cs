@@ -3,60 +3,157 @@ using UnityEngine;
 public class Grab : MonoBehaviour
 {
     [Header("Grab Settings")]
-    [SerializeField] private float grabLength;
 
-    [Header("Others")]
+    [SerializeField] private float grabRange = 5f;
     [SerializeField] private LayerMask dartableLayers;
     [SerializeField] private LayerMask ignoredLayers;
-    [SerializeField] private DartThrowing dartThrowingRef;
-    [SerializeField] private Color defaultReticleColor;
-    [SerializeField] private Gradient hoverGradient;
 
-    private float gradientTime;
+    [Header("Visual Settings")]
+
+    [SerializeField] private Color defaultReticleColor = Color.white;
+    [SerializeField] private Gradient hoverGradient;
+    [SerializeField] private float gradientCycleTime = 2f;
+
+    // cached references
+    private Camera mainCamera;
     private LayerMask finalMask;
+    private float gradientTime;
+    private Dart hoveredDart;
+
+    // raycast optimization
+    private const float RAYCAST_INTERVAL = 0.1f;
+    private float nextRaycastTime;
 
     private void Awake()
     {
+        // cache references
+        mainCamera = Camera.main;
+
+        // calculate final layer mask
         finalMask = dartableLayers & ~ignoredLayers;
     }
 
-    void Update()
+    private void Update()
     {
-        if (dartThrowingRef.currentDart == null && !dartThrowingRef.isGrabbing)
+        // update gradient time
+        gradientTime = (gradientTime + Time.deltaTime / gradientCycleTime) % 1f;
+
+        // check if we can grab
+        if (!CanAttemptGrab())
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, grabLength, finalMask))
+            ResetReticle();
+            return;
+        }
+
+        // throttle raycasts for performance
+        if (Time.time >= nextRaycastTime)
+        {
+            nextRaycastTime = Time.time + RAYCAST_INTERVAL;
+            CheckForGrabbableDart();
+        }
+
+        // handle grab input
+        if (hoveredDart != null && Input.GetMouseButtonDown(1))
+        {
+            AttemptGrab();
+        }
+    }
+
+    // check if we can attempt to grab
+    private bool CanAttemptGrab()
+    {
+        return DartThrowing.Instance != null &&
+               !DartThrowing.Instance.HasDart &&
+               !DartThrowing.Instance.IsGrabbing;
+    }
+
+    // check for grabbable dart
+    private void CheckForGrabbableDart()
+    {
+        // perform raycast
+        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, grabRange, finalMask))
+        {
+            // check if hit object has dart component
+            Dart dart = hit.transform.GetComponent<Dart>();
+
+            if (dart != null && IsGrabbable(dart))
             {
-                hit.transform.TryGetComponent(out Dart dart);
-                if (dart != null && dart.currentDartState != Dart.DartStates.THROWN)
-                {
-                    GameUIManager.instance.ChangeReticleColor(hoverGradient.Evaluate(gradientTime));
-                    if (Input.GetMouseButtonDown(1))
-                    {
-                        dartThrowingRef.isGrabbing = true;
-                        StartCoroutine(dartThrowingRef.Pickup(dart));
-                    }
-                }
-                else
-                {
-                    GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
-                }
+                SetHoveredDart(dart);
             }
             else
             {
-                GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
+                ClearHoveredDart();
             }
         }
         else
         {
-            GameUIManager.instance.ChangeReticleColor(defaultReticleColor);
+            ClearHoveredDart();
+        }
+    }
+
+    // check if dart is grabbable
+    private bool IsGrabbable(Dart dart)
+    {
+        return dart.CurrentState != Dart.DartState.THROWN &&
+               dart.CurrentState != Dart.DartState.HELD;
+    }
+
+    // set hovered dart
+    private void SetHoveredDart(Dart dart)
+    {
+        if (hoveredDart != dart)
+        {
+            hoveredDart = dart;
         }
 
-        // Animate gradient time
-        gradientTime += Time.deltaTime / 2;
-        if (gradientTime > 1)
+        // update reticle color
+        UpdateReticleColor(hoverGradient.Evaluate(gradientTime));
+    }
+
+    // clear hovered dart
+    private void ClearHoveredDart()
+    {
+        if (hoveredDart != null)
         {
-            gradientTime -= 1;
+            hoveredDart = null;
+            ResetReticle();
         }
+    }
+
+    // attempt to grab hovered dart
+    private void AttemptGrab()
+    {
+        if (hoveredDart != null && DartThrowing.Instance != null)
+        {
+            DartThrowing.Instance.PickupDart(hoveredDart);
+            hoveredDart = null;
+            ResetReticle();
+        }
+    }
+
+    // reset reticle to default color
+    private void ResetReticle()
+    {
+        UpdateReticleColor(defaultReticleColor);
+    }
+
+    // update reticle color
+    private void UpdateReticleColor(Color color)
+    {
+        if (GameUIManager.instance != null)
+        {
+            GameUIManager.instance.ChangeReticleColor(color);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        // visualize grab range
+        if (mainCamera == null) return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(mainCamera.transform.position, mainCamera.transform.forward * grabRange);
     }
 }

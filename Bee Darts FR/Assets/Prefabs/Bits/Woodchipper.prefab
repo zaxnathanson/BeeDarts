@@ -177,17 +177,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57dff5e2e1e1fcf40a9a498808db13c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexList: []
-  gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
-  gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
-  distance: 4
-  tooCloseVisualRef: {fileID: 2703575283537446473}
+  destroyOnHit: 0
+  targetParent: {fileID: 0}
+  minimumThrowDistance: 2
+  affectedHexagons: []
+  tooCloseIndicator: {fileID: 2703575283537446473}
+  hitParticlePrefab: {fileID: 0}
   hitSound: {fileID: 8300000, guid: ee5e8dabdb6fb964cbf97ccb4bc5c994, type: 3}
   hitSoundVolume: 1
-  hitParticle: {fileID: 0}
-  explosionParticle: {fileID: 1620371060522584735, guid: 8d1cbaa0a01d1e049baaa414bda2c656, type: 3}
-  delayBeforeExplosion: 3
+  gizmoSize: 0.25
+  gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
+  gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
+  explosionParticlePrefab: {fileID: 0}
   explosionOffset: {x: 0, y: 0, z: 0}
+  explosionDelay: 1.5
+  dartRespawnDelay: 0.2
   shakeIntensity: 0.35
   shakeDuration: 1.5
   shakeVibrato: 25

@@ -124,7 +124,7 @@ public class Hexagon : MonoBehaviour
             {
                 // complicated and terribly coded handliing of a dart bouncing off of the ground layer
                 Dart dart = collision.gameObject.GetComponent<Dart>();
-                dart.ChangeDartState(Dart.DartStates.THROWN);
+                dart.ChangeState(Dart.DartState.THROWN);
 
                 Vector3 dartLastVelocity = dart.lastVelocity;
 

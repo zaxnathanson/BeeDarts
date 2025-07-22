@@ -2,31 +2,30 @@ using UnityEngine;
 
 public class HiveDartboard : Dartboard
 {
-    [SerializeField] ParticleSystem stayParticle;
+    [Header("Hive Settings")]
+    [SerializeField] private ParticleSystem honeyParticles;
 
-    public override void OnHit(Dart theDart)
+    // handle darts staying on hive
+    protected override void OnDartsAttached(int dartCount)
     {
-        base.OnHit(theDart);
+        base.OnDartsAttached(dartCount);
+
+        // manage honey particles based on dart presence
+        UpdateHoneyEffect(dartCount > 0);
     }
 
-    public override void OnStay(int numDarts)
+    // update honey particle effect
+    private void UpdateHoneyEffect(bool shouldPlay)
     {
-        base.OnStay(numDarts);
-        if (numDarts > 0)
+        if (honeyParticles == null) return;
+
+        if (shouldPlay && !honeyParticles.isPlaying)
         {
-            if (!stayParticle.isPlaying)
-            {
-                stayParticle.Play();
-            }
+            honeyParticles.Play();
         }
-        else
+        else if (!shouldPlay && honeyParticles.isPlaying)
         {
-            if (!stayParticle.isStopped)
-            {
-                stayParticle.Stop();
-            }
+            honeyParticles.Stop();
         }
     }
-
-
 }

@@ -175,6 +175,7 @@ MonoBehaviour:
   secondBeeSpawn: {fileID: 3091613365157863655}
   spawnedDart: {fileID: 3647037308725737491, guid: 8ae7fd16a0705bf418e69ff19a514e51, type: 3}
   forceMultiplier: 2
+  waterLevel: -0.17
   totalBeesUnlocked: 1
   beesOutOfHive: 0
   firstFlower: 0

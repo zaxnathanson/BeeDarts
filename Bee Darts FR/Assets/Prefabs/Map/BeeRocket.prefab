@@ -4860,7 +4860,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.18, y: 2.9, z: -9.94}
-  m_LocalScale: {x: 0.41, y: 0.41, z: 0.41}
+  m_LocalScale: {x: 0.41000018, y: 0.40999997, z: 0.41000018}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5466204224293258501}
@@ -4899,7 +4899,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5466204224293258501
 Transform:
@@ -4910,7 +4910,7 @@ Transform:
   m_GameObject: {fileID: 1162487746879885431}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.5039348, z: -0, w: 0.8637417}
-  m_LocalPosition: {x: 2.6234465, y: 4.3800006, z: 1.4493966}
+  m_LocalPosition: {x: 2.3, y: 4.5, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4950,41 +4950,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5b260115ae673042ba68880bec93dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hexList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  gizmoColorUnselected: {r: 1, g: 0.5748664, b: 0, a: 0.6156863}
-  gizmoColorSelected: {r: 1, g: 0.49914646, b: 0, a: 1}
-  distance: 0
-  tooCloseVisualRef: {fileID: 4244906789229209403}
+  destroyOnHit: 0
+  targetParent: {fileID: 0}
+  minimumThrowDistance: 2
+  affectedHexagons: []
+  tooCloseIndicator: {fileID: 0}
+  hitParticlePrefab: {fileID: 0}
   hitSound: {fileID: 0}
   hitSoundVolume: 1
-  hitParticle: {fileID: 7523253600593438404, guid: 0d089302e9f3cae44b0ae7658f29fb4c, type: 3}
+  gizmoSize: 0.25
+  gizmoColorUnselected: {r: 1, g: 0.5748664, b: 0, a: 0.6156863}
+  gizmoColorSelected: {r: 1, g: 0.49914646, b: 0, a: 1}
 --- !u!1001 &2111590309276394055
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5194,11 +5170,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be0727e057aad3d4fa8a94ef7c93c66c, type: 3}
---- !u!212 &4244906789229209403 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 1074968353138453049, guid: be0727e057aad3d4fa8a94ef7c93c66c, type: 3}
-  m_PrefabInstance: {fileID: 3748118858976464130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7503769793599664457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6638658659539516491, guid: be0727e057aad3d4fa8a94ef7c93c66c, type: 3}

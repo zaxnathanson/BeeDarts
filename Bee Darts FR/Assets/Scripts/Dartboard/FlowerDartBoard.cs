@@ -1,51 +1,57 @@
 using UnityEngine;
 
-public class FlowerDartBoard : Dartboard
+public class FlowerDartboard : Dartboard
 {
-    [SerializeField] ParticleSystem stayParticle;
+    [Header("Flower Settings")]
+    [SerializeField] private ParticleSystem pollenParticles;
 
-    // for deciding whether to redo certain actions or not
-    private bool hasBeenHit = false;
-
-    // IMPORTNAT- only make one flower have this and the fsjdfhnu have it be the firsr flower
-
-    [Header("Important Settings")]
-
-    [Tooltip("Determines whether to respawn bees at the first or second spawn points")]
+    [Header("Gameplay Settings")]
+    [Tooltip("Set true for the first flower in the level to control bee spawn points")]
     [SerializeField] private bool isFirstFlower;
 
-    public override void OnHit(Dart theDart)
-    {
-        base.OnHit(theDart);
+    // track if this flower has been hit for points
+    private bool hasAwardedPoints;
 
-        if (isFirstFlower)
+    // handle dart hit
+    protected override void OnHit(Dart dart)
+    {
+        base.OnHit(dart);
+
+        // notify bee manager if this is the first flower
+        if (isFirstFlower && BeeManager.Instance != null)
         {
             BeeManager.Instance.firstFlower = true;
         }
 
-        if (!hasBeenHit)
+        // award points on first hit only
+        if (!hasAwardedPoints && BeeManager.Instance != null)
         {
             BeeManager.Instance.IncrementPoints(1);
-            hasBeenHit = true;
+            hasAwardedPoints = true;
         }
     }
 
-    public override void OnStay(int numDarts)
+    // handle darts staying on flower
+    protected override void OnDartsAttached(int dartCount)
     {
-        base.OnStay(numDarts);
-        if (numDarts > 0)
+        base.OnDartsAttached(dartCount);
+
+        // manage pollen particles based on dart presence
+        UpdatePollenEffect(dartCount > 0);
+    }
+
+    // update pollen particle effect
+    private void UpdatePollenEffect(bool shouldPlay)
+    {
+        if (pollenParticles == null) return;
+
+        if (shouldPlay && !pollenParticles.isPlaying)
         {
-            if (!stayParticle.isPlaying)
-            {
-                stayParticle.Play();
-            }
+            pollenParticles.Play();
         }
-        else
+        else if (!shouldPlay && pollenParticles.isPlaying)
         {
-            if (!stayParticle.isStopped)
-            {
-                stayParticle.Stop();
-            }
+            pollenParticles.Stop();
         }
     }
 }

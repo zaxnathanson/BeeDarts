@@ -5,199 +5,259 @@ using UnityEngine.UI;
 
 public class Dart : MonoBehaviour
 {
-    public enum DartStates
+    public enum DartState
     {
         PICKUP,
         HELD,
         CHARGING,
         THROWN,
-        HIT,
+        HIT
     }
 
-    [Header("Dart References")]
-
+    [Header("Core Components")]
     [SerializeField] private Rigidbody body;
-    private DartThrowing dartThrowingRef;
-    public DartStates currentDartState;
-    public Vector3 lastVelocity;
-    public bool hasRisen = false;
-
-    [Header("Expressions Settings")]
-
-    public ExpressionAnimation[] IdleExpression;
-    public ExpressionAnimation[] PullExpressions;
-    public ExpressionAnimation[] ThrownExpressions;
-
     [SerializeField] private Animator animator;
-    private ExpressionAnimation currentExpression;
-
-    [SerializeField] private float expressionFps;
     [SerializeField] private Image faceImage;
 
-    private int frameIndex;
-    public bool canBeThrown;
-    public Vector3 thrownStartPos;
+    [Header("Expression Settings")]
+    [SerializeField] private ExpressionSet[] idleExpressions;
+    [SerializeField] private ExpressionSet[] pullExpressions;
+    [SerializeField] private ExpressionSet[] thrownExpressions;
+    [SerializeField] private float expressionFps = 10f;
 
-    [Header("Layer References")]
-
+    [Header("Physics Settings")]
     [SerializeField] private LayerMask dartableLayers;
-    [SerializeField] private LayerMask dartableLayersCopy;
-    [SerializeField] private LayerMask undartableLayer;
+    [SerializeField] private LayerMask undartableLayers;
+
+    // state management
+    public DartState currentState = DartState.PICKUP;
+    public Vector3 lastVelocity;
+    private bool canBeThrown;
+
+    // expression animation
+    private Coroutine expressionCoroutine;
+    private ExpressionSet currentExpression;
+    private int frameIndex;
+
+    // cached references
+    private LayerMask originalDartableLayers;
+    private Transform cachedTransform;
+
+    // properties
+    public DartState CurrentState => currentState;
+    public bool CanBeThrown => canBeThrown;
+    public bool HasRisen { get; private set; }
+    public Vector3 ThrownStartPos { get; set; }
+
+    // events
+    public System.Action<Dart> OnPickedUp;
+    public System.Action<Dart, Collision> OnHit;
 
     [System.Serializable]
-    public struct ExpressionAnimation
+    public struct ExpressionSet
     {
         public Sprite[] sprites;
     }
 
-    public delegate void PickedUpEvent(Dart thisDart);
-    public event PickedUpEvent OnPickedUp;
-
     private void Awake()
     {
-        canBeThrown = false;
-        dartableLayersCopy = dartableLayers;
-        dartThrowingRef = GameObject.Find("Player").GetComponent<DartThrowing>();
+        // cache references
+        cachedTransform = transform;
+        originalDartableLayers = dartableLayers;
+
+        // validate components
+        if (!body) body = GetComponent<Rigidbody>();
+        if (!animator) animator = GetComponentInChildren<Animator>();
     }
 
-    void Start()
+    private void Start()
     {
-        currentExpression = IdleExpression[0];
-        StartCoroutine(AnimateCurrentExpression());
+        // set initial expression
+        SetRandomExpression(idleExpressions);
     }
 
     private void Update()
     {
-        if (currentDartState == DartStates.THROWN)
+        // only update when thrown
+        if (currentState == DartState.THROWN)
         {
-            Fly();
+            UpdateFlightRotation();
         }
 
-        // public hasRisen is used in deathplane
-        if (BeeManager.Instance.waterLevel <= transform.position.y && !hasRisen)
+        // check water level
+        if (!HasRisen && BeeManager.Instance && BeeManager.Instance.waterLevel <= cachedTransform.position.y)
         {
-            hasRisen = true;
+            HasRisen = true;
         }
     }
 
     private void FixedUpdate()
     {
-        lastVelocity = body.linearVelocity;
+        // track velocity for collision response
+        if (currentState == DartState.THROWN)
+        {
+            lastVelocity = body.linearVelocity;
+        }
     }
 
-    public void Fire(float power)
+    // launch dart with given power
+    public void Fire(float power, Vector3 direction)
     {
         body.isKinematic = false;
-        body.AddForce(Camera.main.transform.forward * power, ForceMode.Impulse);
+        body.AddForce(direction * power, ForceMode.Impulse);
     }
 
-    IEnumerator AnimateCurrentExpression()
+    // change dart state
+    public void ChangeState(DartState newState)
     {
-        faceImage.sprite = currentExpression.sprites[frameIndex];
-        yield return new WaitForSeconds(1 / expressionFps);
-        frameIndex++;
-        if (frameIndex >= currentExpression.sprites.Length)
-        {
-            frameIndex = 0;
-        }
-        StartCoroutine(AnimateCurrentExpression());
+        if (currentState == newState) return;
+
+        currentState = newState;
+        OnStateChanged(newState);
     }
 
-    void Fly()
+    // handle state transitions
+    private void OnStateChanged(DartState newState)
     {
-        if (body.linearVelocity.normalized != Vector3.zero)
+        switch (newState)
         {
-            transform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
-        }
-    }
-
-    public void ChangeDartState(DartStates newState)
-    {
-        currentDartState = newState;
-
-        int newExpressionIndex;
-        switch (currentDartState)
-        {
-            case DartStates.HELD:
-                newExpressionIndex = Random.Range(0, IdleExpression.Length);
-                currentExpression = IdleExpression[newExpressionIndex];
+            case DartState.HELD:
                 body.isKinematic = true;
-                StartCoroutine(Pickup());
+                animator.SetBool("IsCharging", false);
+                animator.SetBool("IsFlying", false);
+                SetRandomExpression(idleExpressions);
+                StartCoroutine(AnimatePickup());
                 break;
-            case DartStates.CHARGING:
+
+            case DartState.CHARGING:
                 animator.SetBool("IsCharging", true);
-                newExpressionIndex = Random.Range(0, PullExpressions.Length);
-                currentExpression = PullExpressions[newExpressionIndex];
+                SetRandomExpression(pullExpressions);
                 break;
-            case DartStates.THROWN:
+
+            case DartState.THROWN:
                 animator.SetBool("IsCharging", false);
                 animator.SetBool("IsFlying", true);
-                newExpressionIndex = Random.Range(0, ThrownExpressions.Length);
-                currentExpression = ThrownExpressions[newExpressionIndex];
+                SetRandomExpression(thrownExpressions);
                 break;
-            case DartStates.HIT:
+
+            case DartState.HIT:
+                body.isKinematic = true;
                 animator.SetBool("IsFlying", false);
                 animator.SetTrigger("Hit");
-                body.isKinematic = true;
-                newExpressionIndex = Random.Range(0, IdleExpression.Length);
-                currentExpression = IdleExpression[newExpressionIndex];
+                SetRandomExpression(idleExpressions);
                 canBeThrown = false;
                 break;
         }
     }
 
-    IEnumerator Pickup()
+    // animate pickup motion
+    private IEnumerator AnimatePickup()
     {
         OnPickedUp?.Invoke(this);
 
-        transform.localPosition = new Vector3(0, -0.5f, 0);
-        Vector3 startPos = transform.localPosition;
-        float elapsed = 0;
+        // smooth pickup animation
+        Vector3 startPos = cachedTransform.localPosition;
+        Vector3 targetPos = Vector3.zero;
 
-        while (elapsed < 0.2f)
+        float duration = 0.2f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
         {
-            transform.localPosition = Vector3.Lerp(startPos, Vector3.zero, elapsed / 0.2f);
             elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            cachedTransform.localPosition = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
 
-        transform.localPosition = Vector3.zero;
+        cachedTransform.localPosition = targetPos;
         canBeThrown = true;
-        dartThrowingRef.isGrabbing = false;
     }
 
+    // update rotation during flight
+    private void UpdateFlightRotation()
+    {
+        if (body.linearVelocity.sqrMagnitude > 0.01f)
+        {
+            cachedTransform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
+        }
+    }
+
+    // set random expression from array
+    private void SetRandomExpression(ExpressionSet[] expressions)
+    {
+        if (expressions == null || expressions.Length == 0) return;
+
+        currentExpression = expressions[Random.Range(0, expressions.Length)];
+        frameIndex = 0;
+
+        // restart animation coroutine
+        if (expressionCoroutine != null)
+        {
+            StopCoroutine(expressionCoroutine);
+        }
+        expressionCoroutine = StartCoroutine(AnimateExpression());
+    }
+
+    // animate face expression
+    private IEnumerator AnimateExpression()
+    {
+        while (currentExpression.sprites != null && currentExpression.sprites.Length > 0)
+        {
+            faceImage.sprite = currentExpression.sprites[frameIndex];
+            yield return new WaitForSeconds(1f / expressionFps);
+
+            frameIndex = (frameIndex + 1) % currentExpression.sprites.Length;
+        }
+    }
+
+    // handle ground/side collisions
     public void HandleGroundSideCollision()
     {
-        dartableLayers = undartableLayer;
-        animator.enabled = false;
-        Invoke("ResetDartable", 0.1f);
+        StartCoroutine(TemporarilyDisableDartable());
     }
 
-    private void ResetDartable()
+    // temporarily disable dartable collision
+    private IEnumerator TemporarilyDisableDartable()
     {
+        dartableLayers = undartableLayers;
+        animator.enabled = false;
+
+        yield return new WaitForSeconds(0.1f);
+
         animator.enabled = true;
-        dartableLayers = dartableLayersCopy;
+        dartableLayers = originalDartableLayers;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (currentDartState != DartStates.THROWN)
+        // only process collisions when thrown
+        if (currentState != DartState.THROWN) return;
+
+        // check if hit dartable surface
+        if ((dartableLayers & (1 << collision.gameObject.layer)) != 0)
         {
-            return;
-        }
+            transform.SetParent(collision.transform.parent);
+            ChangeState(DartState.HIT);
 
-        if (dartableLayers == (dartableLayers | (1 << collision.gameObject.layer)))
-        {
-            transform.parent = collision.transform.parent;
-            Debug.Log("Hit!!!!");
+            // notify listeners
+            OnHit?.Invoke(this, collision);
 
-            ChangeDartState(DartStates.HIT);
-
-            collision.transform.TryGetComponent(out Dartboard dartboardScript);
-            if (dartboardScript != null)
+            // check for dartboard hit
+            var dartboard = collision.transform.GetComponent<Dartboard>();
+            if (dartboard != null)
             {
-                dartboardScript.CheckHit(this);
+                dartboard.CheckHit(this);
             }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // cleanup
+        if (expressionCoroutine != null)
+        {
+            StopCoroutine(expressionCoroutine);
         }
     }
 }
