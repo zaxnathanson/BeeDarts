@@ -26,8 +26,13 @@ public class Hexagon : MonoBehaviour
     [Header("Decoration Settings")]
     [SerializeField] private bool doGenerateDecorations;
 
-    public Sprite[] grassSprites;
-    public Sprite[] flowerSprites;
+    [Header("Decoration Prefabs")]
+    [Tooltip("Prefabs for grass decorations (can have custom materials/shaders)")]
+    public GameObject[] grassPrefabs;
+    [Tooltip("Prefabs for flower decorations (can have custom materials/shaders)")]
+    public GameObject[] flowerPrefabs;
+
+    [Header("Distribution Settings")]
     public float minDistance = 0.3f;
     public int maxAttempts = 30;
     public float grassChance = 0.7f;
@@ -35,6 +40,10 @@ public class Hexagon : MonoBehaviour
     public float maxScale = 1.2f;
     public string sortingLayer = "Default";
     public int sortingOrder = 1;
+
+    [Header("Wind Material Settings")]
+    [Tooltip("Apply wind material to all decorations")]
+    public bool useWindMaterial = true;
 
     public float startingY = 0;
 
@@ -88,7 +97,8 @@ public class Hexagon : MonoBehaviour
 
     private void GenerateDecorations()
     {
-        if (grassSprites.Length == 0 && flowerSprites.Length == 0) return;
+        // checking if we have prefabs to work with
+        if (grassPrefabs.Length == 0 && flowerPrefabs.Length == 0) return;
 
         List<Vector2> points = PoissonDiskSampling();
 
@@ -218,38 +228,46 @@ public class Hexagon : MonoBehaviour
 
     private void CreateDecoration(Vector3 localPosition)
     {
-        GameObject decoration = new GameObject("Decoration");
-        decoration.transform.SetParent(transform);
-        decoration.transform.localPosition = localPosition;
+        GameObject decoration = null;
+        bool isGrass = Random.Range(0f, 1f) < grassChance;
 
-        SpriteRenderer renderer = decoration.AddComponent<SpriteRenderer>();
-
-        // choose sprite type
-        if (Random.Range(0f, 1f) < grassChance && grassSprites.Length > 0)
+        if (isGrass && grassPrefabs.Length > 0)
         {
-            renderer.sprite = grassSprites[Random.Range(0, grassSprites.Length)];
+            GameObject prefab = grassPrefabs[Random.Range(0, grassPrefabs.Length)];
+            decoration = Instantiate(prefab, transform);
         }
-        else if (flowerSprites.Length > 0)
+        else if (!isGrass && flowerPrefabs.Length > 0)
         {
-            renderer.sprite = flowerSprites[Random.Range(0, flowerSprites.Length)];
+            GameObject prefab = flowerPrefabs[Random.Range(0, flowerPrefabs.Length)];
+            decoration = Instantiate(prefab, transform);
         }
 
-        // offset sprite up by half its height
-        if (renderer.sprite != null)
+        if (decoration != null)
         {
-            float spriteHeight = renderer.sprite.bounds.size.y;
-            decoration.transform.localPosition += Vector3.up * (spriteHeight * 0.5f);
+            decoration.name = "Decoration";
+            decoration.transform.localPosition = localPosition;
+
+            // sprite renderer for positioning adjustments
+            SpriteRenderer renderer = decoration.GetComponent<SpriteRenderer>();
+            if (renderer != null && renderer.sprite != null)
+            {
+                // ffset sprite up by half its height
+                float spriteHeight = renderer.sprite.bounds.size.y;
+                decoration.transform.localPosition += Vector3.up * (spriteHeight * 0.5f);
+
+                // sorting layer settings
+                renderer.sortingLayerName = sortingLayer;
+                renderer.sortingOrder = sortingOrder;
+            }
+
+            // random rotation and scale
+            decoration.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+            float scale = Random.Range(minScale, maxScale);
+            decoration.transform.localScale = new Vector3(scale, scale, scale);
         }
-
-        // random rotation and scale
-        decoration.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
-        float scale = Random.Range(minScale, maxScale);
-        decoration.transform.localScale = new Vector3(scale, scale, scale);
-
-        // sorting layer settings
-        renderer.sortingLayerName = sortingLayer;
-        renderer.sortingOrder = sortingOrder;
     }
+
+
 
     // making sure contact point is the good one
     private ContactPoint GetBestContactPoint(Collision coll)
@@ -341,5 +359,15 @@ public class Hexagon : MonoBehaviour
     public void ManualSnapToGrid()
     {
         SnapToGrid();
+    }
+
+    [ContextMenu("Regenerate Decorations")]
+    public void RegenerateDecorations()
+    {
+        ClearDecorations();
+        if (Application.isPlaying)
+        {
+            StartCoroutine(DelayedGeneration());
+        }
     }
 }

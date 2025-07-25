@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 54eee89fafbabb143b8f47bc1d4d51e1
+guid: fa33ee3eeeef1d240b480a95b5ae67aa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,62 +93,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TooClose_0
+      name: TooCloseWords_0
       rect:
         serializedVersion: 2
-        x: 76
-        y: 26
-        width: 73
-        height: 73
+        x: 0
+        y: 0
+        width: 128
+        height: 72
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de29bae654126e545a5b9419fd4027b5
-      internalID: 1864494074
+      spriteID: 764b44c080a584c459d8cad8407f231d
+      internalID: 507549982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TooClose_1
+      name: TooCloseWords_1
       rect:
         serializedVersion: 2
-        x: 300
-        y: 27
-        width: 73
-        height: 73
+        x: 128
+        y: 0
+        width: 128
+        height: 72
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 341ddcbc69988fc429b1acd373dce08f
-      internalID: -1382237356
+      spriteID: 7a8fd6bae7a84e24ebf036899ea55f64
+      internalID: 1556820634
       vertices: []
       indices: 
       edges: []
@@ -157,7 +144,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 905736983aab3a04e8d9cc60a837be5f
+    spriteID: 9289a3f19b2106e4eb4450f9cbe5815c
     internalID: 0
     vertices: []
     indices: 
@@ -167,8 +154,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      TooClose_0: 1864494074
-      TooClose_1: -1382237356
+      TooCloseWords_0: 507549982
+      TooCloseWords_1: 1556820634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

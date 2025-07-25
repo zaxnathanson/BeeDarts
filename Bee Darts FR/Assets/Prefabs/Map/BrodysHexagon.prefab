@@ -126,13 +126,11 @@ MonoBehaviour:
   snapToGrid: 1
   bounceForce: 1
   verticalThreshold: 0.1
-  doGenerateDecorations: 0
-  grassSprites:
-  - {fileID: 1706459561, guid: c162a142869e67f4f9c50674045c47f3, type: 3}
-  - {fileID: -1092257129, guid: c162a142869e67f4f9c50674045c47f3, type: 3}
-  flowerSprites:
-  - {fileID: -609881997, guid: c162a142869e67f4f9c50674045c47f3, type: 3}
-  - {fileID: -997660753, guid: c162a142869e67f4f9c50674045c47f3, type: 3}
+  doGenerateDecorations: 1
+  grassPrefabs:
+  - {fileID: 8848815095008222174, guid: 95b4dc174dfb6b24188745ae62fc17ed, type: 3}
+  - {fileID: 8848815095008222174, guid: 94a0f96b75e19f24083b69398fba1fb9, type: 3}
+  flowerPrefabs: []
   minDistance: 1.3
   maxAttempts: 15
   grassChance: 0.7
@@ -140,4 +138,5 @@ MonoBehaviour:
   maxScale: 1.2
   sortingLayer: Default
   sortingOrder: 1
+  useWindMaterial: 1
   startingY: 0

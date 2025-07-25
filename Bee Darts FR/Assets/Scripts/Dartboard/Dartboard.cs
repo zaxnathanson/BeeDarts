@@ -5,27 +5,22 @@ using UnityEngine.Audio;
 public class Dartboard : MonoBehaviour
 {
     [Header("Hit Behavior")]
-
     [SerializeField] private bool destroyOnHit;
     [SerializeField] private GameObject targetParent; // renamed from parent
     [SerializeField] private float minimumThrowDistance = 2f;
+    [SerializeField] private bool skipDistanceCheckAfterActivation = true;
 
     [Header("Hex Grid Settings")]
-
     [SerializeField] private List<GameObject> affectedHexagons = new List<GameObject>();
 
     [Header("Visual Feedback")]
-
-    [SerializeField] private SpriteRenderer tooCloseIndicator;
     [SerializeField] private ParticleSystem hitParticlePrefab;
 
     [Header("Audio Settings")]
-
     [SerializeField] private AudioClip hitSound;
     [SerializeField, Range(0f, 1f)] private float hitSoundVolume = 1f;
 
     [Header("Gizmo Settings")]
-
     [SerializeField] private float gizmoSize = 0.25f;
     [SerializeField] private Color gizmoColorUnselected = new Color(1, 1, 1, 0.9f);
     [SerializeField] private Color gizmoColorSelected = new Color(1, 0, 0, 1);
@@ -42,9 +37,14 @@ public class Dartboard : MonoBehaviour
     private float nextRangeCheckTime;
     private const float RANGE_CHECK_INTERVAL = 0.1f; // check 10 times per second
 
+    private static Dartboard currentTooCloseDartboard;
+    private bool isShowingTooClose = false;
+    private bool hasBeenActivated = false;
+
     // properties
     public int AttachedDartCount => attachedDarts.Count;
     public bool HasAttachedDarts => attachedDarts.Count > 0;
+    public bool HasBeenActivated => hasBeenActivated; // public getter for activation status
 
     // events
     public System.Action<Dart> OnDartAttached;
@@ -120,25 +120,65 @@ public class Dartboard : MonoBehaviour
     // update range indicator visibility
     private void UpdateRangeIndicator()
     {
-        if (tooCloseIndicator == null || playerTransform == null) return;
+        if (playerTransform == null || GameUIManager.instance == null) return;
+
+        // Skip distance check if dartboard has been activated and setting is enabled
+        if (hasBeenActivated && skipDistanceCheckAfterActivation)
+        {
+            // Make sure to hide indicator if it was showing
+            if (isShowingTooClose && currentTooCloseDartboard == this)
+            {
+                HideTooCloseIndicator();
+            }
+            return;
+        }
 
         bool shouldShowIndicator = false;
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, cachedTransform.position);
 
-        // only show if player has a dart
+        // only show if player has a dart and is too close
         if (DartThrowing.Instance != null && DartThrowing.Instance.HasDart)
         {
-            float distanceToPlayer = Vector3.Distance(playerTransform.position, cachedTransform.position);
             shouldShowIndicator = distanceToPlayer <= minimumThrowDistance;
         }
 
-        // always hide if no dart
-        if (!shouldShowIndicator)
+        // Handle showing/hiding the indicator
+        if (shouldShowIndicator)
         {
-            tooCloseIndicator.enabled = false;
+            // If another dartboard is showing the indicator, hide it first
+            if (currentTooCloseDartboard != null && currentTooCloseDartboard != this)
+            {
+                currentTooCloseDartboard.HideTooCloseIndicator();
+            }
+
+            // Show indicator for this dartboard
+            if (!isShowingTooClose)
+            {
+                currentTooCloseDartboard = this;
+                isShowingTooClose = true;
+                GameUIManager.instance.ShowTooCloseIndicator(true);
+            }
         }
-        else
+        else if (isShowingTooClose && currentTooCloseDartboard == this)
         {
-            tooCloseIndicator.enabled = true;
+            // Hide indicator if this dartboard was showing it
+            HideTooCloseIndicator();
+        }
+    }
+
+    private void HideTooCloseIndicator()
+    {
+        if (isShowingTooClose)
+        {
+            isShowingTooClose = false;
+            if (currentTooCloseDartboard == this)
+            {
+                currentTooCloseDartboard = null;
+            }
+            if (GameUIManager.instance != null)
+            {
+                GameUIManager.instance.ShowTooCloseIndicator(false);
+            }
         }
     }
 
@@ -146,6 +186,13 @@ public class Dartboard : MonoBehaviour
     public void CheckHit(Dart dart)
     {
         if (dart == null) return;
+
+        // skip distance check if dartboard has been activated and setting is enabled
+        if (hasBeenActivated && skipDistanceCheckAfterActivation) // why tf did i name it this
+        {
+            ProcessValidHit(dart);
+            return;
+        }
 
         // check minimum throw distance
         float throwDistance = Vector3.Distance(dart.ThrownStartPos, cachedTransform.position);
@@ -162,6 +209,13 @@ public class Dartboard : MonoBehaviour
     // process valid hit
     private void ProcessValidHit(Dart dart)
     {
+        // Mark as activated on first successful hit
+        if (!hasBeenActivated)
+        {
+            hasBeenActivated = true;
+            OnFirstActivation(); // Virtual method for derived classes
+        }
+
         // play effects
         PlayHitEffects();
 
@@ -236,6 +290,9 @@ public class Dartboard : MonoBehaviour
 
         // notify listeners
         OnDartDetached?.Invoke(dart);
+
+        // call virtual method to notify derived classes
+        OnDartsAttached(attachedDarts.Count);
     }
 
     // play sound for attached darts
@@ -253,6 +310,12 @@ public class Dartboard : MonoBehaviour
         // override in derived classes for custom hit behavior
     }
 
+    protected virtual void OnFirstActivation()
+    {
+        // override in derived classes for special behavior on first successful hit
+        // e.g., play special effects, change appearance, unlock something
+    }
+
     protected virtual void OnInvalidHit(Dart dart, float throwDistance)
     {
         // override in derived classes to handle too-close hits
@@ -267,6 +330,12 @@ public class Dartboard : MonoBehaviour
     // cleanup
     protected virtual void OnDestroy()
     {
+        // Hide indicator if this dartboard was showing it
+        if (currentTooCloseDartboard == this)
+        {
+            HideTooCloseIndicator();
+        }
+
         // unsubscribe from all dart events
         foreach (var dart in attachedDarts)
         {
@@ -277,6 +346,15 @@ public class Dartboard : MonoBehaviour
         }
 
         attachedDarts.Clear();
+    }
+
+    protected virtual void OnDisable()
+    {
+        // Also hide indicator when disabled
+        if (currentTooCloseDartboard == this)
+        {
+            HideTooCloseIndicator();
+        }
     }
 
     #region Context Menu Functions
@@ -316,6 +394,21 @@ public class Dartboard : MonoBehaviour
                 Debug.Log($"  - Dart {i}: {attachedDarts[i].name}");
             }
         }
+    }
+
+    [ContextMenu("Debug - Reset Activation State")]
+    private void DebugResetActivation()
+    {
+        hasBeenActivated = false;
+        Debug.Log($"[{gameObject.name}] Activation state reset");
+    }
+
+    [ContextMenu("Debug - Force Activate")]
+    private void DebugForceActivate()
+    {
+        hasBeenActivated = true;
+        OnFirstActivation();
+        Debug.Log($"[{gameObject.name}] Forced activation");
     }
 
     #endregion

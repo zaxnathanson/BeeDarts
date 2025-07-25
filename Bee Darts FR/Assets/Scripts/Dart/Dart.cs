@@ -29,9 +29,11 @@ public class Dart : MonoBehaviour
     [SerializeField] private LayerMask dartableLayers;
     [SerializeField] private LayerMask undartableLayers;
 
-    // state management
-    public DartState currentState = DartState.PICKUP;
+    // reference for hexagon and undartable
     public Vector3 lastVelocity;
+
+    // state management
+    private DartState currentState = DartState.PICKUP;
     private bool canBeThrown;
 
     // expression animation
@@ -41,7 +43,6 @@ public class Dart : MonoBehaviour
 
     // cached references
     private LayerMask originalDartableLayers;
-    private Transform cachedTransform;
 
     // properties
     public DartState CurrentState => currentState;
@@ -62,7 +63,6 @@ public class Dart : MonoBehaviour
     private void Awake()
     {
         // cache references
-        cachedTransform = transform;
         originalDartableLayers = dartableLayers;
 
         // validate components
@@ -85,7 +85,7 @@ public class Dart : MonoBehaviour
         }
 
         // check water level
-        if (!HasRisen && BeeManager.Instance && BeeManager.Instance.waterLevel <= cachedTransform.position.y)
+        if (!HasRisen && BeeManager.Instance && BeeManager.Instance.waterLevel <= transform.position.y)
         {
             HasRisen = true;
         }
@@ -156,7 +156,7 @@ public class Dart : MonoBehaviour
         OnPickedUp?.Invoke(this);
 
         // smooth pickup animation
-        Vector3 startPos = cachedTransform.localPosition;
+        Vector3 startPos = transform.localPosition;
         Vector3 targetPos = Vector3.zero;
 
         float duration = 0.2f;
@@ -166,11 +166,11 @@ public class Dart : MonoBehaviour
         {
             elapsed += Time.deltaTime;
             float t = elapsed / duration;
-            cachedTransform.localPosition = Vector3.Lerp(startPos, targetPos, t);
+            transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
             yield return null;
         }
 
-        cachedTransform.localPosition = targetPos;
+        transform.localPosition = targetPos;
         canBeThrown = true;
     }
 
@@ -179,7 +179,7 @@ public class Dart : MonoBehaviour
     {
         if (body.linearVelocity.sqrMagnitude > 0.01f)
         {
-            cachedTransform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
+            transform.rotation = Quaternion.LookRotation(body.linearVelocity.normalized);
         }
     }
 
