@@ -24,6 +24,7 @@ public class RespawnPad : MonoBehaviour
 
         bee.GetComponent<Dart>().ChangeState(Dart.DartState.THROWN);
 
+        bee.GetComponent<Rigidbody>().isKinematic = false;
         bee.GetComponent<Rigidbody>().AddForce(randomDirection * forceMultiplier, ForceMode.Impulse);
     }
 }

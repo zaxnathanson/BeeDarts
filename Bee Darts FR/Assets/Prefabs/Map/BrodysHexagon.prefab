@@ -137,6 +137,5 @@ MonoBehaviour:
   minScale: 0.8
   maxScale: 1.2
   sortingLayer: Default
-  sortingOrder: 1
-  useWindMaterial: 1
+  sortingOrder: -1
   startingY: 0

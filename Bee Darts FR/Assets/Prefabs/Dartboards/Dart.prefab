@@ -343,15 +343,15 @@ MonoBehaviour:
     - {fileID: 566944382, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: 263358104, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   - sprites:
-    - {fileID: -520260908, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
-    - {fileID: 486158778, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: 802454709, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: -279363726, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   thrownExpressions:
   - sprites:
     - {fileID: -1310208004, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
     - {fileID: -646430899, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   - sprites:
-    - {fileID: 802454709, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
-    - {fileID: -279363726, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: -520260908, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+    - {fileID: 486158778, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   expressionFps: 12
   dartableLayers:
     serializedVersion: 2
@@ -359,7 +359,6 @@ MonoBehaviour:
   undartableLayers:
     serializedVersion: 2
     m_Bits: 0
-  currentState: 0
   lastVelocity: {x: 0, y: 0, z: 0}
 --- !u!54 &4482300254483572821
 Rigidbody:
@@ -384,7 +383,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 1
@@ -829,7 +828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1089096718, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
+  m_Sprite: {fileID: -1159291244, guid: 7218f134b3048034bb1b52772f812ca1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
