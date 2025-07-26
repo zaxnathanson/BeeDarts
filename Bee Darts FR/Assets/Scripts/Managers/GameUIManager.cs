@@ -10,14 +10,23 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] Image reticleImage;
 
     [Header("Too Close Indicator")]
-
     [SerializeField] private GameObject tooCloseIndicator;
     [SerializeField] private Image tooCloseImage;
     [SerializeField] private Sprite[] tooCloseSprites = new Sprite[2];
     [SerializeField] private float animationSpeed = 0.5f;
 
+    [Header("Pulse Animation")]
+    [SerializeField] private float pulseScale = 1.2f;
+    [SerializeField] private float pulseSpeed = 2f;
+
+    [Header("Rock Animation")]
+    [SerializeField] private float rockAngle = 10f;
+    [SerializeField] private float rockSpeed = 3f;
+
     private Coroutine animationCoroutine;
     private bool isShowingTooClose = false;
+    private bool isAnimationRunning = false;
+    private Vector3 originalScale;
 
     private void Awake()
     {
@@ -33,6 +42,8 @@ public class GameUIManager : MonoBehaviour
         if (tooCloseIndicator != null)
         {
             tooCloseIndicator.SetActive(false);
+            // store original scale
+            originalScale = tooCloseIndicator.transform.localScale;
         }
     }
 
@@ -53,12 +64,16 @@ public class GameUIManager : MonoBehaviour
 
             if (show)
             {
-                // start when showing
-                if (animationCoroutine != null)
+                // only start animation if not already running
+                if (!isAnimationRunning)
                 {
-                    StopCoroutine(animationCoroutine);
+                    if (animationCoroutine != null)
+                    {
+                        StopCoroutine(animationCoroutine);
+                    }
+                    animationCoroutine = StartCoroutine(AnimateTooCloseIndicator());
+                    isAnimationRunning = true;
                 }
-                animationCoroutine = StartCoroutine(AnimateTooCloseIndicator());
             }
             else
             {
@@ -67,6 +82,10 @@ public class GameUIManager : MonoBehaviour
                     StopCoroutine(animationCoroutine);
                     animationCoroutine = null;
                 }
+                isAnimationRunning = false;
+                // reset to original state
+                tooCloseIndicator.transform.localScale = originalScale;
+                tooCloseIndicator.transform.rotation = Quaternion.identity;
             }
         }
     }
@@ -80,15 +99,33 @@ public class GameUIManager : MonoBehaviour
         }
 
         int currentFrame = 0;
+        float pulseTime = 0f;
+        float spriteTimer = 0f;
 
-        // animating
+        // animate forever
         while (true)
         {
-            tooCloseImage.sprite = tooCloseSprites[currentFrame];
+            // sprite switching based on animation speed
+            spriteTimer += Time.deltaTime;
+            if (spriteTimer >= animationSpeed)
+            {
+                tooCloseImage.sprite = tooCloseSprites[currentFrame];
+                currentFrame = (currentFrame + 1) % 2;
+                spriteTimer = 0f;
+            }
 
-            yield return new WaitForSeconds(animationSpeed);
+            // smooth pulse and rotation
+            pulseTime += Time.deltaTime;
 
-            currentFrame = (currentFrame + 1) % 2;
+            // pulse scale
+            float scaleFactor = 1f + (pulseScale - 1f) * Mathf.Sin(pulseTime * pulseSpeed) * 0.5f;
+            tooCloseIndicator.transform.localScale = originalScale * scaleFactor;
+
+            // rock rotation
+            float rotationZ = Mathf.Sin(pulseTime * rockSpeed) * rockAngle;
+            tooCloseIndicator.transform.rotation = Quaternion.Euler(0, 0, rotationZ);
+
+            yield return null;
         }
     }
 }
