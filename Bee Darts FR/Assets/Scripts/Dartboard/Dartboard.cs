@@ -1,12 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class Dartboard : MonoBehaviour
 {
     [Header("Hit Behavior")]
     [SerializeField] private bool destroyOnHit;
-    [SerializeField] private GameObject targetParent; // renamed from parent
+    [SerializeField] private GameObject targetParent;
     [SerializeField] private float minimumThrowDistance = 2f;
     [SerializeField] private bool skipDistanceCheckAfterActivation = true;
 
@@ -25,26 +24,22 @@ public class Dartboard : MonoBehaviour
     [SerializeField] private Color gizmoColorUnselected = new Color(1, 1, 1, 0.9f);
     [SerializeField] private Color gizmoColorSelected = new Color(1, 0, 0, 1);
 
-    // component references
-    private AudioSource audioSource;
-    private Transform cachedTransform;
-
     // dart tracking
     private readonly List<Dart> attachedDarts = new List<Dart>();
     private Transform playerTransform;
 
     // optimization
     private float nextRangeCheckTime;
-    private const float RANGE_CHECK_INTERVAL = 0.1f; // check 10 times per second
+    private const float RANGE_CHECK_INTERVAL = 0.1f;
 
     private static Dartboard currentTooCloseDartboard;
     private bool isShowingTooClose = false;
-    private bool hasBeenActivated = false;
+    public bool hasBeenActivated = false;
 
     // properties
     public int AttachedDartCount => attachedDarts.Count;
     public bool HasAttachedDarts => attachedDarts.Count > 0;
-    public bool HasBeenActivated => hasBeenActivated; // public getter for activation status
+    public bool HasBeenActivated => hasBeenActivated;
 
     // events
     public System.Action<Dart> OnDartAttached;
@@ -53,11 +48,8 @@ public class Dartboard : MonoBehaviour
 
     protected virtual void Awake()
     {
-        // cache references
-        cachedTransform = transform;
-
-        // find player
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
@@ -66,9 +58,6 @@ public class Dartboard : MonoBehaviour
         {
             Debug.LogError($"[{gameObject.name}] No player object found with 'Player' tag!");
         }
-
-        // setup audio
-        SetupAudioSource();
 
         // validate references
         ValidateReferences();
@@ -90,19 +79,6 @@ public class Dartboard : MonoBehaviour
         }
     }
 
-    // setup audio source component
-    private void SetupAudioSource()
-    {
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-
-        audioSource.playOnAwake = false;
-        audioSource.loop = false;
-    }
-
     // validate required references
     private void ValidateReferences()
     {
@@ -122,10 +98,10 @@ public class Dartboard : MonoBehaviour
     {
         if (playerTransform == null || GameUIManager.instance == null) return;
 
-        // Skip distance check if dartboard has been activated and setting is enabled
+        // skip distance check if dartboard has been activated and setting is enabled
         if (hasBeenActivated && skipDistanceCheckAfterActivation)
         {
-            // Make sure to hide indicator if it was showing
+            // hide indicator if it was shwoing
             if (isShowingTooClose && currentTooCloseDartboard == this)
             {
                 HideTooCloseIndicator();
@@ -134,7 +110,7 @@ public class Dartboard : MonoBehaviour
         }
 
         bool shouldShowIndicator = false;
-        float distanceToPlayer = Vector3.Distance(playerTransform.position, cachedTransform.position);
+        float distanceToPlayer = Vector3.Distance(playerTransform.position, transform.position);
 
         // only show if player has a dart and is too close
         if (DartThrowing.Instance != null && DartThrowing.Instance.HasDart)
@@ -142,16 +118,14 @@ public class Dartboard : MonoBehaviour
             shouldShowIndicator = distanceToPlayer <= minimumThrowDistance;
         }
 
-        // Handle showing/hiding the indicator
         if (shouldShowIndicator)
         {
-            // If another dartboard is showing the indicator, hide it first
+            // if another dartboard is showing the indicator hide it
             if (currentTooCloseDartboard != null && currentTooCloseDartboard != this)
             {
                 currentTooCloseDartboard.HideTooCloseIndicator();
             }
 
-            // Show indicator for this dartboard
             if (!isShowingTooClose)
             {
                 currentTooCloseDartboard = this;
@@ -161,7 +135,6 @@ public class Dartboard : MonoBehaviour
         }
         else if (isShowingTooClose && currentTooCloseDartboard == this)
         {
-            // Hide indicator if this dartboard was showing it
             HideTooCloseIndicator();
         }
     }
@@ -182,20 +155,19 @@ public class Dartboard : MonoBehaviour
         }
     }
 
-    // check if dart hit is valid
     public void CheckHit(Dart dart)
     {
         if (dart == null) return;
 
         // skip distance check if dartboard has been activated and setting is enabled
-        if (hasBeenActivated && skipDistanceCheckAfterActivation) // why tf did i name it this
+        if (hasBeenActivated && skipDistanceCheckAfterActivation)
         {
             ProcessValidHit(dart);
             return;
         }
 
         // check minimum throw distance
-        float throwDistance = Vector3.Distance(dart.ThrownStartPos, cachedTransform.position);
+        float throwDistance = Vector3.Distance(dart.ThrownStartPos, transform.position);
         if (throwDistance > minimumThrowDistance)
         {
             ProcessValidHit(dart);
@@ -206,14 +178,13 @@ public class Dartboard : MonoBehaviour
         }
     }
 
-    // process valid hit
     private void ProcessValidHit(Dart dart)
     {
         // Mark as activated on first successful hit
         if (!hasBeenActivated)
         {
             hasBeenActivated = true;
-            OnFirstActivation(); // Virtual method for derived classes
+            OnFirstActivation();
         }
 
         // play effects
@@ -239,17 +210,17 @@ public class Dartboard : MonoBehaviour
         // spawn particle effect
         if (hitParticlePrefab != null)
         {
-            ParticleSystem particles = Instantiate(hitParticlePrefab, cachedTransform.position, Quaternion.identity);
+            ParticleSystem particles = Instantiate(hitParticlePrefab, transform.position, Quaternion.identity);
 
             // auto-destroy particle system when finished
             float duration = particles.main.duration + particles.main.startLifetime.constantMax;
             Destroy(particles.gameObject, duration);
         }
 
-        // play sound (skip for woodchipper tag)
-        if (hitSound != null && audioSource != null && !gameObject.CompareTag("Woodchipper"))
+        // play sound using AudioManager
+        if (hitSound != null)
         {
-            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+            AudioManager.Instance.PlaySFXWithRandomPitch(hitSound, transform.position, hitSoundVolume, 0.7f, 1.3f);
         }
     }
 
@@ -298,9 +269,9 @@ public class Dartboard : MonoBehaviour
     // play sound for attached darts
     public void PlayAttachedSound()
     {
-        if (hitSound != null && audioSource != null)
+        if (hitSound != null)
         {
-            audioSource.PlayOneShot(hitSound, hitSoundVolume);
+            AudioManager.Instance.PlaySFX(hitSound, transform.position, hitSoundVolume);
         }
     }
 
@@ -313,7 +284,6 @@ public class Dartboard : MonoBehaviour
     protected virtual void OnFirstActivation()
     {
         // override in derived classes for special behavior on first successful hit
-        // e.g., play special effects, change appearance, unlock something
     }
 
     protected virtual void OnInvalidHit(Dart dart, float throwDistance)
@@ -443,7 +413,7 @@ public class Dartboard : MonoBehaviour
             {
                 // calculate gizmo position above hexagon
                 Vector3 hexPos = hex.transform.position;
-                float hexHeight = hex.transform.localScale.y * 1.25f; // simplified calculation
+                float hexHeight = hex.transform.localScale.y * 1.25f;
                 Vector3 gizmoPos = new Vector3(hexPos.x, hexPos.y + hexHeight, hexPos.z);
 
                 Gizmos.DrawSphere(gizmoPos, gizmoSize);

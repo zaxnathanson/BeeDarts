@@ -5067,21 +5067,16 @@ MonoBehaviour:
   destroyOnHit: 0
   targetParent: {fileID: 0}
   minimumThrowDistance: 2
+  skipDistanceCheckAfterActivation: 1
   affectedHexagons: []
-  tooCloseIndicator: {fileID: 865821316254325259}
   hitParticlePrefab: {fileID: 7523253600593438404, guid: 0d089302e9f3cae44b0ae7658f29fb4c, type: 3}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: c440f8ca9913da4478a763f1490723c8, type: 3}
   hitSoundVolume: 1
   gizmoSize: 0.25
   gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
   pollenParticles: {fileID: 0}
   isFirstFlower: 0
---- !u!212 &865821316254325259 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 8315229096237441288, guid: 6a00579c4ef4aa44c8f3efebb37c4188, type: 3}
-  m_PrefabInstance: {fileID: 9178796910997502723}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3491177311338230620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5697762079096866911, guid: 6a00579c4ef4aa44c8f3efebb37c4188, type: 3}

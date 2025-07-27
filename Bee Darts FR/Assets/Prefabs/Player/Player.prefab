@@ -89,8 +89,8 @@ MonoBehaviour:
   minChargeVibrato: 1
   maxChargeVibrato: 32
   pullbackAmount: 0.12
-  currentDart: {fileID: 0}
   dartHolderTransform: {fileID: 4645508733990044510}
+  dartPickupSpeed: 20
 --- !u!114 &8033203290089505193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,11 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8
+  footstepSound: {fileID: 8300000, guid: 2246307b065dd114dad1d3c65a127117, type: 3}
+  landingSound: {fileID: 8300000, guid: 4c1cace97a70a464788e80cbb4fe6091, type: 3}
+  footstepVolume: 0.3
+  landingVolume: 0.55
+  stepInterval: 0.3
 --- !u!114 &4337894108704282117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,11 +127,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28754ea02421c647971eb226a01b876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabLength: 2.6
-  layermask:
+  grabRange: 200
+  dartableLayers:
     serializedVersion: 2
-    m_Bits: 129
-  dartThrowingRef: {fileID: 6790868459603346315}
+    m_Bits: 137
+  ignoredLayers:
+    serializedVersion: 2
+    m_Bits: 256
   defaultReticleColor: {r: 0, g: 0, b: 0, a: 0.6666667}
   hoverGradient:
     serializedVersion: 2
@@ -158,6 +165,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 8
     m_NumAlphaKeys: 2
+  gradientCycleTime: 2
 --- !u!54 &2661191289868725535
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -192,7 +200,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2405082414225804896}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 574e50bc0cc33e04198f3ee2d62c15fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

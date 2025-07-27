@@ -60,7 +60,8 @@ public class BeeManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        pointsText = GameObject.Find("UI Canvas").transform.Find("Points").GetComponent<TextMeshProUGUI>();
+
+        pointsText = GameObject.Find("UIManager").transform.Find("Points").GetComponent<TextMeshProUGUI>();
         originalColor = pointsText.color;
 
         waterLevel = GameObject.Find("WaterPlane").transform.position.y;

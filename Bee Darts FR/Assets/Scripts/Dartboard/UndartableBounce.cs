@@ -24,6 +24,7 @@ public class UndartableBounce : MonoBehaviour
             reflectedVel *= forwardSpeed;
             reflectedVel *= bounceForce;
 
+            dartBody.isKinematic = false;
             dartBody.linearVelocity = reflectedVel;
         }
     }

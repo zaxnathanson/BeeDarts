@@ -13,17 +13,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
+    [Header("Audio Settings")]
+
+    [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private AudioClip landingSound;
+    [SerializeField] private float footstepVolume = 0.5f;
+    [SerializeField] private float landingVolume = 0.7f;
+    [SerializeField] private float stepInterval = 0.4f;
+
     private Rigidbody rb;
     private Vector3 input;
     private bool isGrounded;
+    private bool wasGrounded;
     private bool jumpQueued = false;
-
     private float horizontal;
     private float vertical;
+
+    // footstep tracking
+    private float stepTimer;
+    private bool isMoving;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        wasGrounded = true;
     }
 
     private void Update()
@@ -43,16 +56,19 @@ public class PlayerMovement : MonoBehaviour
         GroundCheck();
         Movement();
         Jump();
-
+        HandleFootsteps();
+        HandleLanding();
     }
 
     private void Movement()
     {
         input = transform.right * horizontal + transform.forward * vertical;
-
         Vector3 move = input.normalized * moveSpeed;
         Vector3 velocity = new Vector3(move.x, rb.linearVelocity.y, move.z);
         rb.linearVelocity = velocity;
+
+        // check if moving horizontally
+        isMoving = input.magnitude > 0.1f && isGrounded;
     }
 
     private void Jump()
@@ -66,9 +82,50 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck()
     {
+        wasGrounded = isGrounded;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
     }
 
+    private void HandleFootsteps()
+    {
+        if (isMoving && footstepSound != null)
+        {
+            stepTimer += Time.fixedDeltaTime;
+
+            if (stepTimer >= stepInterval)
+            {
+                PlayFootstep();
+                stepTimer = 0f;
+            }
+        }
+        else
+        {
+            stepTimer = 0f;
+        }
+    }
+
+    private void HandleLanding()
+    {
+        // check if just landed
+        if (!wasGrounded && isGrounded && rb.linearVelocity.y <= 0)
+        {
+            PlayLandingSound();
+        }
+    }
+
+    private void PlayFootstep()
+    {
+        // play footstep with automatic pitch variation
+        AudioManager.Instance.PlayFootstep(footstepSound, groundCheck.position, footstepVolume);
+    }
+
+    private void PlayLandingSound()
+    {
+        if (landingSound != null)
+        {
+            AudioManager.Instance.PlaySFX(landingSound, groundCheck.position, landingVolume);
+        }
+    }
 
     // draw gizmo for ground check in editor
     private void OnDrawGizmos()
