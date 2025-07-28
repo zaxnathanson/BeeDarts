@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     [Header("Music")]
 
@@ -53,6 +54,30 @@ public class AudioManager : MonoBehaviour
         if (musicTracks != null && musicTracks.Length > 0)
         {
             PlayMusic(0);
+        }
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex == 0)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        // main or end (temp code since end scene is a temp scene as well)
+        else if (scene.buildIndex == 1 || scene.buildIndex == 2)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -276,4 +301,76 @@ public class AudioManager : MonoBehaviour
 
     public bool IsBoomboxPlaying => boomboxSource != null && boomboxSource.isPlaying;
     #endregion
+
+    // load scene by build index
+    public void LoadScene(int sceneIndex)
+    {
+        if (IsValidSceneIndex(sceneIndex))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneIndex);
+        }
+    }
+
+    public void LoadNextScene()
+    {
+        int currentIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        int nextIndex = currentIndex + 1;
+
+        if (nextIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings)
+        {
+            LoadScene(nextIndex);
+        }
+        else
+        {
+            // loop back to first scene
+            LoadScene(0);
+        }
+    }
+
+    public void LoadPreviousScene()
+    {
+        int currentIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        int previousIndex = currentIndex - 1;
+
+        if (previousIndex >= 0)
+        {
+            LoadScene(previousIndex);
+        }
+    }
+
+    public void ReloadCurrentScene()
+    {
+        int currentIndex = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        LoadScene(currentIndex);
+    }
+
+    public void LoadMainMenu()
+    {
+        LoadScene(0);
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
+
+    // check if scene index exists
+    private bool IsValidSceneIndex(int sceneIndex)
+    {
+        return sceneIndex >= 0 && sceneIndex < UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+    }
+
+    public int GetCurrentSceneIndex()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+    }
+
+    public int GetTotalSceneCount()
+    {
+        return UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+    }
 }

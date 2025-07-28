@@ -211,24 +211,6 @@ public class Dart : MonoBehaviour
         }
     }
 
-    // handle ground/side collisions
-    public void HandleGroundSideCollision()
-    {
-        StartCoroutine(TemporarilyDisableDartable());
-    }
-
-    // temporarily disable dartable collision
-    private IEnumerator TemporarilyDisableDartable()
-    {
-        dartableLayers = undartableLayers;
-        animator.enabled = false;
-
-        yield return new WaitForSeconds(0.1f);
-
-        animator.enabled = true;
-        dartableLayers = originalDartableLayers;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         // only process collisions when thrown

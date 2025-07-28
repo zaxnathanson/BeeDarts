@@ -10,14 +10,21 @@ public class CircleMovement : MonoBehaviour
     private Vector3 centerPosition;
     private float angle = 0f;
 
-    private void Start()
+    private bool started = false;
+
+    private void Awake()
     {
         centerPosition = transform.position;
     }
 
     private void Update()
     {
-        if (transform.position.y > BeeManager.Instance.waterLevel)
+        if (transform.position.y > BeeManager.Instance.waterLevel && !started)
+        {
+            started = true;
+        }
+
+        if (started)
         {
             Circle();
         }

@@ -193,7 +193,7 @@ public class Dartboard : MonoBehaviour
         // handle hit behavior
         if (destroyOnHit)
         {
-            HandleDestroyOnHit();
+            HandleDestroyOnHit(dart);
         }
         else
         {
@@ -220,14 +220,21 @@ public class Dartboard : MonoBehaviour
         // play sound using AudioManager
         if (hitSound != null)
         {
-            AudioManager.Instance.PlaySFXWithRandomPitch(hitSound, transform.position, hitSoundVolume, 0.7f, 1.3f);
+            GameManager.Instance.PlaySFXWithRandomPitch(hitSound, transform.position, hitSoundVolume, 0.7f, 1.3f);
         }
     }
 
     // handle destroy on hit behavior
-    private void HandleDestroyOnHit()
+    private void HandleDestroyOnHit(Dart dart)
     {
         OnDestroyed?.Invoke(this);
+
+        dart.gameObject.transform.parent = null;
+
+        dart.ChangeState(Dart.DartState.THROWN);
+
+        dart.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
         Destroy(targetParent);
     }
 
@@ -271,7 +278,7 @@ public class Dartboard : MonoBehaviour
     {
         if (hitSound != null)
         {
-            AudioManager.Instance.PlaySFX(hitSound, transform.position, hitSoundVolume);
+            GameManager.Instance.PlaySFX(hitSound, transform.position, hitSoundVolume);
         }
     }
 

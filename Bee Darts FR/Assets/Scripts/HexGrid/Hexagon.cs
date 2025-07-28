@@ -20,6 +20,8 @@ public class Hexagon : MonoBehaviour
     [SerializeField] private float verticalThreshold;
 
     [Header("Decoration Settings")]
+
+    [SerializeField] private AudioClip groundHit;
     [SerializeField] private bool doGenerateDecorations;
 
     [Header("Decoration Prefabs")]
@@ -155,6 +157,7 @@ public class Hexagon : MonoBehaviour
         {
             ContactPoint contact = GetBestContactPoint(collision);
 
+            /*
             if (IsVerticalCollision(contact.normal))
             {
                 // bounce the dart
@@ -162,7 +165,6 @@ public class Hexagon : MonoBehaviour
                 dart.ChangeState(Dart.DartState.THROWN);
 
                 Vector3 dartLastVelocity = dart.lastVelocity;
-                dart.HandleGroundSideCollision();
 
                 Rigidbody dartBody = collision.gameObject.GetComponent<Rigidbody>();
                 dartBody.isKinematic = false;
@@ -172,6 +174,10 @@ public class Hexagon : MonoBehaviour
 
                 dartBody.linearVelocity = reflectedVel * forwardSpeed * bounceForce;
             }
+            */
+
+            if (groundHit != null)
+                GameManager.Instance.PlaySFXWithRandomPitch(groundHit, collision.transform.position, 0.4f, 0.75f, 1.25f);
         }
     }
 

@@ -5,15 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/Zax Scene.unity
+    path: Assets/Scenes/TitleScene.unity
+    guid: 35b7e0159a2887b458b5a1f872e54f18
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
     guid: 4c3033c5b233b6a4a919bd41c3917a3c
   - enabled: 1
-    path: Assets/Scenes/HexGrid.unity
-    guid: 3627c377f32f40a4db019304878be171
+    path: Assets/Scenes/EndScene.unity
+    guid: 2dc24fe57f93c6a4ca2db967f71a91c2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

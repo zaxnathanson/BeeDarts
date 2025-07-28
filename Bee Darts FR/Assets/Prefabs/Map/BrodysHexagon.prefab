@@ -126,6 +126,7 @@ MonoBehaviour:
   snapToGrid: 1
   bounceForce: 1
   verticalThreshold: 0.1
+  groundHit: {fileID: 8300000, guid: c440f8ca9913da4478a763f1490723c8, type: 3}
   doGenerateDecorations: 1
   grassPrefabs:
   - {fileID: 8848815095008222174, guid: 95b4dc174dfb6b24188745ae62fc17ed, type: 3}

@@ -173,7 +173,7 @@ MonoBehaviour:
   gradientSpeed: 0.6
   firstBeeSpawn: {fileID: 7069682562909716949}
   secondBeeSpawn: {fileID: 3091613365157863655}
-  spawnedDart: {fileID: 3647037308725737491, guid: 8ae7fd16a0705bf418e69ff19a514e51, type: 3}
+  spawnedDart: {fileID: 3647037308725737491, guid: c9fe2c7cb43169d4581e268fbc33eba3, type: 3}
   forceMultiplier: 2
   waterLevel: -0.17
   totalBeesUnlocked: 1

@@ -116,14 +116,14 @@ public class PlayerMovement : MonoBehaviour
     private void PlayFootstep()
     {
         // play footstep with automatic pitch variation
-        AudioManager.Instance.PlayFootstep(footstepSound, groundCheck.position, footstepVolume);
+        GameManager.Instance.PlayFootstep(footstepSound, groundCheck.position, footstepVolume);
     }
 
     private void PlayLandingSound()
     {
         if (landingSound != null)
         {
-            AudioManager.Instance.PlaySFX(landingSound, groundCheck.position, landingVolume);
+            GameManager.Instance.PlaySFX(landingSound, groundCheck.position, landingVolume);
         }
     }
 

@@ -14,8 +14,6 @@ public class FirstPersonCameraRotation : MonoBehaviour
     private void Awake()
     {
         playerBody = transform.parent;
-
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1218197469410723792
 Transform:
   m_ObjectHideFlags: 0
@@ -180,18 +180,19 @@ MonoBehaviour:
   destroyOnHit: 0
   targetParent: {fileID: 0}
   minimumThrowDistance: 2
+  skipDistanceCheckAfterActivation: 1
   affectedHexagons: []
-  tooCloseIndicator: {fileID: 2703575283537446473}
   hitParticlePrefab: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: ee5e8dabdb6fb964cbf97ccb4bc5c994, type: 3}
+  hitSound: {fileID: 8300000, guid: 206fc9faf86c32343b0105beb1092980, type: 3}
   hitSoundVolume: 1
   gizmoSize: 0.25
   gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
-  explosionParticlePrefab: {fileID: 0}
+  hasBeenActivated: 0
+  explosionClip: {fileID: 8300000, guid: 779b542b958afbf47a5ba61e6229b3bb, type: 3}
+  woodchipperClip: {fileID: 0}
+  explosionParticlePrefab: {fileID: 1620371060522584735, guid: 8d1cbaa0a01d1e049baaa414bda2c656, type: 3}
   explosionOffset: {x: 0, y: 0, z: 0}
-  explosionDelay: 1.5
-  dartRespawnDelay: 0.2
   shakeIntensity: 0.35
   shakeDuration: 1.5
   shakeVibrato: 25
@@ -237,6 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2250832903069779333}
+  - component: {fileID: 2020517636009748124}
   m_Layer: 0
   m_Name: Woodchipper
   m_TagString: Woodchipper
@@ -261,6 +263,20 @@ Transform:
   - {fileID: 4781988312440269325}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2020517636009748124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379571282063119127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc900583e273af42b739eb149bd076c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTag: Hexagon
+  searchRadius: 10
 --- !u!1001 &342157508904081225
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -20,7 +20,7 @@ public class BoomboxDartboard : Dartboard
     {
         if (songsToPlay != null && songsToPlay.Length > 0)
         {
-            AudioManager.Instance.SetupBoombox(songsToPlay, musicVolume);
+            GameManager.Instance.SetupBoombox(songsToPlay, musicVolume);
         }
     }
 
@@ -41,9 +41,9 @@ public class BoomboxDartboard : Dartboard
 
     private void StartMusicAndEffects()
     {
-        if (!AudioManager.Instance.IsBoomboxPlaying)
+        if (!GameManager.Instance.IsBoomboxPlaying)
         {
-            AudioManager.Instance.StartBoombox();
+            GameManager.Instance.StartBoombox();
         }
 
         if (musicParticles != null && !musicParticles.isPlaying)
@@ -54,9 +54,9 @@ public class BoomboxDartboard : Dartboard
 
     private void StopMusicAndEffects()
     {
-        if (AudioManager.Instance.IsBoomboxPlaying)
+        if (GameManager.Instance.IsBoomboxPlaying)
         {
-            AudioManager.Instance.StopBoombox();
+            GameManager.Instance.StopBoombox();
         }
 
         if (musicParticles != null && musicParticles.isPlaying)
@@ -70,9 +70,9 @@ public class BoomboxDartboard : Dartboard
         base.OnDestroy();
 
         // ensure music stops if destroyed
-        if (HasAttachedDarts && AudioManager.Instance.IsBoomboxPlaying)
+        if (HasAttachedDarts && GameManager.Instance.IsBoomboxPlaying)
         {
-            AudioManager.Instance.StopBoombox();
+            GameManager.Instance.StopBoombox();
         }
     }
 
@@ -81,9 +81,9 @@ public class BoomboxDartboard : Dartboard
         base.OnDisable();
 
         // ensure music stops if disabled
-        if (HasAttachedDarts && AudioManager.Instance.IsBoomboxPlaying)
+        if (HasAttachedDarts && GameManager.Instance.IsBoomboxPlaying)
         {
-            AudioManager.Instance.StopBoombox();
+            GameManager.Instance.StopBoombox();
         }
     }
 }
