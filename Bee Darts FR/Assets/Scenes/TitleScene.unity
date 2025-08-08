@@ -9266,6 +9266,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BeeRocket
       objectReference: {fileID: 0}
+    - target: {fileID: 751807579041500901, guid: c705e7257bcfbf64481c276b47c68e3a, type: 3}
+      propertyPath: m_TagString
+      value: Hexagon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222092785487217987, guid: c705e7257bcfbf64481c276b47c68e3a, type: 3}
+      propertyPath: hitSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c440f8ca9913da4478a763f1490723c8, type: 3}
     - target: {fileID: 3877940365167378432, guid: c705e7257bcfbf64481c276b47c68e3a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.3767786
@@ -14602,6 +14610,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5627614058530542200}
   - component: {fileID: 6790868459607298297}
+  - component: {fileID: 6790868459607298298}
   m_Layer: 6
   m_Name: TitleScreenPlayer
   m_TagString: Player
@@ -14773,6 +14782,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2386061483596062218}
   - component: {fileID: 1370625530296736619}
+  - component: {fileID: 4478879664807819786}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -14780,6 +14790,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4478879664807819786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478879664807819785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b260115ae673042ba68880bec93dfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnHit: 0
+  targetParent: {fileID: 0}
+  minimumThrowDistance: 2
+  skipDistanceCheckAfterActivation: 1
+  affectedHexagons: []
+  hitParticlePrefab: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: c440f8ca9913da4478a763f1490723c8, type: 3}
+  hitSoundVolume: 1
+  gizmoSize: 0.25
+  gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
+  gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
+  hasBeenActivated: 0
 --- !u!4 &4645508733985640493
 Transform:
   m_ObjectHideFlags: 0
@@ -14821,7 +14855,7 @@ GameObject:
   - component: {fileID: 7299285403157775340}
   m_Layer: 0
   m_Name: Boombox
-  m_TagString: Untagged
+  m_TagString: Hexagon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15025,15 +15059,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dartPrefab: {fileID: 3647037308725737491, guid: c9fe2c7cb43169d4581e268fbc33eba3, type: 3}
   dartSpeed: 25
-  fireDelay: 0.2
   dartLifetime: 5
   cameraDistance: 1.25
+  fireDelay: 0.2
   maxDarts: 5
   reticle: {fileID: 447319082}
   reticleDistance: 30
   aimLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6790868459607298298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2405082414221368595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 970d7a2264fc6d24d9dd9a21c6498d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeWindow: 2
+  stringToType: brody
 --- !u!20 &6838150584355733548
 Camera:
   m_ObjectHideFlags: 0

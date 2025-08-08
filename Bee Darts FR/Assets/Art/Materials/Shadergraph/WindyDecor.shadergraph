@@ -830,6 +830,12 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalSpriteUnlitSubTarget",
+    "m_ObjectId": "23d05509518840e2a2ee0c6aa1721a74"
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "27622401aed04401a884941d52961302",
     "m_Name": "",
@@ -1853,12 +1859,6 @@
 }
 
 {
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalSpriteUnlitSubTarget",
-    "m_ObjectId": "8d44ae228630463e8220a915bfa47039"
-}
-
-{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
     "m_ObjectId": "8da5852c292243fab98f3f2a7d21d59c",
@@ -2451,16 +2451,16 @@
     "m_ObjectId": "af7f675b9a9f4bdd8b45328b6eb5cfdb",
     "m_Datas": [],
     "m_ActiveSubTarget": {
-        "m_Id": "8d44ae228630463e8220a915bfa47039"
+        "m_Id": "23d05509518840e2a2ee0c6aa1721a74"
     },
     "m_AllowMaterialOverride": false,
-    "m_SurfaceType": 0,
+    "m_SurfaceType": 1,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": false,
-    "m_CastShadows": true,
+    "m_CastShadows": false,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,
     "m_AdditionalMotionVectorMode": 0,

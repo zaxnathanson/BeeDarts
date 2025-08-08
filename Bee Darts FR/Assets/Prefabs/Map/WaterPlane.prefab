@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7303419796414256109}
   - component: {fileID: 7079440070239599936}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Wall2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 3322629641377754453}
   - component: {fileID: 3583143001092510763}
   m_Layer: 0
-  m_Name: Plane (3)
+  m_Name: Wall4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 4904215498063679114}
   - component: {fileID: 6833864195085606702}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Wall1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 123360588781730641}
   - component: {fileID: 7333879829252856568}
   m_Layer: 0
-  m_Name: Plane (2)
+  m_Name: Wall3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,11 +469,11 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5845768182243739995}
   - {fileID: 3607915817837670038}
   - {fileID: 1867560024262222862}
   - {fileID: 7396352648177358882}
   - {fileID: 8619600373248372687}
+  - {fileID: 5845768182243739995}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4207325992513052756

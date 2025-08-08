@@ -8,11 +8,13 @@ public class TitleScreenDartController : MonoBehaviour
     [Header("Dart Settings")]
 
     [SerializeField] private GameObject dartPrefab;
+
     [SerializeField] private float dartSpeed = 50f;
-    [SerializeField] private float fireDelay = 0.5f;
     [SerializeField] private float dartLifetime = 5f;
     [SerializeField] private float cameraDistance = 1.25f;
-    [SerializeField] private int maxDarts = 50;
+
+    [SerializeField] public float fireDelay = 0.5f;
+    [SerializeField] public int maxDarts = 50;
 
     [Header("Reticle Settings")]
 
