@@ -11,6 +11,7 @@ public class CircleMovement : MonoBehaviour
     private float angle = 0f;
 
     private bool started = false;
+    private bool isMoving = true;
 
     private void Awake()
     {
@@ -24,7 +25,7 @@ public class CircleMovement : MonoBehaviour
             started = true;
         }
 
-        if (started)
+        if (started && isMoving)
         {
             Circle();
         }
@@ -40,5 +41,10 @@ public class CircleMovement : MonoBehaviour
         float z = centerPosition.z + Mathf.Sin(angle) * radius;
 
         transform.position = new Vector3(centerPosition.x, y, z);
+    }
+
+    public void StopCircling()
+    {
+        isMoving = false;
     }
 }

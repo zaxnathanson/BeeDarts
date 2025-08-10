@@ -4,7 +4,7 @@ public class UndartableBounce : MonoBehaviour
 {
     [Header("Bounce Settings")]
 
-    [SerializeField] private float bounceForce = 10f;
+    [SerializeField] private float bounceForce = 1f;
 
     private Rigidbody dartBody;
 

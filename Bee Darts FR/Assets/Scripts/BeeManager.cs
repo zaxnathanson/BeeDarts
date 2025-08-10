@@ -107,10 +107,10 @@ public class BeeManager : MonoBehaviour
         respawnPads.Remove(pad);
     }
 
-    public void RespawnBee()
+    public void RespawnBee(Vector3 spawnNearHere)
     {
-        // find and spawn bee at nearest respawn
-        RespawnPad nearestPad = FindNearestRespawnPad();
+        // find and spawn bee at nearest respawn to spawnNearHere
+        RespawnPad nearestPad = FindNearestRespawnPad(spawnNearHere);
 
         if (nearestPad != null)
         {
@@ -123,14 +123,8 @@ public class BeeManager : MonoBehaviour
         }
     }
 
-    private RespawnPad FindNearestRespawnPad()
+    private RespawnPad FindNearestRespawnPad(Vector3 pos)
     {
-        GameObject player = GameObject.Find("Player");
-        if (player == null)
-        {
-            return null;
-        }
-
         RespawnPad nearestPad = null;
 
         float shortestDistance = 99999f;
@@ -139,7 +133,7 @@ public class BeeManager : MonoBehaviour
         {
             if (pad != null)
             {
-                float distance = Vector3.Distance(player.transform.position, pad.transform.position);
+                float distance = Vector3.Distance(pos, pad.transform.position);
                 if (distance < shortestDistance)
                 {
                     shortestDistance = distance;

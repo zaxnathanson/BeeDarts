@@ -29,7 +29,7 @@ public class DeathPlane : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Dart"))
         {
-            BeeManager.Instance.RespawnBee();
+            BeeManager.Instance.RespawnBee(player.transform.position);
 
             GameManager.Instance.PlaySFXWithRandomPitch(waterDrop, other.transform.position, 1f, 0.8f, 1.2f);
 

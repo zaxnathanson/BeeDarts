@@ -123,6 +123,8 @@ public class Dart : MonoBehaviour
         {
             case DartState.HELD:
                 body.isKinematic = true;
+                Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Undartable"));
+
                 animator.SetBool("IsCharging", false);
                 animator.SetBool("IsFlying", false);
                 SetRandomExpression(idleExpressions);
@@ -135,6 +137,8 @@ public class Dart : MonoBehaviour
                 break;
 
             case DartState.THROWN:
+                Physics.IgnoreLayerCollision(gameObject.layer, LayerMask.NameToLayer("Undartable"), false);
+
                 animator.SetBool("IsCharging", false);
                 animator.SetBool("IsFlying", true);
                 SetRandomExpression(thrownExpressions);

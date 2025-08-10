@@ -45,6 +45,6 @@ public class VendingDartboard : Dartboard
 
         soldOut.SetActive(true);
 
-        BeeManager.Instance.RespawnBee();
+        BeeManager.Instance.RespawnBee(transform.position);
     }
 }

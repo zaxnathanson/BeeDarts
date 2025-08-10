@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class MovingObstacle : MonoBehaviour
+public class MovingWall : MonoBehaviour
 {
     [Header("Movement Settings")]
 
@@ -14,6 +14,8 @@ public class MovingObstacle : MonoBehaviour
     private Vector3 rightPosition;
 
     private bool started = false;
+
+    public bool isMoving = true;
 
     private void Start()
     {
@@ -47,7 +49,7 @@ public class MovingObstacle : MonoBehaviour
         moveSequence.SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void OnDestroy()
+    public void StopMoving()
     {
         transform.DOKill();
     }

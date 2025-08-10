@@ -12,6 +12,9 @@ public class FlowerDartboard : Dartboard
     // track if this flower has been hit for points
     private bool hasAwardedPoints;
 
+    private CircleMovement circlingScript;
+    private MovingWall movingScript;
+
     // handle dart hit
     protected override void OnHit(Dart dart)
     {
@@ -28,6 +31,16 @@ public class FlowerDartboard : Dartboard
         {
             BeeManager.Instance.IncrementPoints(1);
             hasAwardedPoints = true;
+        }
+
+        if ((circlingScript = transform.parent.GetComponent<CircleMovement>()) != null)
+        {
+            circlingScript.StopCircling();
+        }
+
+        if ((movingScript = transform.parent.GetComponent<MovingWall>()) != null)
+        {
+            movingScript.StopMoving();
         }
     }
 
