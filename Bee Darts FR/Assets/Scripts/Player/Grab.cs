@@ -142,9 +142,9 @@ public class Grab : MonoBehaviour
     // update reticle color
     private void UpdateReticleColor(Color color)
     {
-        if (GameUIManager.instance != null)
+        if (GameUIManager.Instance != null)
         {
-            GameUIManager.instance.ChangeReticleColor(color);
+            GameUIManager.Instance.ChangeReticleColor(color);
         }
     }
 

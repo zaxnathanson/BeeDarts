@@ -11,7 +11,9 @@ public class Balloon : MonoBehaviour
         if (collision.gameObject.CompareTag("Dart"))
         {
             if (balloonHit != null)
+            {
                 GameManager.Instance.PlaySFXWithRandomPitch(balloonHit, collision.transform.position, 1f, 0.85f, 1.15f);
+            }
         }
     }
 }

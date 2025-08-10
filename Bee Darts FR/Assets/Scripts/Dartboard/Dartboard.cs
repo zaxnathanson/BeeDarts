@@ -96,7 +96,7 @@ public class Dartboard : MonoBehaviour
     // update range indicator visibility
     private void UpdateRangeIndicator()
     {
-        if (playerTransform == null || GameUIManager.instance == null) return;
+        if (playerTransform == null || GameUIManager.Instance == null) return;
 
         // skip distance check if dartboard has been activated and setting is enabled
         if (hasBeenActivated && skipDistanceCheckAfterActivation)
@@ -130,7 +130,7 @@ public class Dartboard : MonoBehaviour
             {
                 currentTooCloseDartboard = this;
                 isShowingTooClose = true;
-                GameUIManager.instance.ShowTooCloseIndicator(true);
+                GameUIManager.Instance.ShowTooCloseIndicator(true);
             }
         }
         else if (isShowingTooClose && currentTooCloseDartboard == this)
@@ -148,9 +148,9 @@ public class Dartboard : MonoBehaviour
             {
                 currentTooCloseDartboard = null;
             }
-            if (GameUIManager.instance != null)
+            if (GameUIManager.Instance != null)
             {
-                GameUIManager.instance.ShowTooCloseIndicator(false);
+                GameUIManager.Instance.ShowTooCloseIndicator(false);
             }
         }
     }

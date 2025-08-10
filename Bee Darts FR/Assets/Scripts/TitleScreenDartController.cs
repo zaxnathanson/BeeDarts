@@ -34,7 +34,7 @@ public class TitleScreenDartController : MonoBehaviour
     {
         mainCamera = Camera.main;
 
-        uiManager = GameUIManager.instance;
+        uiManager = GameUIManager.Instance;
 
         if (uiManager == null)
         {

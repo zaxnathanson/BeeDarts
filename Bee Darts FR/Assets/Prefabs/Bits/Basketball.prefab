@@ -143,8 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d919f1801513888419dff605b01b3e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotForce: 7
-  arcHeight: 15
+  hitSound: {fileID: 0}
+  shotForce: 12
+  arcHeight: 12
+  spinForce: 15
 --- !u!114 &6088902563978572119
 MonoBehaviour:
   m_ObjectHideFlags: 0
