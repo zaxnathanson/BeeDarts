@@ -5075,8 +5075,11 @@ MonoBehaviour:
   gizmoSize: 0.25
   gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
+  hasBeenActivated: 0
   pollenParticles: {fileID: 0}
   isFirstFlower: 0
+  normalScale: 1
+  tooCloseScale: 1.07
 --- !u!4 &3491177311338230620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5697762079096866911, guid: 6a00579c4ef4aa44c8f3efebb37c4188, type: 3}

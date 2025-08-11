@@ -33,7 +33,7 @@ public class Dartboard : MonoBehaviour
     private const float RANGE_CHECK_INTERVAL = 0.1f;
 
     private static Dartboard currentTooCloseDartboard;
-    private bool isShowingTooClose = false;
+    protected bool isShowingTooClose = false;
     public bool hasBeenActivated = false;
 
     // properties

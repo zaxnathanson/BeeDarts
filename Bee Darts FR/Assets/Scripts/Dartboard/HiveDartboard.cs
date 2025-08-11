@@ -1,14 +1,19 @@
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class HiveDartboard : Dartboard
 {
     [Header("Hive Settings")]
 
-    [SerializeField] private ParticleSystem honeyParticles;
+    [SerializeField] private Transform targetPosition;
+
+    [SerializeField] private Vector3 targetRotation;
+    [SerializeField] private float tweenDuration = 2f;
 
     private TextMeshProUGUI beesText;
 
+    private bool transitioned = false;
 
     private void Start()
     {
@@ -26,38 +31,44 @@ public class HiveDartboard : Dartboard
     protected override void Update()
     {
         base.Update();
-
         if (beesText != null)
             beesText.text = AttachedDartCount.ToString() + " / 5";
-
-        if (AttachedDartCount >= 5)
+        if (AttachedDartCount >= 5 && !transitioned)
         {
-            // win scene, temp code
-            GameManager.Instance.LoadScene(2);
+            transitioned = true;
+            // start camera transition and particles
+            StartTransition();
+
+            // the line that will actually start the transition
+            //GameUIManager.Instance.StartSceneTransition(2, false);
         }
     }
 
-    // handle darts staying on hive
+    private void StartTransition()
+    {
+        // move camera to target position and rotation
+        Camera.main.transform.SetParent(null);
+        Camera.main.gameObject.GetComponent<FirstPersonCameraRotation>().enabled = false;
+
+        if (Camera.main != null && targetPosition != null)
+        {
+            Camera.main.transform.DOMove(targetPosition.position, tweenDuration);
+            Camera.main.transform.DORotate(targetRotation, tweenDuration);
+        }
+
+        // find particles child and play sequence
+        GameObject particlesChild = GameObject.Find("Particles");
+        if (particlesChild != null)
+        {
+            RocketParticles rocketParticles = particlesChild.GetComponent<RocketParticles>();
+            if (rocketParticles != null)
+            {
+                rocketParticles.PlaySequence();
+            }
+        }
+    }
     protected override void OnDartsAttached(int dartCount)
     {
         base.OnDartsAttached(dartCount);
-
-        // manage honey particles based on dart presence
-        UpdateHoneyEffect(dartCount > 0);
-    }
-
-    // update honey particle effect
-    private void UpdateHoneyEffect(bool shouldPlay)
-    {
-        if (honeyParticles == null) return;
-
-        if (shouldPlay && !honeyParticles.isPlaying)
-        {
-            honeyParticles.Play();
-        }
-        else if (!shouldPlay && honeyParticles.isPlaying)
-        {
-            honeyParticles.Stop();
-        }
     }
 }

@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class FlowerDartboard : Dartboard
 {
-    [Header("Flower Settings")]
-    [SerializeField] private ParticleSystem pollenParticles;
+    [Header("Dartboard Settings")]
+
+    [SerializeField] private AudioClip invalidHit;
 
     [Header("Gameplay Settings")]
-    [Tooltip("Set true for the first flower in the level to control bee spawn points")]
+
+    [Tooltip("Set true for the first dartboard in the level to control bee spawn points")]
     [SerializeField] private bool isFirstFlower;
+
+    [Header("Outline Settings")]
+
+    [SerializeField] private float normalScale = 1f;
+    [SerializeField] private float tooCloseScale = 1.5f;
+    private Material outlineMaterialInstance;
+    private Renderer outlineRenderer;
 
     // track if this flower has been hit for points
     private bool hasAwardedPoints;
@@ -15,7 +24,31 @@ public class FlowerDartboard : Dartboard
     private CircleMovement circlingScript;
     private MovingWall movingScript;
 
-    // handle dart hit
+    private void Start()
+    {
+        FindOutlineMaterial();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (base.isShowingTooClose)
+        {
+            // material edit here
+            if (outlineMaterialInstance != null)
+            {
+                outlineMaterialInstance.SetFloat("_Scale", tooCloseScale);
+            }
+        }
+        else
+        {
+            if (outlineMaterialInstance != null)
+            {
+                outlineMaterialInstance.SetFloat("_Scale", normalScale);
+            }
+        }
+    }
     protected override void OnHit(Dart dart)
     {
         base.OnHit(dart);
@@ -44,27 +77,43 @@ public class FlowerDartboard : Dartboard
         }
     }
 
-    // handle darts staying on flower
+    protected override void OnInvalidHit(Dart dart, float throwDistance)
+    {
+        base.OnInvalidHit(dart, throwDistance);
+
+        //GameManager
+    }
+
+    private void FindOutlineMaterial()
+    {
+        Renderer[] allRenderers = transform.parent.GetComponentsInChildren<Renderer>();
+
+        foreach (Renderer renderer in allRenderers)
+        {
+            // check all materials on this renderer
+            Material[] materials = renderer.materials;
+
+            for (int i = 0; i < materials.Length; i++)
+            {
+                if (materials[i].name.Contains("OutlineMaterial"))
+                {
+                    outlineRenderer = renderer;
+                    // create instance of the material to modify
+                    outlineMaterialInstance = new Material(materials[i]);
+
+                    materials[i] = outlineMaterialInstance;
+                    renderer.materials = materials;
+
+                    return;
+                }
+            }
+        }
+
+        Debug.LogWarning("OutlineMaterial not found in children!");
+    }
+
     protected override void OnDartsAttached(int dartCount)
     {
         base.OnDartsAttached(dartCount);
-
-        // manage pollen particles based on dart presence
-        UpdatePollenEffect(dartCount > 0);
-    }
-
-    // update pollen particle effect
-    private void UpdatePollenEffect(bool shouldPlay)
-    {
-        if (pollenParticles == null) return;
-
-        if (shouldPlay && !pollenParticles.isPlaying)
-        {
-            pollenParticles.Play();
-        }
-        else if (!shouldPlay && pollenParticles.isPlaying)
-        {
-            pollenParticles.Stop();
-        }
     }
 }
