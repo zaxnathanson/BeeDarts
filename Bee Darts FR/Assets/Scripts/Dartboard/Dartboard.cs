@@ -352,7 +352,7 @@ public class Dartboard : MonoBehaviour
     }
 
     [ContextMenu("Raise Affected Hexagons")]
-    private void RaiseAffectedHexagons()
+    public void RaiseAffectedHexagons()
     {
         if (HexManager.Instance != null && affectedHexagons.Count > 0)
         {

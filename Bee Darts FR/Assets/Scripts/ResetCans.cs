@@ -7,6 +7,7 @@ public class ResetCans : MonoBehaviour
 
     [SerializeField] private float particleYOffset = 7f;
     [SerializeField] private GameObject winParticle;
+    [SerializeField] private AudioClip cheerSound;
 
     private List<Transform> cans = new List<Transform>();
 
@@ -40,7 +41,9 @@ public class ResetCans : MonoBehaviour
             if (winParticle != null)
             {
                 Vector3 particleSpawn = new Vector3(transform.position.x, transform.position.y + particleYOffset, transform.position.z);
+
                 Instantiate(winParticle, particleSpawn, Quaternion.identity);
+                GameManager.Instance.PlaySFX(cheerSound, transform.position, 1f);
             }
 
             numCansFallen = 0;

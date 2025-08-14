@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canTink: {fileID: 8300000, guid: 0e969dedf88cfb84dad78a3e4114b280, type: 3}
+  canDown: 1
 --- !u!114 &5643479663930980805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325f7db7171834c4e8e5662271328ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounceForce: 0.1
+  bounceForce: 0.5
 --- !u!1 &8716137138016167326
 GameObject:
   m_ObjectHideFlags: 0

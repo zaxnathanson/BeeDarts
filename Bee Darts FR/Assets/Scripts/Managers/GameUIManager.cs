@@ -38,6 +38,11 @@ public class GameUIManager : MonoBehaviour
     private Vector3 originalScale;
     private Image[] hexagonImages;
 
+    [Header("Pause Menu Settings")]
+    [SerializeField] private GameObject pauseMenu;
+
+    private bool pauseMenuActive = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -64,6 +69,26 @@ public class GameUIManager : MonoBehaviour
         SetupHexagonGrid();
 
         StartSceneTransition(-1, true);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu != null)
+        {
+            TriggerPauseMenu();
+        }
+    }
+
+    private void TriggerPauseMenu()
+    {
+        if (pauseMenuActive)
+        {
+            ////// osmething something
+        }
+        else
+        {
+
+        }
     }
 
     private void SetupHexagonGrid()

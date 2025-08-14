@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float landingVolume = 0.7f;
     [SerializeField] private float stepInterval = 0.4f;
 
+    [Header("Head Bob Settings")]
+
+    [SerializeField] private Transform cameraTransform;
+    [SerializeField] private float bobFrequency = 2f;
+    [SerializeField] private float bobHorizontalAmplitude = 0.05f;
+    [SerializeField] private float bobVerticalAmplitude = 0.03f;
+    [SerializeField] private float landingBobIntensity = 0.2f;
+
     private Rigidbody rb;
     private Vector3 input;
     private bool isGrounded;
@@ -33,10 +42,20 @@ public class PlayerMovement : MonoBehaviour
     private float stepTimer;
     private bool isMoving;
 
+    // head bob tracking
+    private Vector3 cameraStartPos;
+    private float bobTimer = 0f;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         wasGrounded = true;
+
+        // store camera start position
+        if (cameraTransform != null)
+        {
+            cameraStartPos = cameraTransform.localPosition;
+        }
     }
 
     private void Update()
@@ -58,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
         Jump();
         HandleFootsteps();
         HandleLanding();
+        HandleHeadBob();
     }
 
     private void Movement()
@@ -91,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving && footstepSound != null)
         {
             stepTimer += Time.fixedDeltaTime;
-
             if (stepTimer >= stepInterval)
             {
                 PlayFootstep();
@@ -110,6 +129,32 @@ public class PlayerMovement : MonoBehaviour
         if (!wasGrounded && isGrounded && rb.linearVelocity.y <= 0)
         {
             PlayLandingSound();
+            PlayLandingBob();
+        }
+    }
+
+    private void HandleHeadBob()
+    {
+        if (cameraTransform == null) return;
+
+        if (isMoving)
+        {
+            bobTimer += Time.fixedDeltaTime * bobFrequency;
+
+            // calculate bob offset
+            Vector3 offset = new Vector3(
+                Mathf.Cos(bobTimer) * bobHorizontalAmplitude,
+                Mathf.Sin(bobTimer * 2) * bobVerticalAmplitude,
+                0
+            );
+
+            cameraTransform.localPosition = cameraStartPos + offset;
+        }
+        else
+        {
+            // smoothly return to start position when not walking
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, cameraStartPos, Time.fixedDeltaTime * 5f);
+            bobTimer = 0f;
         }
     }
 
@@ -124,6 +169,14 @@ public class PlayerMovement : MonoBehaviour
         if (landingSound != null)
         {
             GameManager.Instance.PlaySFX(landingSound, groundCheck.position, landingVolume);
+        }
+    }
+
+    private void PlayLandingBob()
+    {
+        if (cameraTransform != null)
+        {
+            cameraTransform.DOPunchPosition(Vector3.down * landingBobIntensity, 0.3f, 5, 0.5f);
         }
     }
 

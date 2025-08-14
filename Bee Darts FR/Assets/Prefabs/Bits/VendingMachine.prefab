@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnHit: 0
   targetParent: {fileID: 0}
-  minimumThrowDistance: 2
+  minimumThrowDistance: 0
   skipDistanceCheckAfterActivation: 1
   affectedHexagons: []
   hitParticlePrefab: {fileID: 0}

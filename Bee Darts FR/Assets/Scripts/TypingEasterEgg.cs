@@ -1,5 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TypingEasterEgg : MonoBehaviour
 {
@@ -69,9 +71,18 @@ public class TypingEasterEgg : MonoBehaviour
 
     private void OnSequenceDetected()
     {
-        UnlockUltraBeeModeEpicBeeModeWhereTheBeesGoEverywhereAndItsAwesome();
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            UnlockUltraBeeModeEpicBeeModeWhereTheBeesGoEverywhereAndItsAwesome();
+            Debug.Log("Title scene unlocked.");
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            UnlockTheEntireMapAndAlsoSpawnInFiveBeesSoThatYouCanTestTheGameMoreEasily();
+            Debug.Log("Main scene unlocked.");
+        }
 
-        keyPresses.Clear();
+            keyPresses.Clear();
     }
 
     private void UnlockUltraBeeModeEpicBeeModeWhereTheBeesGoEverywhereAndItsAwesome()
@@ -80,5 +91,30 @@ public class TypingEasterEgg : MonoBehaviour
 
         controller.maxDarts = 100;
         controller.fireDelay = 0f;
+    }
+
+    private void UnlockTheEntireMapAndAlsoSpawnInFiveBeesSoThatYouCanTestTheGameMoreEasily()
+    {
+        // find all dartboard types including inheritors
+        var dartboardTypes = System.AppDomain.CurrentDomain.GetAssemblies()
+            .SelectMany(assembly => assembly.GetTypes())
+            .Where(type => typeof(Dartboard).IsAssignableFrom(type) && !type.IsAbstract)
+            .ToArray();
+
+        // find all instances and call raise method
+        foreach (var type in dartboardTypes)
+        {
+            var instances = Object.FindObjectsByType(type, FindObjectsSortMode.None) as Dartboard[];
+            foreach (var dartboard in instances)
+            {
+                dartboard.RaiseAffectedHexagons();
+            }
+        }
+
+        BeeManager.Instance.RespawnBee(transform.position);
+        BeeManager.Instance.RespawnBee(transform.position);
+        BeeManager.Instance.RespawnBee(transform.position);
+        BeeManager.Instance.RespawnBee(transform.position);
+        BeeManager.Instance.RespawnBee(transform.position);
     }
 }

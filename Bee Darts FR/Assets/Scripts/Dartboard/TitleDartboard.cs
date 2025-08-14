@@ -10,11 +10,6 @@ public class TitleDartboard : Dartboard
     protected override void Update()
     {
         base.Update();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SwitchScene();
-        }
     }
 
     protected override void OnHit(Dart dart)
