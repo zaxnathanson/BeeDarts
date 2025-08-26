@@ -39,7 +39,7 @@ public class BeeManager : MonoBehaviour
     public int totalBeesUnlocked = 1;
     public int beesOutOfHive = 0;
     public bool firstFlower = false;
-    
+
 
     [Header("References")]
 
@@ -121,6 +121,21 @@ public class BeeManager : MonoBehaviour
             // fallback to og
             RespawnBeeOriginal();
         }
+    }
+
+    public void HideAllDarts()
+    {
+        Dart[] allDarts = FindObjectsByType<Dart>(FindObjectsSortMode.None);
+
+        foreach (Dart dart in allDarts)
+        {
+            if (dart != null && dart.gameObject != null)
+            {
+                dart.gameObject.SetActive(false);
+            }
+        }
+
+        Debug.Log($"Hidden {allDarts.Length} darts");
     }
 
     private RespawnPad FindNearestRespawnPad(Vector3 pos)

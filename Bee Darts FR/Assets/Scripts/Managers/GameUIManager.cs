@@ -77,17 +77,57 @@ public class GameUIManager : MonoBehaviour
         {
             TriggerPauseMenu();
         }
+
+        if (pauseMenuActive && Input.GetKeyDown(KeyCode.Q))
+        {
+            TriggerPauseMenu();
+            StartSceneTransition(0, false);
+        }
+    }
+
+    public void HideAllUI()
+    {
+
+        // hide all child GameObjects
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (child != null && child.gameObject != null && child.gameObject.name != "PauseMenu")
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void ShowAllUI()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform child = transform.GetChild(i);
+            if (child != null && child.gameObject != null && child.gameObject.name != "PauseMenu" && child.gameObject.name != "TooClose")
+            {
+                child.gameObject.SetActive(true);
+            }
+        }
     }
 
     private void TriggerPauseMenu()
     {
-        if (pauseMenuActive)
+        if (!pauseMenuActive)
         {
-            ////// osmething something
+            pauseMenuActive = true;
+
+            pauseMenu.SetActive(true);
+            HideAllUI();
+            Time.timeScale = 0;
         }
         else
         {
+            pauseMenuActive = false;
 
+            pauseMenu.SetActive(false);
+            ShowAllUI();
+            Time.timeScale = 1f;
         }
     }
 
@@ -235,6 +275,11 @@ public class GameUIManager : MonoBehaviour
         // actually switch the scenes
         if (buildIndex > -1)
         {
+            if (ShakeManager.Instance != null)
+            {
+                ShakeManager.Instance.StopShake();
+            }
+
             GameManager.Instance.LoadScene(buildIndex);
         }
     }

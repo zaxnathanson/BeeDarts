@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Audio Settings")]
 
     [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip landingSound;
     [SerializeField] private float footstepVolume = 0.5f;
     [SerializeField] private float landingVolume = 0.7f;
@@ -97,6 +98,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, jumpForce, rb.linearVelocity.z);
             jumpQueued = false;
+
+            GameManager.Instance.PlaySFXWithRandomPitch(jumpSound, groundCheck.position, 1f, 0.5f, 0.7f);
         }
     }
 

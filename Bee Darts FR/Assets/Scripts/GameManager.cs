@@ -69,13 +69,13 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex == 0)
+        if (scene.buildIndex == 0 || scene.buildIndex == 2)
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.None;
         }
         // main or end (temp code since end scene is a temp scene as well)
-        else if (scene.buildIndex == 1 || scene.buildIndex == 2)
+        else if (scene.buildIndex == 1)
         {
             Cursor.lockState = CursorLockMode.Locked;
         }

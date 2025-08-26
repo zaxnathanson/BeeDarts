@@ -71,7 +71,7 @@ public class TypingEasterEgg : MonoBehaviour
 
     private void OnSequenceDetected()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex == 0 || SceneManager.GetActiveScene().buildIndex == 2)
         {
             UnlockUltraBeeModeEpicBeeModeWhereTheBeesGoEverywhereAndItsAwesome();
             Debug.Log("Title scene unlocked.");
