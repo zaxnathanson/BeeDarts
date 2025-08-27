@@ -73,7 +73,7 @@ public class GameUIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && pauseMenu != null)
+        if (Input.GetKeyDown(KeyCode.P) && pauseMenu != null)
         {
             TriggerPauseMenu();
         }
@@ -120,6 +120,11 @@ public class GameUIManager : MonoBehaviour
             pauseMenu.SetActive(true);
             HideAllUI();
             Time.timeScale = 0;
+
+            GameObject.Find("Player").transform.GetChild(0).GetComponent<FirstPersonCameraRotation>().enabled = false;
+
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
@@ -128,6 +133,11 @@ public class GameUIManager : MonoBehaviour
             pauseMenu.SetActive(false);
             ShowAllUI();
             Time.timeScale = 1f;
+
+            GameObject.Find("Player").transform.GetChild(0).GetComponent<FirstPersonCameraRotation>().enabled = true;
+
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

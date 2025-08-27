@@ -24,6 +24,8 @@ public class Grab : MonoBehaviour
     private const float RAYCAST_INTERVAL = 0.1f;
     private float nextRaycastTime;
 
+    public bool canGrab = true;
+
     private void Awake()
     {
         // cache references
@@ -125,7 +127,7 @@ public class Grab : MonoBehaviour
     // attempt to grab hovered dart
     private void AttemptGrab()
     {
-        if (hoveredDart != null && DartThrowing.Instance != null)
+        if (hoveredDart != null && DartThrowing.Instance != null && canGrab)
         {
             DartThrowing.Instance.PickupDart(hoveredDart);
             hoveredDart = null;

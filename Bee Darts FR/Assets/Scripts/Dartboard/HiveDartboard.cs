@@ -110,8 +110,12 @@ public class HiveDartboard : Dartboard
         isFollowingRocket = true;
 
         // start camera shake
-        Debug.Log("calle dshake");
         ShakeManager.Instance.ShakeCamera(blastShakeDuration, blastShakeStrength, blastShakeVibrato);
+
+        // play sound audio
+        GameManager.Instance.StopMusic();
+        GameManager.Instance.StopBoombox();
+        GetComponent<AudioSource>().Play();
 
         // animate rocket blast off
         Vector3 startPos = transform.position;

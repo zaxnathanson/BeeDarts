@@ -176,15 +176,15 @@ MonoBehaviour:
   skipDistanceCheckAfterActivation: 1
   affectedHexagons: []
   hitParticlePrefab: {fileID: 0}
-  hitSound: {fileID: 8300000, guid: a86a03d301766c64dbf73e5eee7877e4, type: 3}
-  hitSoundVolume: 1
+  hitSound: {fileID: 8300000, guid: 4462189450a60234481acb75c0f91974, type: 3}
+  hitSoundVolume: 0.9
   gizmoSize: 0.25
   gizmoColorUnselected: {r: 1, g: 1, b: 1, a: 0.9}
   gizmoColorSelected: {r: 1, g: 0, b: 0, a: 1}
   hasBeenActivated: 0
   gongSound: {fileID: 0}
   gongShakeDuration: 0.5
-  gongShakeStrength: 1
+  gongShakeStrength: 0.5
   gongShakeVibrato: 10
 --- !u!1001 &4065580688788262764
 PrefabInstance:

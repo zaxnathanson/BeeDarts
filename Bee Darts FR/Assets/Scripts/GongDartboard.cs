@@ -14,7 +14,7 @@ public class GongDartboard : Dartboard
 
     protected override void OnHit(Dart dart)
     {
-        GameManager.Instance.PlaySFXWithRandomPitch(gongSound, transform.position, 1, 0.7f, 1.3f);
+        GameManager.Instance.PlaySFXWithRandomPitch(gongSound, transform.position, 1, 0.95f, 1.05f);
         ShakeManager.Instance.ShakeCamera(gongShakeDuration, gongShakeStrength, gongShakeVibrato);
     }
 
